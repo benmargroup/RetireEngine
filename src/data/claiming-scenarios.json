@@ -1,0 +1,394 @@
+[
+  {
+    "slug": "62-in-texas",
+    "title": "Claim Social Security at 62 in Texas (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Texas: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that covers about 57% of a comfortable $3,000/mo budget in Texas, leaving a gap of roughly $385,500 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Texas (comfortable budget: $3,000/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 57% of Texas's comfortable cost of living; closing the rest needs about $385,500 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax on Social Security or IRA/401(k) withdrawals."
+    ],
+    "taxNote": "No state income tax on Social Security or IRA/401(k) withdrawals. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Home insurance and property tax are the cost drivers. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "65-in-texas",
+    "title": "Claim Social Security at 65 in Texas (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Texas: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that covers about 71% of a comfortable $3,000/mo budget in Texas, leaving a gap of roughly $263,100 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Texas (comfortable budget: $3,000/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 71% of Texas's comfortable cost of living; closing the rest needs about $263,100 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax on Social Security or IRA/401(k) withdrawals."
+    ],
+    "taxNote": "No state income tax on Social Security or IRA/401(k) withdrawals. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Home insurance and property tax are the cost drivers. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "67-in-texas",
+    "title": "Claim Social Security at 67 in Texas (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Texas: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that covers about 82% of a comfortable $3,000/mo budget in Texas, leaving a gap of roughly $165,000 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Texas (comfortable budget: $3,000/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 82% of Texas's comfortable cost of living; closing the rest needs about $165,000 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax on Social Security or IRA/401(k) withdrawals."
+    ],
+    "taxNote": "No state income tax on Social Security or IRA/401(k) withdrawals. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Home insurance and property tax are the cost drivers. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "70-in-texas",
+    "title": "Claim Social Security at 70 in Texas (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Texas: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 101% of a comfortable $3,000/mo budget in Texas, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Texas (comfortable budget: $3,000/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (101%) of Texas's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "No state income tax on Social Security or IRA/401(k) withdrawals."
+    ],
+    "taxNote": "No state income tax on Social Security or IRA/401(k) withdrawals. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Home insurance and property tax are the cost drivers. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "62-in-florida",
+    "title": "Claim Social Security at 62 in Florida (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Florida: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that covers about 52% of a comfortable $3,300/mo budget in Florida, leaving a gap of roughly $475,500 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Florida (comfortable budget: $3,300/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 52% of Florida's comfortable cost of living; closing the rest needs about $475,500 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax. Home insurance is the wildcard cost."
+    ],
+    "taxNote": "No state income tax. Home insurance is the wildcard cost. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Budget for higher homeowner insurance. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "65-in-florida",
+    "title": "Claim Social Security at 65 in Florida (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Florida: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that covers about 64% of a comfortable $3,300/mo budget in Florida, leaving a gap of roughly $353,100 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Florida (comfortable budget: $3,300/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 64% of Florida's comfortable cost of living; closing the rest needs about $353,100 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax. Home insurance is the wildcard cost."
+    ],
+    "taxNote": "No state income tax. Home insurance is the wildcard cost. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Budget for higher homeowner insurance. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "67-in-florida",
+    "title": "Claim Social Security at 67 in Florida (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Florida: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that covers about 74% of a comfortable $3,300/mo budget in Florida, leaving a gap of roughly $255,000 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Florida (comfortable budget: $3,300/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 74% of Florida's comfortable cost of living; closing the rest needs about $255,000 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "No state income tax. Home insurance is the wildcard cost."
+    ],
+    "taxNote": "No state income tax. Home insurance is the wildcard cost. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Budget for higher homeowner insurance. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "70-in-florida",
+    "title": "Claim Social Security at 70 in Florida (2026): Real Break-Even & Tax Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Florida: 2026 monthly benefit math, break-even vs. waiting to 70, state tax treatment, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that covers about 92% of a comfortable $3,300/mo budget in Florida, leaving a gap of roughly $78,600 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Florida (comfortable budget: $3,300/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 92% of Florida's comfortable cost of living; closing the rest needs about $78,600 in additional savings under the 4% rule.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "No state income tax. Home insurance is the wildcard cost."
+    ],
+    "taxNote": "No state income tax. Home insurance is the wildcard cost. 401(k)/IRA withdrawals still count toward provisional income at the federal level, which can make up to 85% of your Social Security taxable regardless of state.",
+    "medicareNote": "Medicare works normally. Budget for higher homeowner insurance. Part B runs $203/mo in 2026, with IRMAA surcharges above certain income thresholds."
+  },
+  {
+    "slug": "62-in-mexico",
+    "title": "Claim Social Security at 62 in Mexico (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Mexico: 2026 monthly benefit math, break-even vs. waiting to 70, Temporary Resident visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that alone covers 118% of a comfortable $1,450/mo budget in Mexico, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Mexico (comfortable budget: $1,450/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 100%+ (118%) of Mexico's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Temporary Resident visa: the income route needs about $4,300/mo in qualifying income, or a savings/proof-of-funds route around $73,000 if the monthly check falls short."
+    ],
+    "taxNote": "US–Mexico treaty: Social Security is taxed by the US, not Mexico.",
+    "medicareNote": "You will not be Medicare-eligible until 65 regardless of claiming age, and Medicare is not valid in Mexico. Use private cover (~$1,500–3,000/yr) or IMSS. Budget for private international coverage in the meantime."
+  },
+  {
+    "slug": "65-in-mexico",
+    "title": "Claim Social Security at 65 in Mexico (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Mexico: 2026 monthly benefit math, break-even vs. waiting to 70, Temporary Resident visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that alone covers 146% of a comfortable $1,450/mo budget in Mexico, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Mexico (comfortable budget: $1,450/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 100%+ (146%) of Mexico's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Temporary Resident visa: the income route needs about $4,300/mo in qualifying income, or a savings/proof-of-funds route around $73,000 if the monthly check falls short."
+    ],
+    "taxNote": "US–Mexico treaty: Social Security is taxed by the US, not Mexico.",
+    "medicareNote": "Medicare does not travel to Mexico. Medicare is not valid in Mexico. Use private cover (~$1,500–3,000/yr) or IMSS. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "67-in-mexico",
+    "title": "Claim Social Security at 67 in Mexico (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Mexico: 2026 monthly benefit math, break-even vs. waiting to 70, Temporary Resident visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that alone covers 169% of a comfortable $1,450/mo budget in Mexico, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Mexico (comfortable budget: $1,450/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 100%+ (169%) of Mexico's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Temporary Resident visa: the income route needs about $4,300/mo in qualifying income, or a savings/proof-of-funds route around $73,000 if the monthly check falls short."
+    ],
+    "taxNote": "US–Mexico treaty: Social Security is taxed by the US, not Mexico.",
+    "medicareNote": "Medicare does not travel to Mexico. Medicare is not valid in Mexico. Use private cover (~$1,500–3,000/yr) or IMSS. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "70-in-mexico",
+    "title": "Claim Social Security at 70 in Mexico (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Mexico: 2026 monthly benefit math, break-even vs. waiting to 70, Temporary Resident visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 210% of a comfortable $1,450/mo budget in Mexico, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Mexico (comfortable budget: $1,450/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (210%) of Mexico's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "Temporary Resident visa: the income route needs about $4,300/mo in qualifying income, or a savings/proof-of-funds route around $73,000 if the monthly check falls short."
+    ],
+    "taxNote": "US–Mexico treaty: Social Security is taxed by the US, not Mexico.",
+    "medicareNote": "Medicare does not travel to Mexico. Medicare is not valid in Mexico. Use private cover (~$1,500–3,000/yr) or IMSS. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "62-in-portugal",
+    "title": "Claim Social Security at 62 in Portugal (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Portugal: 2026 monthly benefit math, break-even vs. waiting to 70, D7 visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that covers about 90% of a comfortable $1,900/mo budget in Portugal, leaving a gap of roughly $55,500 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Portugal (comfortable budget: $1,900/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 90% of Portugal's comfortable cost of living; closing the rest needs about $55,500 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "D7 visa: the income route needs about $1,000/mo in qualifying income, or a savings/proof-of-funds route around $12,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income; the NHR flat-tax regime is effectively closed.",
+    "medicareNote": "You will not be Medicare-eligible until 65 regardless of claiming age, and Medicare is not valid abroad. SNS public access as a resident; private ~$90–160/mo. Budget for private international coverage in the meantime."
+  },
+  {
+    "slug": "65-in-portugal",
+    "title": "Claim Social Security at 65 in Portugal (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Portugal: 2026 monthly benefit math, break-even vs. waiting to 70, D7 visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that alone covers 112% of a comfortable $1,900/mo budget in Portugal, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Portugal (comfortable budget: $1,900/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 100%+ (112%) of Portugal's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "D7 visa: the income route needs about $1,000/mo in qualifying income, or a savings/proof-of-funds route around $12,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income; the NHR flat-tax regime is effectively closed.",
+    "medicareNote": "Medicare does not travel to Portugal. Medicare is not valid abroad. SNS public access as a resident; private ~$90–160/mo. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "67-in-portugal",
+    "title": "Claim Social Security at 67 in Portugal (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Portugal: 2026 monthly benefit math, break-even vs. waiting to 70, D7 visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that alone covers 129% of a comfortable $1,900/mo budget in Portugal, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Portugal (comfortable budget: $1,900/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 100%+ (129%) of Portugal's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "D7 visa: the income route needs about $1,000/mo in qualifying income, or a savings/proof-of-funds route around $12,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income; the NHR flat-tax regime is effectively closed.",
+    "medicareNote": "Medicare does not travel to Portugal. Medicare is not valid abroad. SNS public access as a resident; private ~$90–160/mo. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "70-in-portugal",
+    "title": "Claim Social Security at 70 in Portugal (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Portugal: 2026 monthly benefit math, break-even vs. waiting to 70, D7 visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 160% of a comfortable $1,900/mo budget in Portugal, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Portugal (comfortable budget: $1,900/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (160%) of Portugal's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "D7 visa: the income route needs about $1,000/mo in qualifying income, or a savings/proof-of-funds route around $12,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income; the NHR flat-tax regime is effectively closed.",
+    "medicareNote": "Medicare does not travel to Portugal. Medicare is not valid abroad. SNS public access as a resident; private ~$90–160/mo. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "62-in-costa-rica",
+    "title": "Claim Social Security at 62 in Costa Rica (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Costa Rica: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that covers about 95% of a comfortable $1,800/mo budget in Costa Rica, leaving a gap of roughly $25,500 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Costa Rica (comfortable budget: $1,800/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 95% of Costa Rica's comfortable cost of living; closing the rest needs about $25,500 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial: foreign income, including US Social Security, is not taxed locally.",
+    "medicareNote": "You will not be Medicare-eligible until 65 regardless of claiming age, and Medicare is not valid abroad. Mandatory CAJA enrollment (~7–11% of income). Budget for private international coverage in the meantime."
+  },
+  {
+    "slug": "65-in-costa-rica",
+    "title": "Claim Social Security at 65 in Costa Rica (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Costa Rica: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that alone covers 118% of a comfortable $1,800/mo budget in Costa Rica, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Costa Rica (comfortable budget: $1,800/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 100%+ (118%) of Costa Rica's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial: foreign income, including US Social Security, is not taxed locally.",
+    "medicareNote": "Medicare does not travel to Costa Rica. Medicare is not valid abroad. Mandatory CAJA enrollment (~7–11% of income). The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "67-in-costa-rica",
+    "title": "Claim Social Security at 67 in Costa Rica (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Costa Rica: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that alone covers 136% of a comfortable $1,800/mo budget in Costa Rica, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Costa Rica (comfortable budget: $1,800/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 100%+ (136%) of Costa Rica's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial: foreign income, including US Social Security, is not taxed locally.",
+    "medicareNote": "Medicare does not travel to Costa Rica. Medicare is not valid abroad. Mandatory CAJA enrollment (~7–11% of income). The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "70-in-costa-rica",
+    "title": "Claim Social Security at 70 in Costa Rica (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Costa Rica: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 169% of a comfortable $1,800/mo budget in Costa Rica, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Costa Rica (comfortable budget: $1,800/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (169%) of Costa Rica's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial: foreign income, including US Social Security, is not taxed locally.",
+    "medicareNote": "Medicare does not travel to Costa Rica. Medicare is not valid abroad. Mandatory CAJA enrollment (~7–11% of income). The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "62-in-panama",
+    "title": "Claim Social Security at 62 in Panama (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Panama: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that alone covers 101% of a comfortable $1,700/mo budget in Panama, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Panama (comfortable budget: $1,700/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 100%+ (101%) of Panama's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial + USD economy: foreign income untaxed, no currency risk.",
+    "medicareNote": "You will not be Medicare-eligible until 65 regardless of claiming age, and Medicare is not valid abroad. Affordable private cover; retiree discounts on hospitals. Budget for private international coverage in the meantime."
+  },
+  {
+    "slug": "65-in-panama",
+    "title": "Claim Social Security at 65 in Panama (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Panama: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that alone covers 125% of a comfortable $1,700/mo budget in Panama, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Panama (comfortable budget: $1,700/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 100%+ (125%) of Panama's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial + USD economy: foreign income untaxed, no currency risk.",
+    "medicareNote": "Medicare does not travel to Panama. Medicare is not valid abroad. Affordable private cover; retiree discounts on hospitals. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "67-in-panama",
+    "title": "Claim Social Security at 67 in Panama (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Panama: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that alone covers 144% of a comfortable $1,700/mo budget in Panama, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Panama (comfortable budget: $1,700/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 100%+ (144%) of Panama's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial + USD economy: foreign income untaxed, no currency risk.",
+    "medicareNote": "Medicare does not travel to Panama. Medicare is not valid abroad. Affordable private cover; retiree discounts on hospitals. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "70-in-panama",
+    "title": "Claim Social Security at 70 in Panama (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Panama: 2026 monthly benefit math, break-even vs. waiting to 70, Pensionado visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 179% of a comfortable $1,700/mo budget in Panama, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Panama (comfortable budget: $1,700/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (179%) of Panama's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "Pensionado visa: the income route needs about $1,000/mo in qualifying income with no published savings alternative, so the income test is the binding constraint."
+    ],
+    "taxNote": "Territorial + USD economy: foreign income untaxed, no currency risk.",
+    "medicareNote": "Medicare does not travel to Panama. Medicare is not valid abroad. Affordable private cover; retiree discounts on hospitals. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "62-in-spain",
+    "title": "Claim Social Security at 62 in Spain (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 62 really buys you in Spain: 2026 monthly benefit math, break-even vs. waiting to 70, Non-Lucrative Visa visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 62 is the earliest possible age in this pair of ages, and it is the maximum-flexibility play: the smallest monthly check, taken as early as SSA allows, in exchange for the most years of cash flow and the least portfolio drawdown while you wait. At an illustrative $2,450/mo FRA benefit, claiming at 62 pays $1,715/mo ($20,580/yr) — that covers about 82% of a comfortable $2,100/mo budget in Spain, leaving a gap of roughly $115,500 in additional savings (4% rule) to close the rest. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Spain (comfortable budget: $2,100/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 62 (illustrative $2,450/mo FRA case): $1,715/mo, or $20,580/yr — 70% of the FRA-67 amount.",
+      "Covers 82% of Spain's comfortable cost of living; closing the rest needs about $115,500 in additional savings under the 4% rule.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Non-Lucrative Visa visa: the income route needs about $2,600/mo in qualifying income, or a savings/proof-of-funds route around $31,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income — the high-tax option. Model the drag first.",
+    "medicareNote": "You will not be Medicare-eligible until 65 regardless of claiming age, and Medicare is not valid abroad. NLV requires private zero-copay insurance. Budget for private international coverage in the meantime."
+  },
+  {
+    "slug": "65-in-spain",
+    "title": "Claim Social Security at 65 in Spain (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 65 really buys you in Spain: 2026 monthly benefit math, break-even vs. waiting to 70, Non-Lucrative Visa visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 65 is the Medicare-eligibility age in this pair of ages, and it is a middle path: a meaningfully larger check than 62, taken right at the age most Americans associate with Medicare (even though Medicare itself does not travel abroad). At an illustrative $2,450/mo FRA benefit, claiming at 65 pays $2,123/mo ($25,476/yr) — that alone covers 101% of a comfortable $2,100/mo budget in Spain, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Spain (comfortable budget: $2,100/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 65 (illustrative $2,450/mo FRA case): $2,123/mo, or $25,476/yr — 87% of the FRA-67 amount.",
+      "Covers 100%+ (101%) of Spain's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Non-Lucrative Visa visa: the income route needs about $2,600/mo in qualifying income, or a savings/proof-of-funds route around $31,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income — the high-tax option. Model the drag first.",
+    "medicareNote": "Medicare does not travel to Spain. Medicare is not valid abroad. NLV requires private zero-copay insurance. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "67-in-spain",
+    "title": "Claim Social Security at 67 in Spain (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 67 really buys you in Spain: 2026 monthly benefit math, break-even vs. waiting to 70, Non-Lucrative Visa visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 67 is full retirement age (FRA) in this pair of ages, and it is the no-compromise baseline: 100% of your earned benefit, no early-claim penalty and no delayed-credit upside left on the table. At an illustrative $2,450/mo FRA benefit, claiming at 67 pays $2,450/mo ($29,400/yr) — that alone covers 117% of a comfortable $2,100/mo budget in Spain, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Spain (comfortable budget: $2,100/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 67 (illustrative $2,450/mo FRA case): $2,450/mo, or $29,400/yr — 100% of the FRA-67 amount.",
+      "Covers 100%+ (117%) of Spain's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "Waiting instead to 70 raises the check to $3,038/mo, but only pays off after the 62-vs-70 break-even age — typically the late 70s to early 80s in nominal dollars.",
+      "Non-Lucrative Visa visa: the income route needs about $2,600/mo in qualifying income, or a savings/proof-of-funds route around $31,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income — the high-tax option. Model the drag first.",
+    "medicareNote": "Medicare does not travel to Spain. Medicare is not valid abroad. NLV requires private zero-copay insurance. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  },
+  {
+    "slug": "70-in-spain",
+    "title": "Claim Social Security at 70 in Spain (2026): Real Break-Even & Visa Math",
+    "metaDescription": "See what claiming Social Security at 70 really buys you in Spain: 2026 monthly benefit math, break-even vs. waiting to 70, Non-Lucrative Visa visa income tests, and Medicare strategy.",
+    "narrative": "Claiming at 70 is the maximum-benefit age in this pair of ages, and it is the maximum-guarantee play: the largest possible lifetime monthly check, funded by drawing down savings for the years before it starts. At an illustrative $2,450/mo FRA benefit, claiming at 70 pays $3,038/mo ($36,456/yr) — that alone covers 145% of a comfortable $2,100/mo budget in Spain, so your check can fund the lifestyle without touching principal. The honest trade-off against waiting to 70 is a fixed one: every year you claim early instead of at 70 gives up roughly 8% more guaranteed, inflation-linked income for life, but it also lets a bigger share of your portfolio stay invested and compounding instead of being drawn down to bridge the gap. In a lower-cost location like Spain (comfortable budget: $2,100/mo), that trade shifts in favor of claiming earlier than it would in a high cost-of-living metro, because the smaller check goes further and the portfolio-preservation math does more work per dollar.",
+    "tradeoffs": [
+      "Monthly benefit at 70 (illustrative $2,450/mo FRA case): $3,038/mo, or $36,456/yr — 124% of the FRA-67 amount.",
+      "Covers 100%+ (145%) of Spain's comfortable cost of living, so the portfolio can stay largely invested rather than funding a shortfall.",
+      "This is the maximum nominal lifetime-dollar strategy if you outlive the 62-vs-70 break-even age, typically the late 70s to early 80s.",
+      "Non-Lucrative Visa visa: the income route needs about $2,600/mo in qualifying income, or a savings/proof-of-funds route around $31,000 if the monthly check falls short."
+    ],
+    "taxNote": "Tax resident on worldwide income — the high-tax option. Model the drag first.",
+    "medicareNote": "Medicare does not travel to Spain. Medicare is not valid abroad. NLV requires private zero-copay insurance. The core decision is whether to keep Part B ($203/mo in 2026) as a safety net for US visits or drop it and accept a permanent 10%-per-year late-enrollment penalty if you move back."
+  }
+]
