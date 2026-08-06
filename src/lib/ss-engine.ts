@@ -1,7 +1,7 @@
 /**
  * ss-engine.ts
  * -------------------------------------------------------------------------
- * RetireEngine — Social Security claiming + geo-arbitrage math.
+ * Lifetime SS — Social Security claiming + geo-arbitrage math.
  *
  * MODULE 6 EXTENSION (2026-01):
  *   - Added monthlyBudgetCoupleLow / monthlyBudgetCoupleHigh to LocationData.
@@ -74,6 +74,23 @@ export interface LocationData {
   monthlyBudgetCoupleLow?: number;
   /** Comfortable monthly budget for TWO people (couple), USD/mo. */
   monthlyBudgetCoupleHigh?: number;
+  // ── Hard-filter fields (Feature 1) ─────────────────────────────────────
+  /** Annual mean PM2.5 concentration (µg/m³) for the target area.
+   *  WHO 2021 guideline: 5 µg/m³; IT-1: 35 µg/m³.
+   *  Source + lastVerified comment on each entry. */
+  airQualityPM25: number;
+  /** True if a Class-A private specialty hospital is ≤ 30 min from the target area. */
+  hospitalClassAWithin30min: boolean;
+  /** Reliable broadband speed (Mbps) typical for the target area. */
+  internetMbps: number;
+  /** True if an international airport is ≤ 1 hour from the target area. */
+  airportWithin1hr: boolean;
+  /** True if the location's tax regime is net-favorable for US SS and pension income. */
+  taxFriendlyToPension: boolean;
+  /** Passport group IDs that grant right of abode / free movement at this location.
+   *  e.g., ['eu-eea'] for EU/EEA passport holders; ['oci'] for OCI card holders.
+   *  Undefined / empty = no right-of-abode pathway exists. */
+  passportGroupsWithAbode?: string[];
 }
 
 /**
@@ -95,6 +112,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare works normally. Home insurance and property tax are the cost drivers.',
     monthlyBudgetCoupleLow: 5200,
     monthlyBudgetCoupleHigh: 7000, // lastVerified: 2026-01; source: Numbeo Dallas/Austin
+    airQualityPM25: 9,                  // lastVerified: 2026-08; source: EPA AQI Annual Summary 2024 Texas metros
+    hospitalClassAWithin30min: true,  // major metro areas; Texas Medical Center (Houston), UT Southwestern (Dallas)
+    internetMbps: 300,              // AT&T Fiber / Xfinity widely available in TX metros
+    airportWithin1hr: true,         // DFW, Austin-Bergstrom, IAH all serve target areas
+    taxFriendlyToPension: true,     // no state income tax on SS or pension income
   },
   {
     id: 'florida',
@@ -107,6 +129,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare works normally. Budget for higher homeowner insurance.',
     monthlyBudgetCoupleLow: 5600,
     monthlyBudgetCoupleHigh: 7500, // lastVerified: 2026-01; source: Numbeo Tampa/Orlando
+    airQualityPM25: 7,                  // lastVerified: 2026-08; source: EPA AQI Annual Summary 2024 FL metros
+    hospitalClassAWithin30min: true,  // Tampa General, AdventHealth, Orlando Health, Mayo Clinic FL
+    internetMbps: 300,              // Spectrum / Xfinity fiber widely available
+    airportWithin1hr: true,         // TPA, MCO, FLL, MIA serve target areas
+    taxFriendlyToPension: true,     // no state income tax on SS or pension income
   },
   // ── Expat destinations ─────────────────────────────────────────────────
   {
@@ -123,6 +150,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid in Mexico. Use private cover (~$1,500–3,000/yr) or IMSS.',
     monthlyBudgetCoupleLow: 2500,
     monthlyBudgetCoupleHigh: 3500, // lastVerified: 2026-01; source: INM income tables, Numbeo Mérida
+    airQualityPM25: 15,                 // lastVerified: 2026-08; source: IQAir Mérida 2024 annual avg
+    hospitalClassAWithin30min: true,  // Centro Médico de las Américas, Star Médica Mérida
+    internetMbps: 50,               // Telmex Infinitum fiber expanding in Mérida; typical 40–80 Mbps
+    airportWithin1hr: true,         // Manuel Crescencio Rejón Intl ~15 min from centro
+    taxFriendlyToPension: true,     // US–Mexico treaty; SS taxed only by the US
   },
   {
     id: 'portugal',
@@ -138,6 +170,12 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. SNS public access as a resident; private ~$90–160/mo.',
     monthlyBudgetCoupleLow: 3200,
     monthlyBudgetCoupleHigh: 4400, // lastVerified: 2026-01; source: SEF/AIMA D7 rules, Numbeo Lisbon/Porto
+    airQualityPM25: 10,                 // lastVerified: 2026-08; source: EEA Air Quality Report 2024 Portugal
+    hospitalClassAWithin30min: true,  // CUF Descobertas (Lisbon), Hospital Lusíadas, Hospital da Luz
+    internetMbps: 300,              // NOS/MEO FTTH; Portugal ranks top-5 in EU for fiber penetration
+    airportWithin1hr: true,         // Lisbon Humberto Delgado, Porto Francisco Sá Carneiro
+    taxFriendlyToPension: false,    // worldwide income tax; NHR flat-rate regime closed March 2025
+    passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
   },
   {
     id: 'costa-rica',
@@ -153,6 +191,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. Mandatory CAJA enrollment (~7–11% of income).',
     monthlyBudgetCoupleLow: 3000,
     monthlyBudgetCoupleHigh: 4000, // lastVerified: 2026-01; source: ARCR, ARCR surveys
+    airQualityPM25: 14,                 // lastVerified: 2026-08; source: IQAir San José 2024 annual avg
+    hospitalClassAWithin30min: true,  // CIMA Hospital, Clínica Bíblica, Hospital La Católica (San José metro)
+    internetMbps: 60,               // ICE/Kolbi / cable ISPs; typical 40–100 Mbps in San José area
+    airportWithin1hr: true,         // Juan Santamaría Intl ~20 min from San José
+    taxFriendlyToPension: true,     // territorial; US SS and pension income not taxed locally
   },
   {
     id: 'panama',
@@ -168,6 +211,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. Affordable private cover; retiree discounts on hospitals.',
     monthlyBudgetCoupleLow: 2800,
     monthlyBudgetCoupleHigh: 3800, // lastVerified: 2026-01; source: MICI Panama, AARP International
+    airQualityPM25: 14,                 // lastVerified: 2026-08; source: IQAir Panama City 2024 annual avg
+    hospitalClassAWithin30min: true,  // Hospital Punta Pacífica (JHI affiliate), Hospital Nacional, Clínica Hospital San Fernando
+    internetMbps: 80,               // Cable & Wireless / Claro; typical 50–120 Mbps in Panama City
+    airportWithin1hr: true,         // Tocumen Intl ~25 min from Marbella/El Cangrejo
+    taxFriendlyToPension: true,     // territorial + USD economy + Pensionado pension discounts
   },
   {
     id: 'spain',
@@ -183,6 +231,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. NLV requires private zero-copay insurance.',
     monthlyBudgetCoupleLow: 3000,
     monthlyBudgetCoupleHigh: 4200, // lastVerified: 2026-01; source: Spanish consulate, Numbeo Valencia/Alicante
+    airQualityPM25: 11,                 // lastVerified: 2026-08; source: EEA Air Quality Report 2024 Spain
+    hospitalClassAWithin30min: true,  // Hospital La Fe Valencia, Hospital General Universitario Alicante
+    internetMbps: 300,              // Movistar / Orange FTTH; Spain top-3 EU for fiber penetration
+    airportWithin1hr: true,         // Valencia Airport, Alicante-Elche Airport
+    taxFriendlyToPension: false,    // worldwide income tax; no major SS exemption
   },
   // ── New in Module 6 ────────────────────────────────────────────────────
   {
@@ -199,6 +252,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. SSN public healthcare available after enrollment as resident. Private supplement recommended ~€100–200/mo.',
     monthlyBudgetCoupleLow: 3400,
     monthlyBudgetCoupleHigh: 4800, // lastVerified: 2026-01; source: Italian Ministry of Foreign Affairs, Numbeo Sicily/Calabria
+    airQualityPM25: 13,                 // lastVerified: 2026-08; source: ARPA Sicilia / ARPA Calabria 2024 annual avg
+    hospitalClassAWithin30min: false, // small qualifying towns (pop < 20k) often 45–60 min from nearest major hospital; Policlinico di Catanzaro, A.O.U. Policlinico di Palermo are ≥ 30 min from target villages
+    internetMbps: 30,               // rural southern Italy FTTC/VDSL; ~20–50 Mbps typical; FTTH rare outside cities
+    airportWithin1hr: true,         // Catania Fontanarossa, Palermo Falcone-Borsellino, Lamezia Terme Intl
+    taxFriendlyToPension: true,     // 7% flat-rate scheme for qualifying retirees in towns < 20k (10-year cap)
   },
   {
     id: 'colombia',
@@ -214,6 +272,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. Private health insurance mandatory (~$100–300/mo). Excellent private hospitals in Medellín (Clínica Las Américas, Clínica del Campestre).',
     monthlyBudgetCoupleLow: 2600,
     monthlyBudgetCoupleHigh: 3600, // lastVerified: 2026-01; source: Migración Colombia M-11 visa rules, Numbeo Medellín
+    airQualityPM25: 22,                 // lastVerified: 2026-08; source: IQAir Medellín 2024 annual avg; valley geography traps pollution
+    hospitalClassAWithin30min: true,  // Clínica Las Américas, Clínica del Campestre, Clínica CES (El Poblado / Laureles area)
+    internetMbps: 100,              // Claro / EPM Telecomunicaciones fiber in El Poblado and Laureles
+    airportWithin1hr: true,         // José María Córdova Intl ~45 min from El Poblado
+    taxFriendlyToPension: true,     // 2024 reform (Ley 2277) largely exempts foreign pension income from Colombian tax
   },
   {
     id: 'france',
@@ -229,6 +292,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. French PUMA public healthcare after 3 months residence. Private mutuelle supplement ~€80–150/mo strongly recommended.',
     monthlyBudgetCoupleLow: 4200,
     monthlyBudgetCoupleHigh: 5800, // lastVerified: 2026-01; source: French consulate guidance, Numbeo Marseille/Nice
+    airQualityPM25: 11,                 // lastVerified: 2026-08; source: Atmo PACA 2024 annual report (Provence / Côte d'Azur)
+    hospitalClassAWithin30min: true,  // CHU de Nice, Hôpital de la Timone Marseille, Clinique Rambot Aix-en-Provence
+    internetMbps: 200,              // Orange / SFR FTTH widely available in Provence/PACA region
+    airportWithin1hr: true,         // Nice Côte d'Azur, Marseille Provence
+    taxFriendlyToPension: false,    // worldwide income tax; US–France treaty but still taxable at French rates
   },
   {
     id: 'malaysia',
@@ -244,6 +312,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. World-class private hospitals in KL (Gleneagles, Pantai). Mandatory health insurance required (~$200–600/yr). Public hospitals available at very low cost.',
     monthlyBudgetCoupleLow: 2800,
     monthlyBudgetCoupleHigh: 3800, // lastVerified: 2026-01; source: mm2h.gov.my Silver tier rules, Numbeo KL
+    airQualityPM25: 27,                 // lastVerified: 2026-08; source: IQAir Kuala Lumpur 2024 annual avg; transboundary haze Jun–Oct spikes significantly
+    hospitalClassAWithin30min: true,  // Gleneagles KL, Pantai Hospital Kuala Lumpur, Prince Court Medical Centre
+    internetMbps: 200,              // Unifi (TM) FTTH widely available in KL metro; among fastest in SEA
+    airportWithin1hr: true,         // KLIA / klia2 ~35–45 min from KL Sentral
+    taxFriendlyToPension: true,     // territorial; foreign income (incl. US SS and pension) largely untaxed in Malaysia
   },
   {
     id: 'thailand',
@@ -259,6 +332,11 @@ export const LOCATIONS: readonly LocationData[] = [
     healthcareNote: 'Medicare is not valid abroad. Mandatory health insurance for Non-O-A. Excellent private hospitals in Bangkok (Bumrungrad) and Chiang Mai. Annual visa renewal required.',
     monthlyBudgetCoupleLow: 2400,
     monthlyBudgetCoupleHigh: 3400, // lastVerified: 2026-01; source: Royal Thai Embassy Non-O-A rules, Numbeo Chiang Mai
+    airQualityPM25: 38,                 // lastVerified: 2026-08; source: IQAir Chiang Mai 2024 annual avg; severe burning season Feb–Apr regularly exceeds WHO IT-1 (35 µg/m³)
+    hospitalClassAWithin30min: true,  // Chiang Mai Ram Hospital, Bangkok Hospital Chiang Mai, Maharaj Nakorn Chiang Mai Hospital
+    internetMbps: 100,              // AIS / TRUE fiber available in urban Chiang Mai
+    airportWithin1hr: true,         // Chiang Mai Intl Airport ~10 min from Nimman / Old City area
+    taxFriendlyToPension: true,     // territorial; foreign income untaxed if not remitted in same tax year
   },
 ];
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info } from 'lucide-react';
+import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info, ShieldX } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { formatCurrency } from '@/lib/scoring-engine';
 import TrustBox from '@/components/ui/TrustBox';
@@ -58,18 +58,43 @@ function ScoreBadge({ score }: { score: number }) {
   );
 }
 
+function FailedMustHavesTags({ labels }: { labels: string[] }) {
+  if (labels.length === 0) return null;
+  return (
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {labels.map((label) => (
+        <span
+          key={label}
+          className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2.5 py-1 text-xs font-semibold text-red-700"
+        >
+          <ShieldX size={11} />
+          {label}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function CountryCard({ country, rank }: { country: CountryScore; rank: number }) {
   const [expanded, setExpanded] = useState(rank <= 3);
   const midBudget = (country.budgetLow + country.budgetHigh) / 2;
   const budgetCover = country.surplus >= 0 ? 'surplus' : 'shortfall';
+  const hasMustHaveFail = country.failedMustHaves.length > 0;
 
   return (
     <div className={`rounded-2xl border-2 bg-white shadow-sm transition-all ${
-      rank === 1 ? 'border-gold' : rank <= 3 ? 'border-slate-200 ring-1 ring-slate-100' : 'border-slate-100'
+      hasMustHaveFail
+        ? 'border-red-200 opacity-80'
+        : rank === 1 ? 'border-gold' : rank <= 3 ? 'border-slate-200 ring-1 ring-slate-100' : 'border-slate-100'
     }`}>
-      {rank === 1 && (
+      {rank === 1 && !hasMustHaveFail && (
         <div className="rounded-t-xl bg-gold px-4 py-1.5 text-center text-xs font-bold text-navy">
           ⭐ Best Match for Your Profile
+        </div>
+      )}
+      {hasMustHaveFail && (
+        <div className="rounded-t-xl bg-red-50 px-4 py-1.5 text-center text-xs font-semibold text-red-700">
+          Excluded from top 3 — fails your non-negotiables
         </div>
       )}
       <div className="p-5">
@@ -100,6 +125,9 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
               ? `+${formatCurrency(country.surplus)}/mo surplus`
               : `${formatCurrency(Math.abs(country.surplus))}/mo below comfortable`}
           </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 px-2.5 py-1 text-xs font-medium text-sky-700">
+            🌬 {country.airQualityBand}
+          </span>
         </div>
 
         {/* Top strengths */}
@@ -110,6 +138,9 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
             </span>
           ))}
         </div>
+
+        {/* Failed must-have tags */}
+        <FailedMustHavesTags labels={country.failedMustHaves} />
 
         {/* Expand toggle */}
         <button
@@ -225,7 +256,7 @@ function EmailCaptureForm() {
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-gold"
         />
         <span className="text-xs leading-relaxed text-slate-600">
-          Email me my summary. I understand RetireEngine provides educational estimates, not financial, tax, or legal advice, and I can unsubscribe anytime.
+          Email me my summary. I understand LifetimeSS provides educational estimates, not financial, tax, or legal advice, and I can unsubscribe anytime.
         </span>
       </label>
       {error && <p className="text-xs text-red-600">{error}</p>}
@@ -312,7 +343,7 @@ export default function Step4Results() {
               className="block rounded-xl border-2 border-navy bg-white p-4 text-center transition-transform hover:-translate-y-0.5"
             >
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Standard Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-navy">$9</p>
+              <p className="my-1 font-serif text-3xl font-bold text-navy">$19</p>
               <p className="text-xs text-slate-500">8 pages · Top 3 deep dives · Action checklist</p>
               <span className="mt-3 inline-block rounded-lg bg-navy px-4 py-2 text-sm font-bold text-white">
                 Get Standard →
@@ -326,7 +357,7 @@ export default function Step4Results() {
                 MOST POPULAR
               </p>
               <p className="text-xs font-semibold uppercase tracking-wide text-gold/70">Premium Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-gold">$19</p>
+              <p className="my-1 font-serif text-3xl font-bold text-gold">$49</p>
               <p className="text-xs text-cream/70">11 pages · Tax framework · Medicare roadmap · 90-day plan</p>
               <span className="mt-3 inline-block rounded-lg bg-gold px-4 py-2 text-sm font-bold text-navy">
                 Get Premium →
@@ -339,8 +370,8 @@ export default function Step4Results() {
       {/* Trust box */}
       <TrustBox
         sources={VISA_SOURCES}
-        citationTitle="RetireEngine — Vitality Window Retirement Abroad Assessment"
-        citationUrl="https://retireengine.com/assessment"
+        citationTitle="Lifetime SS — Vitality Window Retirement Abroad Assessment"
+        citationUrl="https://lifetimess.com/assessment"
         rulesYear={2026}
       />
     </div>

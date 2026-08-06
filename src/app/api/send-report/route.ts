@@ -17,7 +17,7 @@ export async function GET(req: Request) {
     return new Response(new Uint8Array(buffer), {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="RetireEngine-Blueprint-${tier}.pdf"`,
+        'Content-Disposition': `attachment; filename="LifetimeSS-Blueprint-${tier}.pdf"`,
         'Cache-Control': 'no-cache',
       },
     });
@@ -62,13 +62,13 @@ export async function POST(req: Request) {
       const { Resend } = await import('resend');
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
-        from: process.env.FROM_EMAIL ?? 'reports@retireengine.com',
+        from: process.env.FROM_EMAIL ?? 'reports@lifetimess.com',
         to: email,
-        subject: 'Your RetireEngine Retirement Blueprint',
+        subject: 'Your Lifetime SS Retirement Blueprint',
         html: buildEmailHtml(name, tier),
         attachments: [
           {
-            filename: `RetireEngine-Blueprint-${tier}.pdf`,
+            filename: `LifetimeSS-Blueprint-${tier}.pdf`,
             content: Buffer.from(buffer).toString('base64'),
           },
         ],
@@ -101,7 +101,7 @@ function buildEmailHtml(name: string, tier: 'standard' | 'premium'): string {
 <body style="font-family: Georgia, serif; color: #0A1628; background: #F8F4EE; margin: 0; padding: 0;">
   <div style="max-width: 560px; margin: 0 auto; padding: 40px 24px;">
     <h1 style="font-size: 24px; margin-bottom: 8px; color: #0A1628;">
-      RetireEngine
+      Lifetime<span style="color: #C9A84C;">SS</span>
     </h1>
     <hr style="border: none; border-top: 1px solid #C9A84C; margin: 16px 0;" />
     <p style="font-size: 16px; margin-bottom: 16px;">Hi ${name},</p>
@@ -118,7 +118,7 @@ function buildEmailHtml(name: string, tier: 'standard' | 'premium'): string {
       Consult qualified professionals before making relocation decisions.
     </p>
     <p style="color: #7A8C7E; font-size: 12px; margin-top: 24px;">
-      © 2026 RetireEngine · retireengine.com
+      © 2026 Lifetime SS · lifetimess.com
     </p>
   </div>
 </body>

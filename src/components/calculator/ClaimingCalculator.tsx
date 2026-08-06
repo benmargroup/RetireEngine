@@ -3,7 +3,7 @@
 /**
  * ClaimingCalculator.tsx
  * -------------------------------------------------------------------------
- * RetireEngine — the interactive claiming + geo-arbitrage calculator.
+ * Lifetime SS — the interactive claiming + geo-arbitrage calculator.
  *
  * Reactive, accessible, mobile-first. All math is client-side and pure
  * (actuarial-engine + ss-engine); this component only collects inputs and

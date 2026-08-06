@@ -26,8 +26,8 @@ export default function AssessmentPage() {
         {/* Brand bar */}
         <div className="mb-8 flex items-center justify-between">
           <a href="/" className="font-serif text-xl font-bold text-navy">
-  RetireEngine
-</a>
+            Lifetime<span className="text-gold">SS</span>
+          </a>
           <p className="text-xs text-slate-500">Free Assessment · Takes ~4 minutes</p>
         </div>
 

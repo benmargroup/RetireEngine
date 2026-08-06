@@ -23,7 +23,7 @@ export default function ResultsPage() {
       <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
           <a href="/" className="font-serif text-xl font-bold text-navy">
-            RetireEngine
+            Lifetime<span className="text-gold">SS</span>
           </a>
           <button
             type="button"

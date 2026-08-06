@@ -3,8 +3,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'RetireEngine — Social Security Claiming Calculator',
-    template: '%s | RetireEngine',
+    default: 'Lifetime SS — Social Security Claiming Calculator',
+    template: '%s | Lifetime SS',
   },
   description:
     'Personalized Social Security claiming age and geo-arbitrage calculator: longevity-adjusted break-even, visa income math, and Medicare strategy.',

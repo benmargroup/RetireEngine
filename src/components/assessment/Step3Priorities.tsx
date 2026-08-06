@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { calculateScores } from '@/lib/scoring-engine';
-import type { Step3Data, ClimatePreference } from '@/types/assessment';
-import { AlertTriangle } from 'lucide-react';
+import type { Step3Data, ClimatePreference, NonNegotiables } from '@/types/assessment';
 
-const CRITERIA: { key: keyof Omit<Step3Data, 'climatePreference' | 'hasHealthConditions'>; label: string; description: string }[] = [
+const CRITERIA: { key: keyof Omit<Step3Data, 'climatePreference' | 'hasHealthConditions' | 'nonNegotiables'>; label: string; description: string }[] = [
   { key: 'healthcare', label: 'Healthcare Quality', description: 'Access to specialists, hospital quality, private coverage availability' },
   { key: 'climate', label: 'Climate', description: 'Weather patterns, seasons, and year-round comfort' },
   { key: 'language', label: 'Language Accessibility', description: 'English prevalence, ease of daily life without fluency' },
@@ -17,6 +17,7 @@ const CRITERIA: { key: keyof Omit<Step3Data, 'climatePreference' | 'hasHealthCon
   { key: 'infrastructure', label: 'Infrastructure', description: 'Roads, internet, utilities, transport reliability' },
   { key: 'culture', label: 'Culture & Lifestyle', description: 'Arts, food, entertainment, and daily life richness' },
   { key: 'banking', label: 'Banking & Finance', description: 'Ease of banking, financial infrastructure, dollar access' },
+  { key: 'airQuality', label: 'Clean Air', description: 'Annual PM2.5 air quality — scored against WHO bands (Excellent ≤5, Good ≤10, Fair ≤15, Moderate ≤25, Poor ≤35, Unhealthy >35 µg/m³)' },
 ];
 
 const CLIMATE_OPTIONS: { value: ClimatePreference; label: string; emoji: string }[] = [
@@ -66,12 +67,95 @@ function PrioritySlider({
   );
 }
 
+function NonNegotiablesBlock({
+  nn,
+  onChange,
+}: {
+  nn: NonNegotiables;
+  onChange: (updated: NonNegotiables) => void;
+}) {
+  function toggle(key: keyof Omit<NonNegotiables, 'costCeiling'>) {
+    onChange({ ...nn, [key]: nn[key] ? undefined : true });
+  }
+
+  const boolFilters: { key: keyof Omit<NonNegotiables, 'costCeiling'>; label: string; detail: string }[] = [
+    { key: 'hospitalWithin30min', label: 'Class-A hospital ≤ 30 min', detail: 'Private specialty hospital within 30 minutes of target area' },
+    { key: 'cleanAir', label: 'Clean air (PM2.5 ≤ 35 µg/m³)', detail: 'Hard filter: excludes locations with annual mean PM2.5 above WHO IT-1 (35 µg/m³). Currently: Thailand (38 µg/m³).' },
+    { key: 'internet100', label: 'Internet ≥ 100 Mbps', detail: 'Reliable broadband at or above 100 Mbps in the target area' },
+    { key: 'airportWithin1hr', label: 'International airport ≤ 1 hr', detail: 'International airport within 1 hour of the target area' },
+    { key: 'taxFriendly', label: 'Tax-friendly to SS / pension', detail: 'Net-favorable tax treatment for US Social Security and pension income' },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {/* Cost ceiling */}
+      <div>
+        <label className="mb-1 block text-sm font-semibold text-navy">
+          Monthly budget ceiling (optional)
+        </label>
+        <p className="mb-2 text-xs text-slate-500">
+          Any country whose comfortable couple budget exceeds this amount will fail the filter.
+          Leave at 0 to skip.
+        </p>
+        <div className="flex items-center rounded-lg border border-slate-300 bg-white focus-within:border-gold focus-within:ring-1 focus-within:ring-gold">
+          <span className="px-3 text-sm text-slate-500">$</span>
+          <input
+            type="number"
+            min={0}
+            step={100}
+            value={nn.costCeiling ?? 0}
+            onChange={(e) => onChange({ ...nn, costCeiling: Number(e.target.value) || undefined })}
+            placeholder="0"
+            className="w-full rounded-r-lg bg-transparent py-2.5 pr-3 text-sm text-navy outline-none placeholder:text-slate-300"
+          />
+          <span className="px-3 text-xs text-slate-400">/mo</span>
+        </div>
+      </div>
+
+      {/* Boolean toggles */}
+      <div className="space-y-2">
+        {boolFilters.map(({ key, label, detail }) => {
+          const active = !!nn[key];
+          return (
+            <button
+              key={key}
+              type="button"
+              onClick={() => toggle(key)}
+              className={`flex w-full items-start gap-3 rounded-lg border-2 px-4 py-3 text-left transition-all ${
+                active ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-white hover:border-slate-300'
+              }`}
+            >
+              <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 text-[10px] font-bold ${
+                active ? 'border-red-500 bg-red-500 text-white' : 'border-slate-300 text-transparent'
+              }`}>✕</span>
+              <span>
+                <span className={`block text-sm font-semibold ${active ? 'text-red-800' : 'text-navy'}`}>{label}</span>
+                <span className="block text-xs text-slate-500">{detail}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function Step3Priorities() {
   const { step3, step1, setStep3, setResults, setStep } = useAssessmentStore();
 
   const [priorities, setPriorities] = useState<Step3Data>({
     ...step3,
   });
+  const [showNonNeg, setShowNonNeg] = useState(false);
+
+  const activeFilterCount = [
+    priorities.nonNegotiables.costCeiling && priorities.nonNegotiables.costCeiling > 0,
+    priorities.nonNegotiables.hospitalWithin30min,
+    priorities.nonNegotiables.cleanAir,
+    priorities.nonNegotiables.internet100,
+    priorities.nonNegotiables.airportWithin1hr,
+    priorities.nonNegotiables.taxFriendly,
+  ].filter(Boolean).length;
 
   function update<K extends keyof Step3Data>(key: K, value: Step3Data[K]) {
     setPriorities((prev) => ({ ...prev, [key]: value }));
@@ -82,6 +166,7 @@ export default function Step3Priorities() {
       priorities,
       step1.totalMonthlyIncome,
       step1.liquidAssets,
+      priorities.nonNegotiables,
     );
     setStep3(priorities);
     setResults(scores);
@@ -155,19 +240,40 @@ export default function Step3Priorities() {
           </div>
         </label>
       </div>
-      {/* Medicare border warning */}
-      <div className="flex gap-3 rounded-xl border border-amber-300 bg-amber-50 p-5">
-        <AlertTriangle size={20} className="mt-0.5 shrink-0 text-amber-700" />
-        <div>
-          <p className="text-sm font-semibold text-amber-900">
-            Medicare coverage stops at the U.S. border
-          </p>
-          <p className="mt-1 text-xs text-amber-800">
-            Retiring or spending extended time abroad requires private international
-            health coverage until you return to U.S. soil — Medicare Parts A &amp; B do
-            not provide coverage outside the United States.
-          </p>
-        </div>
+
+      {/* Non-Negotiables block */}
+      <div className="rounded-xl border border-slate-200 bg-white">
+        <button
+          type="button"
+          onClick={() => setShowNonNeg((v) => !v)}
+          className="flex w-full items-center justify-between px-5 py-4"
+        >
+          <div className="text-left">
+            <span className="block text-sm font-bold text-navy">My Non-Negotiables</span>
+            <span className="block text-xs text-slate-500">
+              {activeFilterCount === 0
+                ? 'Hard deal-breakers — countries that fail any active filter cannot rank in the top 3'
+                : `${activeFilterCount} active filter${activeFilterCount > 1 ? 's' : ''} — failing countries will be pushed below the top 3`}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            {activeFilterCount > 0 && (
+              <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">
+                {activeFilterCount} active
+              </span>
+            )}
+            {showNonNeg ? <ChevronUp size={18} className="text-slate-400" /> : <ChevronDown size={18} className="text-slate-400" />}
+          </div>
+        </button>
+
+        {showNonNeg && (
+          <div className="border-t border-slate-100 px-5 pb-5 pt-4">
+            <NonNegotiablesBlock
+              nn={priorities.nonNegotiables}
+              onChange={(updated) => update('nonNegotiables', updated)}
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex gap-3">

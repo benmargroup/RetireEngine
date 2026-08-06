@@ -9,7 +9,7 @@ import type { ReportTier } from '@/types/assessment';
 const TIER_DETAILS = {
   standard: {
     label: 'Standard Report',
-    price: '$9',
+    price: '$19',
     pages: 8,
     features: [
       'Cover page + executive summary',
@@ -22,7 +22,7 @@ const TIER_DETAILS = {
   },
   premium: {
     label: 'Premium Report',
-    price: '$19',
+    price: '$49',
     pages: 11,
     features: [
       'Everything in Standard',
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-lg px-4 py-10 sm:px-6">
         <div className="mb-8 flex items-center justify-between">
           <a href="/" className="font-serif text-xl font-bold text-navy">
-            RetireEngine
+            Lifetime<span className="text-gold">SS</span>
           </a>
           <button
             type="button"

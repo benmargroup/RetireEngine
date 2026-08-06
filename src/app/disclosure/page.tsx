@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-export const metadata = { title: 'Affiliate & Not-Advice Disclosure — RetireEngine' };
+export const metadata = { title: 'Affiliate & Not-Advice Disclosure — Lifetime SS' };
 
 export default function DisclosurePage() {
   return (
     <main className="min-h-screen bg-cream">
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
         <Link href="/" className="mb-8 inline-block font-serif text-xl font-bold text-navy">
-          RetireEngine
+          Lifetime<span className="text-gold">SS</span>
         </Link>
 
         <h1 className="mb-2 font-serif text-3xl font-bold text-navy">Disclosure</h1>
@@ -17,8 +17,8 @@ export default function DisclosurePage() {
           <section>
             <h2 className="mb-3 text-base font-bold text-navy">Not financial, legal, or immigration advice</h2>
             <p>
-              RetireEngine provides educational planning estimates. Nothing on this site — including the
-              RetireEngine Assessment, country rankings, visa qualification analysis, tax summaries,
+              Lifetime SS provides educational planning estimates. Nothing on this site — including the
+              Vitality Window Assessment, country rankings, visa qualification analysis, tax summaries,
               or PDF reports — constitutes financial advice, tax advice, legal advice, or immigration advice.
             </p>
             <p className="mt-2">
@@ -35,7 +35,7 @@ export default function DisclosurePage() {
           <section>
             <h2 className="mb-3 text-base font-bold text-navy">Affiliate and referral relationships</h2>
             <p>
-              Some professional referrals and product links on RetireEngine are affiliate or referral
+              Some professional referrals and product links on Lifetime SS are affiliate or referral
               partnerships. We may earn a referral fee if you engage a professional or purchase a product
               through our links. <strong>This fee is at no extra cost to you.</strong>
             </p>
@@ -65,7 +65,7 @@ export default function DisclosurePage() {
             <h2 className="mb-3 text-base font-bold text-navy">FTC compliance</h2>
             <p>
               In accordance with the FTC&apos;s Endorsement Guides (16 CFR Part 255), we disclose
-              material connections between RetireEngine and any third party whose products or services
+              material connections between Lifetime SS and any third party whose products or services
               are mentioned or linked. Paid placements, affiliate links, and referral partnerships
               are disclosed at the point of recommendation.
             </p>
@@ -73,7 +73,7 @@ export default function DisclosurePage() {
         </div>
 
         <div className="mt-12 border-t border-slate-200 pt-6 text-xs text-slate-400">
-          <Link href="/" className="hover:text-navy">← Back to RetireEngine</Link>
+          <Link href="/" className="hover:text-navy">← Back to LifetimeSS</Link>
           {' · '}
           <Link href="/privacy" className="hover:text-navy">Privacy Policy</Link>
         </div>

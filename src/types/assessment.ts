@@ -3,7 +3,36 @@ export type { Sex, SmokingStatus, HealthStatus } from '@/lib/actuarial-engine';
 
 export type ClimatePreference = 'mediterranean' | 'tropical' | 'four_seasons' | 'mild' | '';
 export type ReportTier = 'standard' | 'premium';
-export type QualificationStatus = 'income' | 'savings' | 'deficit';
+export type QualificationStatus = 'income' | 'savings' | 'deficit' | 'right-of-abode';
+export type AccessLevel = 'resident-by-passport' | 'retiree-visa-eligible' | 'tourist-only';
+
+/** Passport & citizenship profile for the user. Stored top-level in the assessment store.
+ *  descentEligible is informational ONLY — it never alters scoring or solvency calculations. */
+export interface PassportProfile {
+  /** Passport group IDs the user holds: 'us', 'eu-eea', 'uk', 'ca', 'au', 'nz'. */
+  passports: string[];
+  /** Overseas Citizen of India card holder. */
+  hasOCI: boolean;
+  /** Countries where the user may be eligible for citizenship by descent. Informational only. */
+  descentEligible?: string[];
+}
+
+/** Hard-filter non-negotiables set by the user in Step 3.
+ *  Each field is optional: undefined = filter not active. */
+export interface NonNegotiables {
+  /** Max acceptable monthly couple budget (USD/mo). Active when > 0. */
+  costCeiling?: number;
+  /** Require a Class-A private specialty hospital ≤ 30 min. */
+  hospitalWithin30min?: boolean;
+  /** Require annual mean PM2.5 ≤ 35 µg/m³ (WHO IT-1). Active filter currently excludes Thailand (38 µg/m³). */
+  cleanAir?: boolean;
+  /** Require reliable broadband ≥ 100 Mbps. */
+  internet100?: boolean;
+  /** Require an international airport ≤ 1 hour. */
+  airportWithin1hr?: boolean;
+  /** Require net-favorable tax treatment for US SS and pension income. */
+  taxFriendly?: boolean;
+}
 
 export interface Step1Data {
   fraBenefit: number;
@@ -43,8 +72,10 @@ export interface Step3Data {
   infrastructure: number;
   culture: number;
   banking: number;
+  airQuality: number;
   climatePreference: ClimatePreference;
   hasHealthConditions: boolean;
+  nonNegotiables: NonNegotiables;
 }
 
 export interface CountryScore {
@@ -67,4 +98,11 @@ export interface CountryScore {
   healthcareNote: string;
   honestReality: string;
   topStrengths: string[];
+  /** Labels for any active hard filter this country failed. Empty = passes all. */
+  failedMustHaves: string[];
+  /** Human-readable air quality band + raw PM2.5 value, e.g. 'Good · 8 µg/m³'. */
+  airQualityBand: string;
+  airQualityPM25: number;
+  /** Right of movement / residency level based on passport, independent of visa-solvency. */
+  accessLevel: AccessLevel;
 }

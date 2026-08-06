@@ -45,7 +45,7 @@ function ReportContent() {
           <Mail size={18} />
           <span className="text-sm font-semibold">Check your inbox — delivery takes under 2 minutes</span>
         </div>
-        <p className="mt-1 text-xs text-emerald-700">Check spam if you don&apos;t see it. Subject: &ldquo;Your RetireEngine Retirement Blueprint&rdquo;</p>
+        <p className="mt-1 text-xs text-emerald-700">Check spam if you don&apos;t see it. Subject: &ldquo;Your Lifetime SS Retirement Blueprint&rdquo;</p>
       </div>
 
       {topCountry && (
@@ -90,7 +90,7 @@ export default function ReportPage() {
       <div className="mx-auto max-w-lg px-4 py-16 sm:px-6">
         <div className="mb-10 text-center">
           <a href="/" className="font-serif text-xl font-bold text-navy">
-            RetireEngine
+            Lifetime<span className="text-gold">SS</span>
           </a>
         </div>
         <Suspense fallback={<div className="text-center text-sm text-slate-500">Loading your report status…</div>}>

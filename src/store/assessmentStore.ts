@@ -6,7 +6,12 @@ import type {
   Step3Data,
   CountryScore,
   ReportTier,
+  NonNegotiables,
+  PassportProfile,
 } from '@/types/assessment';
+
+// re-export so components can import from one place
+export type { NonNegotiables, PassportProfile };
 
 const DEFAULT_STEP1: Step1Data = {
   fraBenefit: 0,
@@ -46,8 +51,10 @@ const DEFAULT_STEP3: Step3Data = {
   infrastructure: 3,
   culture: 3,
   banking: 3,
+  airQuality: 3,
   climatePreference: '',
   hasHealthConditions: false,
+  nonNegotiables: {},
 };
 
 interface AssessmentState {
@@ -55,6 +62,7 @@ interface AssessmentState {
   step1: Step1Data;
   step2: Step2Data;
   step3: Step3Data;
+  passportProfile: PassportProfile;
   results: CountryScore[];
   email: string;
   name: string;
@@ -72,6 +80,7 @@ interface AssessmentActions {
   setStep1: (data: Step1Data) => void;
   setStep2: (data: Step2Data) => void;
   setStep3: (data: Step3Data) => void;
+  setPassportProfile: (profile: PassportProfile) => void;
   setResults: (results: CountryScore[]) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
@@ -84,11 +93,17 @@ interface AssessmentActions {
   reset: () => void;
 }
 
+const DEFAULT_PASSPORT_PROFILE: PassportProfile = {
+  passports: ['us'],
+  hasOCI: false,
+};
+
 const INITIAL_STATE: AssessmentState = {
   step: 1,
   step1: DEFAULT_STEP1,
   step2: DEFAULT_STEP2,
   step3: DEFAULT_STEP3,
+  passportProfile: DEFAULT_PASSPORT_PROFILE,
   results: [],
   email: '',
   name: '',
@@ -108,6 +123,7 @@ export const useAssessmentStore = create<AssessmentState & AssessmentActions>()(
       setStep1: (step1) => set({ step1 }),
       setStep2: (step2) => set({ step2 }),
       setStep3: (step3) => set({ step3 }),
+      setPassportProfile: (passportProfile) => set({ passportProfile }),
       setResults: (results) => set({ results }),
       setEmail: (email) => set({ email }),
       setName: (name) => set({ name }),

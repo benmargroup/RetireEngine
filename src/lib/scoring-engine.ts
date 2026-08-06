@@ -12,7 +12,7 @@
 
 import { LOCATIONS, getLocation } from './ss-engine';
 import type { LocationData } from './ss-engine';
-import type { Step3Data, CountryScore, QualificationStatus } from '@/types/assessment';
+import type { Step3Data, CountryScore, QualificationStatus, NonNegotiables } from '@/types/assessment';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -181,7 +181,7 @@ const CRITERIA = [
 ] as const;
 type Criterion = (typeof CRITERIA)[number];
 
-const PRIORITY_KEY_MAP: Record<Criterion, keyof Omit<Step3Data, 'climatePreference' | 'hasHealthConditions'>> = {
+const PRIORITY_KEY_MAP: Record<Criterion, keyof Omit<Step3Data, 'climatePreference' | 'hasHealthConditions' | 'nonNegotiables' | 'airQuality'>> = {
   healthcare: 'healthcare',
   climate: 'climate',
   language: 'language',
@@ -193,6 +193,66 @@ const PRIORITY_KEY_MAP: Record<Criterion, keyof Omit<Step3Data, 'climatePreferen
   culture: 'culture',
   banking: 'banking',
 };
+
+/** WHO IT-1 for annual mean PM2.5 (µg/m³). Countries above this fail the clean-air hard filter. */
+const PM25_CLEAN_AIR_THRESHOLD = 35;
+
+/** Map raw PM2.5 (µg/m³) to a 1–10 score using WHO AQI bands. */
+function pm25ToScore(pm25: number): number {
+  if (pm25 <= 5) return 10;
+  if (pm25 <= 10) return 8;
+  if (pm25 <= 15) return 6;
+  if (pm25 <= 25) return 4;
+  if (pm25 <= 35) return 2;
+  return 1;
+}
+
+/** Human-readable band label for a PM2.5 value. */
+function pm25ToBand(pm25: number): string {
+  if (pm25 <= 5) return 'Excellent';
+  if (pm25 <= 10) return 'Good';
+  if (pm25 <= 15) return 'Fair';
+  if (pm25 <= 25) return 'Moderate';
+  if (pm25 <= 35) return 'Poor';
+  return 'Unhealthy';
+}
+
+/** Minimum internet speed (Mbps) required when internet100 filter is active. */
+const INTERNET_MBPS_THRESHOLD = 100;
+
+/**
+ * Evaluate which active hard filters a location fails.
+ * Returns an array of human-readable labels for each failure.
+ * Empty array = passes all active filters.
+ */
+function applyHardFilters(
+  loc: LocationData,
+  nn: NonNegotiables,
+  budgetLow: number,
+): string[] {
+  const failures: string[] = [];
+
+  if (nn.costCeiling && nn.costCeiling > 0 && budgetLow > nn.costCeiling) {
+    failures.push(`Cost > $${nn.costCeiling.toLocaleString()}/mo`);
+  }
+  if (nn.hospitalWithin30min && !loc.hospitalClassAWithin30min) {
+    failures.push('No Class-A hospital ≤ 30 min');
+  }
+  if (nn.cleanAir && loc.airQualityPM25 > PM25_CLEAN_AIR_THRESHOLD) {
+    failures.push(`PM2.5 ${loc.airQualityPM25} µg/m³ (limit: ${PM25_CLEAN_AIR_THRESHOLD})`);
+  }
+  if (nn.internet100 && loc.internetMbps < INTERNET_MBPS_THRESHOLD) {
+    failures.push(`Internet ${loc.internetMbps} Mbps (need ≥ ${INTERNET_MBPS_THRESHOLD})`);
+  }
+  if (nn.airportWithin1hr && !loc.airportWithin1hr) {
+    failures.push('No intl airport ≤ 1 hr');
+  }
+  if (nn.taxFriendly && !loc.taxFriendlyToPension) {
+    failures.push('Not tax-friendly to SS/pension');
+  }
+
+  return failures;
+}
 
 function buildVisaRequirementsNote(loc: LocationData): string {
   const income = loc.visaIncomeMinMonthly
@@ -212,8 +272,10 @@ export function calculateScores(
   priorities: Step3Data,
   totalMonthlyIncome: number,
   liquidAssets: number,
+  nonNegotiables: NonNegotiables = {},
 ): CountryScore[] {
-  const MAX_POSSIBLE = CRITERIA.length * 10 * 5; // 500 (constant denominator for fairness)
+  // 10 profile criteria + 1 air-quality criterion = 11 slots × max score (10) × max priority (5)
+  const MAX_POSSIBLE = (CRITERIA.length + 1) * 10 * 5; // 550
 
   return Object.values(COUNTRY_PROFILES)
     .map((profile) => {
@@ -229,6 +291,9 @@ export function calculateScores(
         }
         weightedSum += profile.criteria[criterion] * userPriority;
       }
+      // Air quality — objective score from LOCATIONS, weighted by user's airQuality priority
+      weightedSum += pm25ToScore(location.airQualityPM25) * priorities.airQuality;
+
       let score = (weightedSum / MAX_POSSIBLE) * 80;
 
       // 2. Hard visa-solvency modifier
@@ -269,6 +334,9 @@ export function calculateScores(
       const budgetHigh = location.monthlyBudgetCoupleHigh ?? Math.round(location.monthlyComfortableCost * 2.3);
       const midBudget = (budgetLow + budgetHigh) / 2;
 
+      // Hard-filter evaluation (after all scoring modifiers)
+      const failedMustHaves = applyHardFilters(location, nonNegotiables, budgetLow);
+
       return {
         countryKey: profile.id,
         name: location.label,
@@ -289,9 +357,18 @@ export function calculateScores(
         healthcareNote: location.healthcareNote,
         honestReality: profile.honestReality,
         topStrengths: profile.strengths,
+        failedMustHaves,
+        airQualityBand: `${pm25ToBand(location.airQualityPM25)} · ${location.airQualityPM25} µg/m³`,
+        airQualityPM25: location.airQualityPM25,
       } satisfies CountryScore;
     })
-    .sort((a, b) => b.score - a.score);
+    // Failures always sort after passes; within each group, sort by score desc.
+    .sort((a, b) => {
+      const aFails = a.failedMustHaves.length > 0;
+      const bFails = b.failedMustHaves.length > 0;
+      if (aFails !== bFails) return aFails ? 1 : -1;
+      return b.score - a.score;
+    });
 }
 
 export function formatCurrency(amount: number): string {
