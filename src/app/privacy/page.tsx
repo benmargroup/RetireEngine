@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-export const metadata = { title: 'Privacy Policy — Lifetime SS' };
+export const metadata = { title: 'Privacy Policy — RetireEngine' };
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-cream">
       <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
         <Link href="/" className="mb-8 inline-block font-serif text-xl font-bold text-navy">
-          Lifetime<span className="text-gold">SS</span>
+          RetireEngine
         </Link>
 
         <h1 className="mb-2 font-serif text-3xl font-bold text-navy">Privacy Policy</h1>
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="mb-3 text-base font-bold text-navy">What we collect</h2>
             <p>
-              When you use the Vitality Window Assessment, we temporarily store your inputs (income, assets,
+              When you use the RetireEngine Assessment, we temporarily store your inputs (income, assets,
               age, priorities) in your browser&apos;s local storage to enable the multi-step wizard. This data
               never leaves your device unless you explicitly submit a form.
             </p>
@@ -62,8 +62,8 @@ export default function PrivacyPage() {
             <h2 className="mb-3 text-base font-bold text-navy">Your rights</h2>
             <p>
               You may request deletion of your stored email and assessment data at any time by emailing{' '}
-              <a href="mailto:privacy@lifetimess.com" className="underline hover:text-navy">
-                privacy@lifetimess.com
+              <a href="mailto:privacy@retireengine.com" className="underline hover:text-navy">
+                privacy@retireengine.com
               </a>
               . Unsubscribe links are included in every email we send.
             </p>
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
         </div>
 
         <div className="mt-12 border-t border-slate-200 pt-6 text-xs text-slate-400">
-          <Link href="/" className="hover:text-navy">← Back to LifetimeSS</Link>
+          <Link href="/" className="hover:text-navy">← Back to RetireEngine</Link>
           {' · '}
           <Link href="/disclosure" className="hover:text-navy">Affiliate Disclosure</Link>
         </div>

@@ -33,7 +33,7 @@ export interface TrustBoxProps {
 
 function buildPlainTextCitation(title: string, url: string, year: number): string {
   const accessed = new Date().toISOString().slice(0, 10);
-  return `Lifetime SS. "${title}." Accessed ${accessed}. ${url}`;
+  return `RetireEngine. "${title}." Accessed ${accessed}. ${url}`;
 }
 
 function buildBibTexCitation(title: string, url: string, year: number): string {
@@ -42,8 +42,8 @@ function buildBibTexCitation(title: string, url: string, year: number): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, '');
-  return `@misc{lifetimess-${slug},
-  author = {{Lifetime SS}},
+  return `@misc{retireengine-${slug},
+  author = {{RetireEngine}},
   title = {${title}},
   year = {${year}},
   url = {${url}},
@@ -51,12 +51,12 @@ function buildBibTexCitation(title: string, url: string, year: number): string {
 }`;
 }
 
-/** Reusable institutional trust + citation card for Lifetime SS content pages. */
+/** Reusable institutional trust + citation card for RetireEngine content pages. */
 export default function TrustBox(props: TrustBoxProps) {
   const {
     sources,
-    citationTitle = 'Lifetime SS — Social Security Claiming Calculator',
-    citationUrl = 'https://lifetimess.com',
+    citationTitle = 'RetireEngine — Social Security Claiming Calculator',
+    citationUrl = 'https://retireengine.com',
     rulesYear = 2026,
   } = props;
 

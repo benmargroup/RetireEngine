@@ -75,7 +75,7 @@ export async function POST(req: Request) {
             currency: 'usd',
             unit_amount: PRICES[tier],
             product_data: {
-              name: `Lifetime SS ${tier === 'premium' ? 'Premium' : 'Standard'} Retirement Blueprint`,
+              name: `RetireEngine ${tier === 'premium' ? 'Premium' : 'Standard'} Retirement Blueprint`,
               description: `Personalized ${tier === 'premium' ? '11' : '8'}-page PDF report for ${name}`,
             },
           },
