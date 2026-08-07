@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { CheckCircle, Mail, Download } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 function ReportContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const { email, selectedTier, results, setPaymentConfirmed, reset } = useAssessmentStore();
 
   const sessionId = searchParams.get('session');
@@ -73,12 +74,15 @@ function ReportContent() {
 
       <div className="border-t border-slate-200 pt-4">
         <button
-          type="button"
-          onClick={reset}
-          className="text-sm text-slate-500 underline hover:text-navy"
-        >
-          Start a new assessment
-        </button>
+  type="button"
+  onClick={() => {
+    reset();
+    router.push('/assessment');
+  }}
+  className="text-sm text-slate-500 underline hover:text-navy"
+>
+  Start a new assessment
+</button>
       </div>
     </div>
   );
