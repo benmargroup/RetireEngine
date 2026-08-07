@@ -31,7 +31,7 @@ interface ClaimingScenario {
 
 const SCENARIOS = scenarios as ClaimingScenario[];
 
-const SITE_URL = 'https://lifetimess.com';
+const SITE_URL = 'https://retireengine.com';
 const RULES_YEAR = 2026;
 
 const TRUST_SOURCES: TrustSource[] = [
@@ -102,7 +102,7 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
       title: scenario.title,
       description: scenario.metaDescription,
       url: canonicalUrl,
-      siteName: 'Lifetime SS',
+      siteName: 'RetireEngine',
       type: 'article',
       locale: 'en_US',
     },
@@ -168,11 +168,11 @@ function buildArticleJsonLd(canonicalUrl: string, scenario: ClaimingScenario) {
     dateModified: `${RULES_YEAR}-01-15`,
     author: {
       '@type': 'Organization',
-      name: 'Lifetime SS',
+      name: 'RetireEngine',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Lifetime SS',
+      name: 'RetireEngine',
     },
   };
 }

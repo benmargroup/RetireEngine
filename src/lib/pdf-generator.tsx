@@ -70,7 +70,7 @@ const fmt = (n: number) =>
 function PageFooter({ page, total }: { page: number; total: number }) {
   return (
     <View style={styles.footer}>
-      <Text style={styles.small}>© 2026 Lifetime SS · lifetimess.com</Text>
+      <Text style={styles.small}>© 2026 RetireEngine · retireengine.com</Text>
       <Text style={styles.small}>Page {page} of {total}</Text>
     </View>
   );
@@ -96,7 +96,7 @@ function CoverPage({ email, tier }: { email: string; tier: string }) {
       <View style={{ flex: 1, justifyContent: 'center' }}>
         {/* Brand */}
         <Text style={[styles.small, { color: GOLD, letterSpacing: 2, marginBottom: 24 }]}>
-          LIFETIME SS · RETIREMENT INTELLIGENCE
+          RETIREENGINE · THE RETIREMENT DECISION ENGINE
         </Text>
 
         <Text style={[styles.h1, { fontSize: 32, marginBottom: 4 }]}>
@@ -420,7 +420,60 @@ function ActionChecklistPage({ tier, pageNum, total }: { tier: string; pageNum: 
     </Page>
   );
 }
+function StateDomicilePage({ pageNum, total }: { pageNum: number; total: number }) {
+  const STICKY_STATES = ['California', 'New York', 'Virginia', 'New Jersey'];
+  const ZERO_TAX_STATES = ['Texas', 'Florida', 'South Dakota'];
 
+  const STEPS = [
+    'Establish a physical address in a zero-tax state (TX, FL, or SD) BEFORE your departure date — a mail-forwarding service alone is usually not sufficient.',
+    'Obtain a driver\'s license or state ID from your new domicile state, and surrender your old state\'s license.',
+    'Register to vote in your new domicile state.',
+    'Update your address with the IRS, Social Security Administration, and all financial institutions (banks, brokerages, insurers).',
+    'File a "final" part-year or non-resident tax return in your old state if required, clearly documenting your departure date.',
+    'Move and re-title vehicles, and update vehicle registration and insurance to the new state.',
+    'If possible, spend more time physically present in the new domicile state than in the old one during the transition year.',
+    'Keep dated records (utility bills, lease/purchase agreements, credit card statements) proving your new state is your genuine home base — "sticky" states aggressively contest domicile changes and the burden of proof falls on you.',
+  ];
+
+  return (
+    <Page size="A4" style={styles.page}>
+      <SectionHeader title="State Domicile — Pre-Departure Checklist" />
+
+      <Text style={[styles.body, { marginBottom: 12 }]}>
+        Several states continue taxing former residents on worldwide income unless domicile is
+        formally and provably broken. Handling this correctly, before you leave, is one of the
+        most commonly overlooked steps in expat planning.
+      </Text>
+
+      <View style={styles.row}>
+        <View style={[styles.card, styles.col, { borderLeftWidth: 3, borderLeftColor: '#DC2626', paddingLeft: 10 }]}>
+          <Text style={[styles.label, { color: '#991B1B' }]}>&quot;Sticky&quot; States (Aggressive)</Text>
+          {STICKY_STATES.map((s) => (
+            <Text key={s} style={styles.body}>• {s}</Text>
+          ))}
+        </View>
+        <View style={[styles.card, styles.col, { borderLeftWidth: 3, borderLeftColor: '#059669', paddingLeft: 10 }]}>
+          <Text style={[styles.label, { color: '#065F46' }]}>Zero-Tax Domicile Options</Text>
+          {ZERO_TAX_STATES.map((s) => (
+            <Text key={s} style={styles.body}>• {s}</Text>
+          ))}
+        </View>
+      </View>
+
+      <View style={[styles.card, { marginTop: 4 }]}>
+        <Text style={styles.h4}>Pre-Departure Steps</Text>
+        {STEPS.map((step) => (
+          <View key={step.slice(0, 20)} style={{ flexDirection: 'row', marginBottom: 6 }}>
+            <Text style={{ color: GOLD, marginRight: 6, fontSize: 9 }}>□</Text>
+            <Text style={[styles.body, { flex: 1, fontSize: 9 }]}>{step}</Text>
+          </View>
+        ))}
+      </View>
+
+      <PageFooter page={pageNum} total={total} />
+    </Page>
+  );
+}
 function TaxFrameworkPage({ pageNum, total }: { pageNum: number; total: number }) {
   return (
     <Page size="A4" style={styles.page}>
@@ -630,7 +683,7 @@ export async function generateReportBuffer({ tier, email, assessmentData }: Repo
   const totalPages = tier === 'premium' ? 11 : 8;
 
   const doc = (
-    <Document title={`Lifetime SS Blueprint — ${tier}`} author="Lifetime SS">
+    <Document title={`RetireEngine Blueprint — ${tier}`} author="RetireEngine">
       {/* Page 1: Cover */}
       <CoverPage email={email} tier={tier} />
 
@@ -675,6 +728,7 @@ export async function generateReportBuffer({ tier, email, assessmentData }: Repo
       {/* Pages 8–11: Premium only */}
       {tier === 'premium' && (
         <>
+          <StateDomicilePage pageNum={8} total={totalPages} />
           <TaxFrameworkPage pageNum={9} total={totalPages} />
           <MedicareRoadmapPage pageNum={10} total={totalPages} />
           <ActionPlanPage pageNum={11} total={totalPages} />

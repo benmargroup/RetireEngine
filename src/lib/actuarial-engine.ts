@@ -1,7 +1,7 @@
 /**
  * actuarial-engine.ts
  * -------------------------------------------------------------------------
- * Lifetime SS — personalized longevity estimator.
+ * RetireEngine — personalized longevity estimator.
  *
  * Pure, deterministic TypeScript. No network, no LLM, no side effects.
  * Given a person's age, sex, and a few health/family signals, it returns a
