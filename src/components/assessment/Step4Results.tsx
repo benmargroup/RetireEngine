@@ -196,7 +196,7 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
 }
 
 function EmailCaptureForm() {
-  const { email, setEmail, emailConsent, setEmailConsent } = useAssessmentStore();
+  const { email, setEmail, emailConsent, setEmailConsent, results, step1 } = useAssessmentStore();
   const [localEmail, setLocalEmail] = useState(email);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -208,10 +208,22 @@ function EmailCaptureForm() {
     setLoading(true);
     setError('');
     try {
+      const topMatches = results.slice(0, 3).map((r) => ({
+        name: r.name,
+        score: r.score,
+        surplus: r.surplus,
+        budgetLow: r.budgetLow,
+        budgetHigh: r.budgetHigh,
+      }));
       const res = await fetch('/api/email-capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: localEmail, emailConsent }),
+        body: JSON.stringify({
+          email: localEmail,
+          emailConsent,
+          topMatches,
+          totalMonthlyIncome: step1.totalMonthlyIncome,
+        }),
       });
       if (res.ok) {
         setEmail(localEmail);
@@ -229,7 +241,7 @@ function EmailCaptureForm() {
   if (submitted) {
     return (
       <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
-        <CheckCircle size={16} /> Summary saved — check your email shortly.
+        <CheckCircle size={16} /> Summary sent \u2014 check your inbox shortly.
       </div>
     );
   }
@@ -247,7 +259,6 @@ function EmailCaptureForm() {
           className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold"
         />
       </div>
-      {/* emailConsent required to submit */}
       <label className="flex cursor-pointer items-start gap-3">
         <input
           type="checkbox"
@@ -265,7 +276,7 @@ function EmailCaptureForm() {
         disabled={!emailConsent || loading || !localEmail}
         className="w-full rounded-lg bg-gold py-2.5 text-sm font-bold text-navy transition-opacity disabled:cursor-not-allowed disabled:opacity-40 hover:bg-gold-dark"
       >
-        {loading ? 'Sending…' : 'Email My Summary (Free)'}
+        {loading ? 'Sending\u2026' : 'Email My Summary (Free)'}
       </button>
     </form>
   );
