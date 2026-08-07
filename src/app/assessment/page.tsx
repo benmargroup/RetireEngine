@@ -17,6 +17,9 @@ export default function AssessmentPage() {
       router.push('/assessment/results');
     }
   }, [step, router]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [step]);
 
   if (step === 4) return null;
 
@@ -26,8 +29,8 @@ export default function AssessmentPage() {
         {/* Brand bar */}
         <div className="mb-8 flex items-center justify-between">
           <a href="/" className="font-serif text-xl font-bold text-navy">
-            Lifetime<span className="text-gold">SS</span>
-          </a>
+  RetireEngine
+</a>
           <p className="text-xs text-slate-500">Free Assessment · Takes ~4 minutes</p>
         </div>
 
