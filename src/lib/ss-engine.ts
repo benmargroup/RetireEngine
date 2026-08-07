@@ -1,7 +1,7 @@
 /**
  * ss-engine.ts
  * -------------------------------------------------------------------------
- * Lifetime SS — Social Security claiming + geo-arbitrage math.
+ * RetireEngine — Social Security claiming + geo-arbitrage math.
  *
  * MODULE 6 EXTENSION (2026-01):
  *   - Added monthlyBudgetCoupleLow / monthlyBudgetCoupleHigh to LocationData.

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, AlertTriangle } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { calculateScores } from '@/lib/scoring-engine';
 import type { Step3Data, ClimatePreference, NonNegotiables } from '@/types/assessment';
@@ -239,6 +239,20 @@ export default function Step3Priorities() {
             </span>
           </div>
         </label>
+      </div>
+      {/* Medicare border warning */}
+      <div className="flex gap-3 rounded-xl border border-amber-300 bg-amber-50 p-5">
+        <AlertTriangle size={20} className="mt-0.5 shrink-0 text-amber-700" />
+        <div>
+          <p className="text-sm font-semibold text-amber-900">
+            Medicare coverage stops at the U.S. border
+          </p>
+          <p className="mt-1 text-xs text-amber-800">
+            Retiring or spending extended time abroad requires private international
+            health coverage until you return to U.S. soil — Medicare Parts A &amp; B do
+            not provide coverage outside the United States.
+          </p>
+        </div>
       </div>
 
       {/* Non-Negotiables block */}

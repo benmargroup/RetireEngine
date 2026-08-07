@@ -256,7 +256,7 @@ function EmailCaptureForm() {
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-gold"
         />
         <span className="text-xs leading-relaxed text-slate-600">
-          Email me my summary. I understand LifetimeSS provides educational estimates, not financial, tax, or legal advice, and I can unsubscribe anytime.
+          Email me my summary. I understand RetireEngine provides educational estimates, not financial, tax, or legal advice, and I can unsubscribe anytime.
         </span>
       </label>
       {error && <p className="text-xs text-red-600">{error}</p>}
@@ -343,7 +343,7 @@ export default function Step4Results() {
               className="block rounded-xl border-2 border-navy bg-white p-4 text-center transition-transform hover:-translate-y-0.5"
             >
               <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Standard Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-navy">$19</p>
+              <p className="my-1 font-serif text-3xl font-bold text-navy">$9</p>
               <p className="text-xs text-slate-500">8 pages · Top 3 deep dives · Action checklist</p>
               <span className="mt-3 inline-block rounded-lg bg-navy px-4 py-2 text-sm font-bold text-white">
                 Get Standard →
@@ -357,7 +357,7 @@ export default function Step4Results() {
                 MOST POPULAR
               </p>
               <p className="text-xs font-semibold uppercase tracking-wide text-gold/70">Premium Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-gold">$49</p>
+              <p className="my-1 font-serif text-3xl font-bold text-gold">$19</p>
               <p className="text-xs text-cream/70">11 pages · Tax framework · Medicare roadmap · 90-day plan</p>
               <span className="mt-3 inline-block rounded-lg bg-gold px-4 py-2 text-sm font-bold text-navy">
                 Get Premium →
@@ -370,8 +370,8 @@ export default function Step4Results() {
       {/* Trust box */}
       <TrustBox
         sources={VISA_SOURCES}
-        citationTitle="Lifetime SS — Vitality Window Retirement Abroad Assessment"
-        citationUrl="https://lifetimess.com/assessment"
+        citationTitle="RetireEngine — Vitality Window Retirement Abroad Assessment"
+        citationUrl="https://retireengine.com/assessment"
         rulesYear={2026}
       />
     </div>
