@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   badgeGreen: { backgroundColor: '#D1FAE5', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start' },
   badgeBlue: { backgroundColor: '#DBEAFE', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start' },
   badgeRed: { backgroundColor: '#FEE2E2', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start' },
+  badgePurple: { backgroundColor: '#EDE9FE', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start', marginTop: 4 },
   // Table
   tableRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', paddingVertical: 5 },
   tableHeader: { backgroundColor: NAVY, paddingVertical: 6, paddingHorizontal: 4 },
@@ -228,6 +229,7 @@ function TopCountryPage({
     name: string; flag: string; score: number; visaName: string; visaRequirementsNote: string;
     visaIncomeMin: number; visaSavingsAlt: number | null; budgetLow: number; budgetHigh: number;
     surplus: number; qualificationStatus: string; honestReality: string; topStrengths: string[];
+    accessLevel: string;
   };
   rank: number;
   totalMonthlyIncome: number;
@@ -269,6 +271,13 @@ function TopCountryPage({
           <Text style={[styles.small, { marginTop: 6 }]}>
             Income threshold: {fmt(country.visaIncomeMin)}/mo
           </Text>
+          {country.accessLevel === 'resident-by-passport' && (
+            <View style={styles.badgePurple}>
+              <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#5B21B6' }}>
+                Resident by Passport — No Visa Needed
+              </Text>
+            </View>
+          )}
           {country.visaSavingsAlt && (
             <Text style={styles.small}>Savings route: {fmt(country.visaSavingsAlt)}</Text>
           )}
@@ -654,6 +663,7 @@ export interface ReportInput {
       name: string; flag: string; score: number; visaName: string; visaRequirementsNote: string;
       visaIncomeMin: number; visaSavingsAlt: number | null; budgetLow: number; budgetHigh: number;
       surplus: number; qualificationStatus: string; honestReality: string; topStrengths: string[];
+      accessLevel: string;
     }>;
   } | null;
 }
@@ -674,7 +684,7 @@ export async function generateReportBuffer({ tier, email, assessmentData }: Repo
     {
       name: 'Portugal', flag: '🇵🇹', score: 82, visaName: 'D7 Passive Income Visa',
       visaRequirementsNote: 'D7 Passive Income Visa. Requires $1,000/month income.', visaIncomeMin: 1000, visaSavingsAlt: 12000,
-      budgetLow: 3000, budgetHigh: 4200, surplus: income - 3600, qualificationStatus: 'income',
+      budgetLow: 3000, budgetHigh: 4200, surplus: income - 3600, qualificationStatus: 'income', accessLevel: 'retiree-visa-eligible',
       honestReality: 'NHR ended March 2025 but Portugal remains one of the safest, most livable countries in Europe.',
       topStrengths: ['Safety', 'Healthcare', 'Expat Community'],
     },

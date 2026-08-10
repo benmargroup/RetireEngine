@@ -236,6 +236,7 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 300,              // Movistar / Orange FTTH; Spain top-3 EU for fiber penetration
     airportWithin1hr: true,         // Valencia Airport, Alicante-Elche Airport
     taxFriendlyToPension: false,    // worldwide income tax; no major SS exemption
+    passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
   },
   // ── New in Module 6 ────────────────────────────────────────────────────
   {
@@ -257,6 +258,7 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 30,               // rural southern Italy FTTC/VDSL; ~20–50 Mbps typical; FTTH rare outside cities
     airportWithin1hr: true,         // Catania Fontanarossa, Palermo Falcone-Borsellino, Lamezia Terme Intl
     taxFriendlyToPension: true,     // 7% flat-rate scheme for qualifying retirees in towns < 20k (10-year cap)
+    passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
   },
   {
     id: 'colombia',
@@ -297,6 +299,7 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 200,              // Orange / SFR FTTH widely available in Provence/PACA region
     airportWithin1hr: true,         // Nice Côte d'Azur, Marseille Provence
     taxFriendlyToPension: false,    // worldwide income tax; US–France treaty but still taxable at French rates
+    passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
   },
   {
     id: 'malaysia',

@@ -12,7 +12,7 @@
 
 import { LOCATIONS, getLocation } from './ss-engine';
 import type { LocationData } from './ss-engine';
-import type { Step3Data, CountryScore, QualificationStatus, NonNegotiables } from '@/types/assessment';
+import type { Step3Data, CountryScore, QualificationStatus, NonNegotiables, PassportProfile, AccessLevel } from '@/types/assessment';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -268,11 +268,31 @@ function buildVisaRequirementsNote(loc: LocationData): string {
   return `${loc.visaName ?? 'Visa'}. ${req}`.trim();
 }
 
+/**
+ * Derive a user's right-of-movement/residency access level for a given location.
+ * A passport granting right of abode always wins, regardless of visa-income solvency —
+ * that's a fundamentally different (and better) legal status than a retiree visa.
+ */
+function deriveAccessLevel(
+  passportProfile: PassportProfile | undefined,
+  location: LocationData,
+  qualificationStatus: QualificationStatus,
+): AccessLevel {
+  const abodeGroups = location.passportGroupsWithAbode ?? [];
+  const userGroups = passportProfile?.passports ?? [];
+  const hasAbode = userGroups.some((g: string) => abodeGroups.includes(g));
+
+  if (hasAbode) return 'resident-by-passport';
+  if (qualificationStatus === 'income' || qualificationStatus === 'savings') return 'retiree-visa-eligible';
+  return 'tourist-only';
+}
+
 export function calculateScores(
   priorities: Step3Data,
   totalMonthlyIncome: number,
   liquidAssets: number,
   nonNegotiables: NonNegotiables = {},
+  passportProfile?: PassportProfile,
 ): CountryScore[] {
   // 10 profile criteria + 1 air-quality criterion = 11 slots × max score (10) × max priority (5)
   const MAX_POSSIBLE = (CRITERIA.length + 1) * 10 * 5; // 550
@@ -360,7 +380,7 @@ export function calculateScores(
         failedMustHaves,
         airQualityBand: `${pm25ToBand(location.airQualityPM25)} · ${location.airQualityPM25} µg/m³`,
         airQualityPM25: location.airQualityPM25,
-        accessLevel: 'retiree-visa-eligible', // placeholder — Feature 3 passport logic not yet wired in
+        accessLevel: deriveAccessLevel(passportProfile, location, qualificationStatus),
       } satisfies CountryScore;
     })
     // Failures always sort after passes; within each group, sort by score desc.

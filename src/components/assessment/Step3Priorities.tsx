@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, AlertTriangle } from 'lucide-react';
@@ -139,9 +139,8 @@ function NonNegotiablesBlock({
     </div>
   );
 }
-
 export default function Step3Priorities() {
-  const { step3, step1, setStep3, setResults, setStep } = useAssessmentStore();
+  const { step3, step1, setStep3, setResults, setStep, passportProfile } = useAssessmentStore();
 
   const [priorities, setPriorities] = useState<Step3Data>({
     ...step3,
@@ -167,6 +166,7 @@ export default function Step3Priorities() {
       step1.totalMonthlyIncome,
       step1.liquidAssets,
       priorities.nonNegotiables,
+      passportProfile,
     );
     setStep3(priorities);
     setResults(scores);

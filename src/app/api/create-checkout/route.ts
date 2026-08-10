@@ -58,8 +58,10 @@ export async function POST(req: Request) {
           .select('id')
           .single();
         assessmentId = data?.id ?? null;
+        console.log('[create-checkout] Insert result - assessmentId:', assessmentId);
       } catch (err) {
-        console.warn('[create-checkout] Supabase insert failed (non-fatal):', err);
+        console.error('[create-checkout] SUPABASE INSERT FAILED - FULL ERROR:', JSON.stringify(err, null, 2));
+        console.error('[create-checkout] Error message:', err instanceof Error ? err.message : String(err));
       }
     }
 

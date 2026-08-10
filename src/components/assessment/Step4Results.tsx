@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info, ShieldX } from 'lucide-react';
+import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info, ShieldX, Globe } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { formatCurrency } from '@/lib/scoring-engine';
 import TrustBox from '@/components/ui/TrustBox';
@@ -22,7 +22,14 @@ const VISA_SOURCES = [
 
 const PERSISTENT_DISCLAIMER =
   'Educational planning estimates based on 2026 rules and simplified assumptions. Not financial, tax, or legal advice. Verify with a licensed professional.';
-
+function AccessLevelBadge({ accessLevel }: Pick<CountryScore, 'accessLevel'>) {
+  if (accessLevel !== 'resident-by-passport') return null;
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full bg-purple-100 px-2.5 py-1 text-xs font-semibold text-purple-800">
+      <Globe size={12} /> Resident by Passport — No Visa Needed
+    </span>
+  );
+}
 function QualificationBadge({ qualificationStatus, visaIncomeMin, visaSavingsAlt }: Pick<CountryScore, 'qualificationStatus' | 'visaIncomeMin' | 'visaSavingsAlt'>) {
   if (qualificationStatus === 'income') {
     return (
@@ -120,6 +127,7 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
             visaIncomeMin={country.visaIncomeMin}
             visaSavingsAlt={country.visaSavingsAlt}
           />
+          <AccessLevelBadge accessLevel={country.accessLevel} />
           <span className={`text-xs font-medium ${budgetCover === 'surplus' ? 'text-emerald-700' : 'text-amber-700'}`}>
             {budgetCover === 'surplus'
               ? `+${formatCurrency(country.surplus)}/mo surplus`

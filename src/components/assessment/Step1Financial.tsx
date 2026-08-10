@@ -1,8 +1,9 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { SSA_BENEFIT_FACTOR, CLAIMING_AGES, type ClaimingAge } from '@/lib/ss-engine';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import type { PassportProfile } from '@/types/assessment';
 
 const CLAIMING_AGE_META: Record<ClaimingAge, { label: string; sub: string; color: string }> = {
   62: { label: 'Age 62', sub: 'Early (70% of FRA)', color: 'text-amber-600' },
@@ -58,8 +59,93 @@ function withdrawalLabel(rate: number): string {
   return WITHDRAWAL_RATE_LABELS[pct] ?? `${pct}%`;
 }
 
+function PassportBlock({
+  profile,
+  onChange,
+}: {
+  profile: PassportProfile;
+  onChange: (updated: PassportProfile) => void;
+}) {
+  const PASSPORT_OPTIONS: { value: string; label: string }[] = [
+    { value: 'us', label: 'United States' },
+    { value: 'eu-eea', label: 'EU / EEA' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'au', label: 'Australia' },
+    { value: 'nz', label: 'New Zealand' },
+  ];
+
+  function togglePassport(value: string) {
+    const has = profile.passports.includes(value);
+    const passports = has
+      ? profile.passports.filter((p) => p !== value)
+      : [...profile.passports, value];
+    onChange({ ...profile, passports });
+  }
+
+  function updateDescent(text: string) {
+    const descentEligible = text
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    onChange({ ...profile, descentEligible });
+  }
+
+  return (
+    <div className="space-y-4 rounded-xl border border-slate-200 bg-white p-5">
+      <div>
+        <p className="text-sm font-semibold text-navy">Passports / Citizenship</p>
+        <p className="text-xs text-slate-500">
+          Select every passport you hold. Some passports grant automatic residency rights in certain countries — no visa required.
+        </p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {PASSPORT_OPTIONS.map(({ value, label }) => {
+            const active = profile.passports.includes(value);
+            return (
+              <button
+                key={value}
+                type="button"
+                onClick={() => togglePassport(value)}
+                className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-all ${
+                  active ? 'border-navy bg-navy text-white' : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <label className="flex items-center gap-2 text-sm text-slate-600">
+        <input
+          type="checkbox"
+          checked={profile.hasOCI}
+          onChange={(e) => onChange({ ...profile, hasOCI: e.target.checked })}
+          className="h-4 w-4 rounded border-slate-300"
+        />
+        OCI (Overseas Citizen of India) card holder
+      </label>
+
+      <div>
+        <p className="text-sm font-semibold text-navy">Citizenship by Descent (optional)</p>
+        <p className="text-xs text-slate-500">
+          Informational only — does not affect your scores. List any countries where you may be eligible through a parent or grandparent, separated by commas.
+        </p>
+        <input
+          type="text"
+          defaultValue={(profile.descentEligible ?? []).join(', ')}
+          onBlur={(e) => updateDescent(e.target.value)}
+          placeholder="e.g. Ireland, Italy"
+          className="mt-2 w-full rounded-lg border border-slate-200 px-4 py-2 text-sm"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Step1Financial() {
-  const { step1, setStep1, setStep } = useAssessmentStore();
+  const { step1, setStep1, setStep, passportProfile, setPassportProfile } = useAssessmentStore();
 
   const [fraBenefit, setFraBenefit] = useState(step1.fraBenefit);
   const [selectedAge, setSelectedAge] = useState<ClaimingAge>(step1.selectedClaimingAge);
@@ -227,6 +313,8 @@ export default function Step1Financial() {
           </p>
         )}
       </div>
+
+      <PassportBlock profile={passportProfile} onChange={setPassportProfile} />
 
       <button
         type="button"
