@@ -66,6 +66,16 @@ const styles = StyleSheet.create({
 const fmt = (n: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
 
+const COUNTRY_CODES: Record<string, string> = {
+  portugal: 'PT', panama: 'PA', 'costa rica': 'CR', malaysia: 'MY',
+  colombia: 'CO', france: 'FR', thailand: 'TH', spain: 'ES',
+  mexico: 'MX', italy: 'IT',
+};
+function countryCode(name: string): string {
+  const key = name.toLowerCase().split('(')[0].trim();
+  return COUNTRY_CODES[key] ?? name.slice(0, 2).toUpperCase();
+}
+
 // ----- Helper components -----
 
 function PageFooter({ page, total }: { page: number; total: number }) {
@@ -361,7 +371,7 @@ function ComparisonMatrixPage({
 
         return (
           <View key={c.name} style={[styles.tableRow, { backgroundColor: i % 2 === 0 ? WHITE : '#F8FAFC' }]}>
-            <Text style={[styles.tableCellBold, { flex: 2 }]}>{c.flag} {c.name}</Text>
+            <Text style={[styles.tableCellBold, { flex: 2 }]}>{countryCode(c.name)} · {c.name}</Text>
             <Text style={styles.tableCellBold}>{c.score}</Text>
             <Text style={styles.tableCell}>{fmt(c.budgetLow)}–{fmt(c.budgetHigh)}</Text>
             <Text style={styles.tableCell}>{fmt(c.visaIncomeMin)}/mo</Text>
