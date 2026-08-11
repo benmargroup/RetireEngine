@@ -6,9 +6,9 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#0A1628',
-          light: '#132040',
-          dark: '#060F1A',
+          DEFAULT: '#1B365D',
+          light: '#2A4A7A',
+          dark: '#122442',
         },
         gold: {
           DEFAULT: '#C9A84C',
@@ -16,9 +16,20 @@ const config: Config = {
           dark: '#A8873A',
         },
         cream: {
-          DEFAULT: '#F8F4EE',
+          DEFAULT: '#F9F8F6',
           dark: '#EDE7DC',
         },
+        crimson: {
+          DEFAULT: '#9B2C3E',
+          light: '#B23A4E',
+          dark: '#7A1F2F',
+        },
+        forest: {
+          DEFAULT: '#2C5F4E',
+          light: '#3C7A63',
+          dark: '#1E4136',
+        },
+        charcoal: '#1E293B',
         sage: {
           DEFAULT: '#7A8C7E',
           light: '#9CAD9F',
@@ -26,6 +37,7 @@ const config: Config = {
       },
       fontFamily: {
         serif: ['Georgia', '"Times New Roman"', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },

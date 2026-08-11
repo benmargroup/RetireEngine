@@ -1,14 +1,46 @@
+import Link from 'next/link';
+
 export default function HomePage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-      <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">RetireEngine</h1>
-      <p className="mt-3 text-slate-600">
-        Personalized Social Security claiming calculators, by age and by location.
-      </p>
-      <p className="mt-6 text-lg font-medium text-slate-800">
-        Right-sizing your cost of living today buys back 5–10 years of active travel
-        before physical limitations set in.
-      </p>
+    <main className="min-h-screen bg-cream">
+      <div className="mx-auto max-w-2xl px-6 py-20 text-center sm:py-28">
+        {/* Eyebrow */}
+        <p className="mb-4 text-base font-semibold uppercase tracking-[0.15em] text-charcoal">
+          Retirement Decision Engine
+        </p>
+
+        {/* Brand headline */}
+        <h1 className="font-serif text-4xl font-bold text-navy sm:text-5xl">
+          RetireEngine
+        </h1>
+
+        {/* Subhead */}
+        <p className="mx-auto mt-5 max-w-lg text-lg leading-[1.7] text-charcoal">
+          Personalized Social Security claiming calculators, by age and by location.
+        </p>
+
+        {/* Vitality Window callout — signature moment */}
+        <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-sage-light/40 bg-white px-8 py-7 shadow-sm">
+          <p className="font-serif text-xl italic leading-[1.6] text-navy">
+            &ldquo;Right-sizing your cost of living today buys back 5–10 years of active
+            travel before physical limitations set in.&rdquo;
+          </p>
+        </div>
+
+        {/* Primary CTA */}
+        <div className="mt-10">
+          <Link
+            href="/assessment"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-forest px-8 py-4 text-base font-bold text-white transition-colors hover:bg-forest-dark sm:w-auto sm:px-10"
+            style={{ minHeight: '56px' }}
+          >
+            Start Your Free Assessment →
+          </Link>
+          <p className="mt-3 text-base text-charcoal">
+            Free Assessment · Takes ~4 minutes
+          </p>
+        </div>
+      </div>
     </main>
   );
 }
