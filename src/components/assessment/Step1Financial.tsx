@@ -200,7 +200,7 @@ export default function Step1Financial() {
     <div className="space-y-8">
       {/* Deliverable promise banner */}
       <div className="rounded-xl bg-navy p-5 text-white shadow-md">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-forest-light">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gold">
           Your Custom Assessment Report Includes
         </p>
         <div className="grid grid-cols-1 gap-3 border-t border-white/10 pt-3 text-sm sm:grid-cols-3">
