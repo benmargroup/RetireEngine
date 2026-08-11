@@ -11,6 +11,12 @@
  *     scoring-engine.ts imports from here; never duplicate these constants.
  *   Re-verify all figures quarterly. Each record carries lastVerified comment.
  *
+ * FEATURE 5 EXTENSION (2026-08):
+ *   - Added monthlyRatings (12-month go/shoulder/avoid climate/hazard grid) to
+ *     all 10 expat LocationData entries. Seeded from public climate/hazard data
+ *     (hurricane seasons, monsoon patterns, PM2.5 burn seasons, extreme heat).
+ *   - Added getBestMonthsForLocation() helper for future Orbit engine use.
+ *
  * Pure, deterministic TypeScript. Given an FRA benefit, a personalized
  * median lifespan (from actuarial-engine), and a target location, it returns
  * benefit scenarios for ages 62 / 65 / 67 / 70, plus the 62-vs-70 break-even
@@ -47,6 +53,17 @@ export type TaxPosture =
   | 'territorial' // foreign income (incl. US SS) untaxed locally
   | 'treaty-us-taxes-ss' // treaty leaves SS taxed by the US only
   | 'worldwide-income-tax'; // resident taxed on worldwide income (high drag)
+
+/** Feature 5: one month's climate/hazard rating for a location. */
+export type MonthRatingValue = 'go' | 'shoulder' | 'avoid';
+
+export interface MonthRating {
+  /** 1 = January ... 12 = December. */
+  month: number;
+  rating: MonthRatingValue;
+  /** Short human-readable reasons shown on hover in <SeasonHeatmap>. */
+  reasons: string[];
+}
 
 /** A domestic state or expat destination the user can target. */
 export interface LocationData {
@@ -91,6 +108,9 @@ export interface LocationData {
    *  e.g., ['eu-eea'] for EU/EEA passport holders; ['oci'] for OCI card holders.
    *  Undefined / empty = no right-of-abode pathway exists. */
   passportGroupsWithAbode?: string[];
+  /** Feature 5: 12-month climate/hazard rating grid. Undefined for US states
+   *  (seasonality is a lesser concern domestically; scope limited to expat locations). */
+  monthlyRatings?: MonthRating[];
 }
 
 /**
@@ -155,6 +175,20 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 50,               // Telmex Infinitum fiber expanding in Mérida; typical 40–80 Mbps
     airportWithin1hr: true,         // Manuel Crescencio Rejón Intl ~15 min from centro
     taxFriendlyToPension: true,     // US–Mexico treaty; SS taxed only by the US
+    monthlyRatings: [ // lastVerified: 2026-08; source: NOAA Atlantic Hurricane Outlook, Yucatán climate normals
+      { month: 1, rating: 'go', reasons: ['Dry season, comfortable temperatures'] },
+      { month: 2, rating: 'go', reasons: ['Dry, warm, pleasant'] },
+      { month: 3, rating: 'go', reasons: ['Dry season continues, warming'] },
+      { month: 4, rating: 'shoulder', reasons: ['Hot, dry — pre-rainy-season heat spike'] },
+      { month: 5, rating: 'shoulder', reasons: ['Very hot, humidity building'] },
+      { month: 6, rating: 'avoid', reasons: ['Hurricane season begins', 'High heat and humidity'] },
+      { month: 7, rating: 'avoid', reasons: ['Peak heat and humidity'] },
+      { month: 8, rating: 'avoid', reasons: ['Hurricane season, high heat/humidity'] },
+      { month: 9, rating: 'avoid', reasons: ['Peak Atlantic hurricane season'] },
+      { month: 10, rating: 'avoid', reasons: ['Hurricane risk remains high'] },
+      { month: 11, rating: 'shoulder', reasons: ['Hurricane season ending, rain decreasing'] },
+      { month: 12, rating: 'go', reasons: ['Dry season begins, comfortable'] },
+    ],
   },
   {
     id: 'portugal',
@@ -176,6 +210,20 @@ export const LOCATIONS: readonly LocationData[] = [
     airportWithin1hr: true,         // Lisbon Humberto Delgado, Porto Francisco Sá Carneiro
     taxFriendlyToPension: false,    // worldwide income tax; NHR flat-rate regime closed March 2025
     passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
+    monthlyRatings: [ // lastVerified: 2026-08; source: IPMA (Portuguese Institute for Sea and Atmosphere) climate normals
+      { month: 1, rating: 'shoulder', reasons: ['Cool, rainy — Atlantic winter storms'] },
+      { month: 2, rating: 'shoulder', reasons: ['Cool, rainy season continues'] },
+      { month: 3, rating: 'go', reasons: ['Mild temperatures, fewer crowds'] },
+      { month: 4, rating: 'go', reasons: ['Pleasant spring weather'] },
+      { month: 5, rating: 'go', reasons: ['Warm, dry, ideal conditions'] },
+      { month: 6, rating: 'go', reasons: ['Warm, low rain, before peak tourist season'] },
+      { month: 7, rating: 'shoulder', reasons: ['Peak heat inland; coastal areas still comfortable'] },
+      { month: 8, rating: 'shoulder', reasons: ['Hottest month', 'Wildfire risk in interior regions'] },
+      { month: 9, rating: 'go', reasons: ['Warm, drier, tourist crowds thinning'] },
+      { month: 10, rating: 'go', reasons: ['Mild, comfortable, harvest season'] },
+      { month: 11, rating: 'shoulder', reasons: ['Rain increasing, cooler'] },
+      { month: 12, rating: 'shoulder', reasons: ['Wet Atlantic winter'] },
+    ],
   },
   {
     id: 'costa-rica',
@@ -196,6 +244,20 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 60,               // ICE/Kolbi / cable ISPs; typical 40–100 Mbps in San José area
     airportWithin1hr: true,         // Juan Santamaría Intl ~20 min from San José
     taxFriendlyToPension: true,     // territorial; US SS and pension income not taxed locally
+    monthlyRatings: [ // lastVerified: 2026-08; source: IMN (Costa Rica Instituto Meteorológico Nacional) climate normals
+      { month: 1, rating: 'go', reasons: ['Dry season'] },
+      { month: 2, rating: 'go', reasons: ['Dry season, ideal conditions'] },
+      { month: 3, rating: 'go', reasons: ['Dry season, hottest but dry'] },
+      { month: 4, rating: 'shoulder', reasons: ['Transition — rains beginning'] },
+      { month: 5, rating: 'shoulder', reasons: ['Rainy season starts'] },
+      { month: 6, rating: 'avoid', reasons: ['Consistent daily rains'] },
+      { month: 7, rating: 'shoulder', reasons: ['Brief mid-season dry spell (veranillo) possible'] },
+      { month: 8, rating: 'avoid', reasons: ['Rainy season continues'] },
+      { month: 9, rating: 'avoid', reasons: ['Heavy rain'] },
+      { month: 10, rating: 'avoid', reasons: ['Peak rainfall, flooding risk'] },
+      { month: 11, rating: 'shoulder', reasons: ['Rains decreasing'] },
+      { month: 12, rating: 'go', reasons: ['Dry season returns'] },
+    ],
   },
   {
     id: 'panama',
@@ -216,6 +278,20 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 80,               // Cable & Wireless / Claro; typical 50–120 Mbps in Panama City
     airportWithin1hr: true,         // Tocumen Intl ~25 min from Marbella/El Cangrejo
     taxFriendlyToPension: true,     // territorial + USD economy + Pensionado pension discounts
+    monthlyRatings: [ // lastVerified: 2026-08; source: ETESA (Panama meteorological/hydrological authority) climate normals
+      { month: 1, rating: 'go', reasons: ['Dry season, sunny'] },
+      { month: 2, rating: 'go', reasons: ['Dry season, best conditions'] },
+      { month: 3, rating: 'go', reasons: ['Dry season continues'] },
+      { month: 4, rating: 'shoulder', reasons: ['Transition — rains beginning'] },
+      { month: 5, rating: 'shoulder', reasons: ['Rainy season starts'] },
+      { month: 6, rating: 'avoid', reasons: ['Heavy daily rains'] },
+      { month: 7, rating: 'shoulder', reasons: ['Brief mid-season dry spell (veranillo) possible'] },
+      { month: 8, rating: 'avoid', reasons: ['Rainy season continues'] },
+      { month: 9, rating: 'avoid', reasons: ['Heavy rain'] },
+      { month: 10, rating: 'avoid', reasons: ['Peak rainy season, heaviest rainfall'] },
+      { month: 11, rating: 'shoulder', reasons: ['Rains tapering off'] },
+      { month: 12, rating: 'go', reasons: ['Dry season returns'] },
+    ],
   },
   {
     id: 'spain',
@@ -237,6 +313,20 @@ export const LOCATIONS: readonly LocationData[] = [
     airportWithin1hr: true,         // Valencia Airport, Alicante-Elche Airport
     taxFriendlyToPension: false,    // worldwide income tax; no major SS exemption
     passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
+    monthlyRatings: [ // lastVerified: 2026-08; source: AEMET (Spanish State Meteorological Agency) climate normals, Valencia/Alicante
+      { month: 1, rating: 'shoulder', reasons: ['Cool, mild winter'] },
+      { month: 2, rating: 'shoulder', reasons: ['Cool, occasional rain'] },
+      { month: 3, rating: 'go', reasons: ['Mild spring weather begins'] },
+      { month: 4, rating: 'go', reasons: ['Pleasant spring'] },
+      { month: 5, rating: 'go', reasons: ['Warm, ideal conditions'] },
+      { month: 6, rating: 'go', reasons: ['Warm, dry, before peak heat'] },
+      { month: 7, rating: 'avoid', reasons: ['Extreme heat, especially inland/south'] },
+      { month: 8, rating: 'avoid', reasons: ['Peak summer heat, crowded'] },
+      { month: 9, rating: 'go', reasons: ['Warm, crowds thinning'] },
+      { month: 10, rating: 'go', reasons: ['Mild, pleasant'] },
+      { month: 11, rating: 'shoulder', reasons: ['Cooling, more rain'] },
+      { month: 12, rating: 'shoulder', reasons: ['Mild winter'] },
+    ],
   },
   // ── New in Module 6 ────────────────────────────────────────────────────
   {
@@ -259,6 +349,20 @@ export const LOCATIONS: readonly LocationData[] = [
     airportWithin1hr: true,         // Catania Fontanarossa, Palermo Falcone-Borsellino, Lamezia Terme Intl
     taxFriendlyToPension: true,     // 7% flat-rate scheme for qualifying retirees in towns < 20k (10-year cap)
     passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
+    monthlyRatings: [ // lastVerified: 2026-08; source: Servizio Meteorologico dell'Aeronautica Militare, southern Italy climate normals
+      { month: 1, rating: 'shoulder', reasons: ['Mild but rainy winter'] },
+      { month: 2, rating: 'shoulder', reasons: ['Cool, some rain'] },
+      { month: 3, rating: 'go', reasons: ['Mild spring begins'] },
+      { month: 4, rating: 'go', reasons: ['Pleasant, blooming season'] },
+      { month: 5, rating: 'go', reasons: ['Warm, ideal'] },
+      { month: 6, rating: 'go', reasons: ['Warm, dry'] },
+      { month: 7, rating: 'avoid', reasons: ['Intense heat, especially inland Sicily/Calabria'] },
+      { month: 8, rating: 'avoid', reasons: ['Peak heat', 'Many locals on holiday'] },
+      { month: 9, rating: 'go', reasons: ['Warm, less crowded'] },
+      { month: 10, rating: 'go', reasons: ['Mild, harvest season'] },
+      { month: 11, rating: 'shoulder', reasons: ['Rain increasing'] },
+      { month: 12, rating: 'shoulder', reasons: ['Mild, wetter winter'] },
+    ],
   },
   {
     id: 'colombia',
@@ -279,6 +383,20 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 100,              // Claro / EPM Telecomunicaciones fiber in El Poblado and Laureles
     airportWithin1hr: true,         // José María Córdova Intl ~45 min from El Poblado
     taxFriendlyToPension: true,     // 2024 reform (Ley 2277) largely exempts foreign pension income from Colombian tax
+    monthlyRatings: [ // lastVerified: 2026-08; source: IDEAM (Colombia meteorological institute) Medellín climate normals; altitude (~4,900ft) keeps year-round temps mild
+      { month: 1, rating: 'go', reasons: ['Dry, mild — one of the best months'] },
+      { month: 2, rating: 'go', reasons: ['Dry season continues'] },
+      { month: 3, rating: 'shoulder', reasons: ['Rain increasing'] },
+      { month: 4, rating: 'shoulder', reasons: ['Wettest period of first rainy season'] },
+      { month: 5, rating: 'shoulder', reasons: ['Rain continues'] },
+      { month: 6, rating: 'go', reasons: ['Drier interlude'] },
+      { month: 7, rating: 'go', reasons: ['Dry, pleasant'] },
+      { month: 8, rating: 'go', reasons: ['Dry, windy — pleasant'] },
+      { month: 9, rating: 'shoulder', reasons: ['Second rainy season begins'] },
+      { month: 10, rating: 'shoulder', reasons: ['Wettest period of second rainy season'] },
+      { month: 11, rating: 'shoulder', reasons: ['Rain continuing'] },
+      { month: 12, rating: 'go', reasons: ['Drier, pleasant, holiday season'] },
+    ],
   },
   {
     id: 'france',
@@ -300,6 +418,20 @@ export const LOCATIONS: readonly LocationData[] = [
     airportWithin1hr: true,         // Nice Côte d'Azur, Marseille Provence
     taxFriendlyToPension: false,    // worldwide income tax; US–France treaty but still taxable at French rates
     passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
+    monthlyRatings: [ // lastVerified: 2026-08; source: Météo-France PACA regional climate normals
+      { month: 1, rating: 'shoulder', reasons: ['Cool, occasional Mistral winds'] },
+      { month: 2, rating: 'shoulder', reasons: ['Cool, variable'] },
+      { month: 3, rating: 'go', reasons: ['Mild spring begins'] },
+      { month: 4, rating: 'go', reasons: ['Pleasant, lavender fields begin blooming'] },
+      { month: 5, rating: 'go', reasons: ['Warm, ideal, fewer crowds'] },
+      { month: 6, rating: 'go', reasons: ['Warm, dry, lavender season'] },
+      { month: 7, rating: 'shoulder', reasons: ['Peak heat', 'Peak tourist crowds'] },
+      { month: 8, rating: 'shoulder', reasons: ['Hottest month, very crowded'] },
+      { month: 9, rating: 'go', reasons: ['Warm, crowds thinning, harvest season'] },
+      { month: 10, rating: 'go', reasons: ['Mild, pleasant'] },
+      { month: 11, rating: 'shoulder', reasons: ['Cooling, more rain, Mistral winds'] },
+      { month: 12, rating: 'shoulder', reasons: ['Mild but cooler winter'] },
+    ],
   },
   {
     id: 'malaysia',
@@ -320,6 +452,20 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 200,              // Unifi (TM) FTTH widely available in KL metro; among fastest in SEA
     airportWithin1hr: true,         // KLIA / klia2 ~35–45 min from KL Sentral
     taxFriendlyToPension: true,     // territorial; foreign income (incl. US SS and pension) largely untaxed in Malaysia
+    monthlyRatings: [ // lastVerified: 2026-08; source: Malaysian Meteorological Department; ASEAN Specialised Meteorological Centre transboundary haze bulletins
+      { month: 1, rating: 'shoulder', reasons: ['Inter-monsoon rain possible'] },
+      { month: 2, rating: 'go', reasons: ['Relatively dry period'] },
+      { month: 3, rating: 'shoulder', reasons: ['Inter-monsoon rains increasing'] },
+      { month: 4, rating: 'shoulder', reasons: ['Inter-monsoon peak rainfall'] },
+      { month: 5, rating: 'go', reasons: ['Drier interlude'] },
+      { month: 6, rating: 'shoulder', reasons: ['Regional transboundary haze risk begins'] },
+      { month: 7, rating: 'shoulder', reasons: ['Haze risk continues'] },
+      { month: 8, rating: 'avoid', reasons: ['Peak transboundary haze season', 'PM2.5 spikes'] },
+      { month: 9, rating: 'avoid', reasons: ['Haze season continues, air quality risk'] },
+      { month: 10, rating: 'shoulder', reasons: ['Inter-monsoon rains increasing, haze risk tapering'] },
+      { month: 11, rating: 'shoulder', reasons: ['Northeast monsoon rains beginning'] },
+      { month: 12, rating: 'shoulder', reasons: ['Northeast monsoon rains'] },
+    ],
   },
   {
     id: 'thailand',
@@ -340,12 +486,39 @@ export const LOCATIONS: readonly LocationData[] = [
     internetMbps: 100,              // AIS / TRUE fiber available in urban Chiang Mai
     airportWithin1hr: true,         // Chiang Mai Intl Airport ~10 min from Nimman / Old City area
     taxFriendlyToPension: true,     // territorial; foreign income untaxed if not remitted in same tax year
+    monthlyRatings: [ // lastVerified: 2026-08; source: Thai Meteorological Department; Chiang Mai burn-season PM2.5 data (IQAir, GISTDA)
+      { month: 1, rating: 'go', reasons: ['Cool, dry season — best weather'] },
+      { month: 2, rating: 'shoulder', reasons: ['Burn season beginning, air quality declining'] },
+      { month: 3, rating: 'avoid', reasons: ['Peak burn season', 'Severe smoke/haze, PM2.5 very high'] },
+      { month: 4, rating: 'avoid', reasons: ['Burn season continues, hottest month, poor air quality'] },
+      { month: 5, rating: 'shoulder', reasons: ['Burn season ending, rains beginning'] },
+      { month: 6, rating: 'shoulder', reasons: ['Rainy season begins'] },
+      { month: 7, rating: 'shoulder', reasons: ['Rainy season continues'] },
+      { month: 8, rating: 'shoulder', reasons: ['Rainy season, lush and green'] },
+      { month: 9, rating: 'shoulder', reasons: ['Peak rainy season'] },
+      { month: 10, rating: 'shoulder', reasons: ['Rains tapering off'] },
+      { month: 11, rating: 'go', reasons: ['Cool season begins, clear air'] },
+      { month: 12, rating: 'go', reasons: ['Cool, dry, clear air — ideal'] },
+    ],
   },
 ];
 
 /** Look up a location by id; returns undefined if not found. */
 export function getLocation(id: string): LocationData | undefined {
   return LOCATIONS.find((l) => l.id === id);
+}
+
+/**
+ * Feature 5 helper: returns the list of 'go' months (1–12) for a location,
+ * for use by the Orbit engine (Feature 4) and any UI needing a quick summary.
+ * Returns an empty array if the location has no monthlyRatings data.
+ */
+export function getBestMonthsForLocation(locationId: string): number[] {
+  const location = getLocation(locationId);
+  if (!location?.monthlyRatings) return [];
+  return location.monthlyRatings
+    .filter((m) => m.rating === 'go')
+    .map((m) => m.month);
 }
 
 /** Inputs to the SS engine. */

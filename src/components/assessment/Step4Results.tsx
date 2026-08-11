@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info, Shie
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { formatCurrency } from '@/lib/scoring-engine';
 import TrustBox from '@/components/ui/TrustBox';
+import SeasonHeatmap from '@/components/ui/SeasonHeatmap';
 import type { CountryScore } from '@/types/assessment';
 
 const VISA_SOURCES = [
@@ -187,6 +188,14 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
                 {formatCurrency(country.budgetLow)} – {formatCurrency(country.budgetHigh)} / month comfortable lifestyle
               </p>
             </div>
+
+            {/* Best months to go */}
+            {country.monthlyRatings && country.monthlyRatings.length > 0 && (
+              <div className="rounded-lg border border-slate-200 p-3">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-navy">Best Months to Go</p>
+                <SeasonHeatmap monthlyRatings={country.monthlyRatings} />
+              </div>
+            )}
 
             {/* Honest reality */}
             <div className="flex gap-2 rounded-lg bg-amber-50 p-3">

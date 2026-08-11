@@ -389,6 +389,7 @@ export function calculateScores(
         airQualityBand: `${pm25ToBand(location.airQualityPM25)} · ${location.airQualityPM25} µg/m³`,
         airQualityPM25: location.airQualityPM25,
         accessLevel: deriveAccessLevel(passportProfile, location, qualificationStatus),
+        monthlyRatings: location.monthlyRatings,
       } satisfies CountryScore;
     })
     // Failures always sort after passes; within each group, sort by score desc.

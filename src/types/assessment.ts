@@ -1,4 +1,5 @@
 export type { ClaimingAge } from '@/lib/ss-engine';
+import type { MonthRating } from '@/lib/ss-engine';
 export type { Sex, SmokingStatus, HealthStatus } from '@/lib/actuarial-engine';
 
 export type ClimatePreference = 'mediterranean' | 'tropical' | 'four_seasons' | 'mild' | '';
@@ -105,4 +106,6 @@ export interface CountryScore {
   airQualityPM25: number;
   /** Right of movement / residency level based on passport, independent of visa-solvency. */
   accessLevel: AccessLevel;
+  /** Feature 5: 12-month climate/hazard rating grid. Undefined if location has no data yet. */
+  monthlyRatings?: MonthRating[];
 }
