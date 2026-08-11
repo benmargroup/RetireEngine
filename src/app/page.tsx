@@ -40,6 +40,15 @@ export default function HomePage() {
             Free Assessment · Takes ~4 minutes
           </p>
         </div>
+
+        {/* Trust signals */}
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 border-t border-sage-light/30 pt-8 text-base font-medium text-navy">
+          <span>10 Countries Compared</span>
+          <span className="text-sage">•</span>
+          <span>2026 SSA Rules</span>
+          <span className="text-sage">•</span>
+          <span>Educational Tool — Not Financial Advice</span>
+        </div>
       </div>
     </main>
   );
