@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-cream">
-      <div className="mx-auto max-w-2xl px-6 py-20 text-center sm:py-28">
+    <main className="flex min-h-screen items-center justify-center bg-cream">
+      <div className="mx-auto max-w-2xl px-6 py-16 text-center">
         {/* Eyebrow */}
         <p className="mb-4 text-base font-semibold uppercase tracking-[0.15em] text-charcoal">
           Retirement Decision Engine
