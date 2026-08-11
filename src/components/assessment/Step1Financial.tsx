@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { SSA_BENEFIT_FACTOR, CLAIMING_AGES, type ClaimingAge } from '@/lib/ss-engine';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import type { PassportProfile } from '@/types/assessment';
@@ -146,6 +147,20 @@ function PassportBlock({
 
 export default function Step1Financial() {
   const { step1, setStep1, setStep, passportProfile, setPassportProfile } = useAssessmentStore();
+  const searchParams = useSearchParams();
+  const intent = searchParams.get('intent');
+
+  const INTENT_HEADERS: Record<string, { title: string; subtitle: string }> = {
+    ss_timing: {
+      title: "Let's Calculate Your Optimal Claiming Age",
+      subtitle: "Start with your income streams — we'll use this to model your Social Security break-even age across claiming ages 62, 65, 67, and 70.",
+    },
+    nest_egg: {
+      title: 'How Much Do You Need to Retire?',
+      subtitle: "Start with your income streams — we'll calculate your total monthly retirement income and safe withdrawal rate.",
+    },
+  };
+  const headerContent = intent ? INTENT_HEADERS[intent] : undefined;
 
   const [fraBenefit, setFraBenefit] = useState(step1.fraBenefit);
   const [selectedAge, setSelectedAge] = useState<ClaimingAge>(step1.selectedClaimingAge);
@@ -183,11 +198,33 @@ export default function Step1Financial() {
 
   return (
     <div className="space-y-8">
+      {/* Deliverable promise banner */}
+      <div className="rounded-xl bg-navy p-5 text-white shadow-md">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-forest-light">
+          Your Custom Assessment Report Includes
+        </p>
+        <div className="grid grid-cols-1 gap-3 border-t border-white/10 pt-3 text-sm sm:grid-cols-3">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-forest-light">✓</span>
+            <span>Social Security Claiming Strategy</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-forest-light">✓</span>
+            <span>Visa Solvency &amp; Income Deficit Check</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-forest-light">✓</span>
+            <span>Top Ranked Global Destination Matches</span>
+          </div>
+        </div>
+      </div>
+
       <div>
-        <h2 className="mb-1 font-serif text-2xl font-bold text-navy">Your Financial Picture</h2>
+        <h2 className="mb-1 font-serif text-2xl font-bold text-navy">
+          {headerContent?.title ?? 'Your Financial Picture'}
+        </h2>
         <p className="text-sm text-slate-600">
-          Tell us about your income streams. We&apos;ll calculate your total monthly retirement income
-          and compare it to visa qualification thresholds for 10 countries.
+          {headerContent?.subtitle ?? "Tell us about your income streams. We'll calculate your total monthly retirement income and compare it to visa qualification thresholds for 10 countries."}
         </p>
       </div>
 

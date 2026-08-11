@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import ProgressBar from '@/components/assessment/ProgressBar';
@@ -35,8 +35,9 @@ export default function AssessmentPage() {
         </div>
 
         <ProgressBar currentStep={step} />
-
-        {step === 1 && <Step1Financial />}
+        <Suspense fallback={null}>
+          {step === 1 && <Step1Financial />}
+        </Suspense>
         {step === 2 && <Step2Longevity />}
         {step === 3 && <Step3Priorities />}
       </div>

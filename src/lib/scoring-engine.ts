@@ -316,14 +316,22 @@ export function calculateScores(
 
       let score = (weightedSum / MAX_POSSIBLE) * 80;
 
-      // 2. Hard visa-solvency modifier
+      // 2. Passport-based abode check (must run before visa-solvency modifier)
+      const abodeGroups = location.passportGroupsWithAbode ?? [];
+      const userPassports = passportProfile?.passports ?? [];
+      const hasAbode = userPassports.some((g: string) => abodeGroups.includes(g));
+
+      // 3. Hard visa-solvency modifier — SKIPPED entirely for passport-based residents
       const visaIncomeMin = location.visaIncomeMinMonthly ?? 0;
       const visaSavingsAlt = location.visaSavingsAlt ?? null;
       let qualificationStatus: QualificationStatus;
       let savingsRouteRequired = false;
       let visaDeficit = false;
 
-      if (totalMonthlyIncome >= visaIncomeMin) {
+      if (hasAbode) {
+        qualificationStatus = 'income'; // treated as fully qualified — no visa needed at all
+        score += 20; // access bonus, larger than the standard +10 income-route bonus
+      } else if (totalMonthlyIncome >= visaIncomeMin) {
         qualificationStatus = 'income';
         score += 10;
       } else if (visaSavingsAlt !== null && liquidAssets >= visaSavingsAlt) {
