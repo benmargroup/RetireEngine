@@ -9,17 +9,18 @@ import Step2Longevity from '@/components/assessment/Step2Longevity';
 import Step3Priorities from '@/components/assessment/Step3Priorities';
 
 function AssessmentPageInner() {
-  const { step, setStep } = useAssessmentStore();
+  const { step, reset } = useAssessmentStore();
   const router = useRouter();
   const searchParams = useSearchParams();
   const intent = searchParams.get('intent');
 
-  // Arriving via a homepage Gate (intent param present) always starts fresh at
-  // Step 1 — otherwise persisted progress from a prior session silently resumes,
-  // making the gate look broken (reported: "2nd & 3rd buttons not functioning").
+  // Arriving via a homepage Gate (intent param present) always starts a fully
+  // independent, clean session — no leftover step, no leftover form data from
+  // a previous gate or a previous visit. Each of the 3 gates must work
+  // completely independently of the others.
   useEffect(() => {
-    if (intent && step !== 1) {
-      setStep(1);
+    if (intent) {
+      reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [intent]);

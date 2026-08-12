@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
   badgeBlue: { backgroundColor: '#DBEAFE', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start' },
   badgeRed: { backgroundColor: '#FEE2E2', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start' },
   badgePurple: { backgroundColor: '#EDE9FE', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start', marginTop: 4 },
+  badgeAmber: { backgroundColor: '#FEF3C7', borderRadius: 4, paddingHorizontal: 6, paddingVertical: 2, alignSelf: 'flex-start', marginTop: 4 },
   // Table
   tableRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#E2E8F0', paddingVertical: 5 },
   tableHeader: { backgroundColor: NAVY, paddingVertical: 6, paddingHorizontal: 4 },
@@ -240,6 +241,8 @@ function TopCountryPage({
     visaIncomeMin: number; visaSavingsAlt: number | null; budgetLow: number; budgetHigh: number;
     surplus: number; qualificationStatus: string; honestReality: string; topStrengths: string[];
     accessLevel: string;
+    localCurrency?: string;
+    usdRelationship?: string;
   };
   rank: number;
   totalMonthlyIncome: number;
@@ -285,6 +288,20 @@ function TopCountryPage({
             <View style={styles.badgePurple}>
               <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#5B21B6' }}>
                 Resident by Passport — No Visa Needed
+              </Text>
+            </View>
+          )}
+          {country.usdRelationship && (country.usdRelationship === 'usd' || country.usdRelationship === 'pegged') && (
+            <View style={styles.badgeGreen}>
+              <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#065F46' }}>
+                Uses US Dollars — No Currency Risk
+              </Text>
+            </View>
+          )}
+          {country.usdRelationship === 'floating' && (
+            <View style={styles.badgeAmber}>
+              <Text style={{ fontSize: 9, fontFamily: 'Helvetica-Bold', color: '#92400E' }}>
+                Spends in {country.localCurrency ?? 'local currency'} — Budget 10–15% FX Cushion
               </Text>
             </View>
           )}

@@ -355,7 +355,13 @@ export function calculateScores(
         }
       }
 
-      // 4. Clamp to 0–100
+      // 4. Feature 6: small currency-stability modifier. Disclosure-only —
+      // never forecasts exchange rates, just a tiny nudge for USD/pegged safety.
+      if (location.usdRelationship === 'usd' || location.usdRelationship === 'pegged') {
+        score += 3;
+      }
+
+      // 5. Clamp to 0–100
       score = Math.round(Math.max(0, Math.min(100, score)));
 
       const budgetLow = location.monthlyBudgetCoupleLow ?? Math.round(location.monthlyComfortableCost * 1.7);
@@ -390,6 +396,9 @@ export function calculateScores(
         airQualityPM25: location.airQualityPM25,
         accessLevel: deriveAccessLevel(passportProfile, location, qualificationStatus),
         monthlyRatings: location.monthlyRatings,
+        localCurrency: location.localCurrency,
+        usdRelationship: location.usdRelationship,
+        fxVolatilityBand: location.fxVolatilityBand,
       } satisfies CountryScore;
     })
     // Failures always sort after passes; within each group, sort by score desc.

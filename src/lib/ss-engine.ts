@@ -17,6 +17,10 @@
  *     (hurricane seasons, monsoon patterns, PM2.5 burn seasons, extreme heat).
  *   - Added getBestMonthsForLocation() helper for future Orbit engine use.
  *
+ * FEATURE 6 EXTENSION (2026-08):
+ *   - Added localCurrency, usdRelationship, fxVolatilityBand to all 10 expat
+ *     LocationData entries. Disclosure-only — never forecasts exchange rates.
+ *
  * Pure, deterministic TypeScript. Given an FRA benefit, a personalized
  * median lifespan (from actuarial-engine), and a target location, it returns
  * benefit scenarios for ages 62 / 65 / 67 / 70, plus the 62-vs-70 break-even
@@ -65,6 +69,11 @@ export interface MonthRating {
   reasons: string[];
 }
 
+/** Feature 6: how a location's local currency relates to the US dollar. */
+export type UsdRelationship = 'usd' | 'pegged' | 'floating';
+/** Feature 6: qualitative FX volatility band for the local currency vs. USD. */
+export type FxVolatilityBand = 'none' | 'low' | 'moderate' | 'high';
+
 /** A domestic state or expat destination the user can target. */
 export interface LocationData {
   /** Stable slug id, e.g. 'mexico', 'texas'. */
@@ -111,6 +120,12 @@ export interface LocationData {
   /** Feature 5: 12-month climate/hazard rating grid. Undefined for US states
    *  (seasonality is a lesser concern domestically; scope limited to expat locations). */
   monthlyRatings?: MonthRating[];
+  /** Feature 6: local currency ISO-ish display name, e.g. 'Mexican Peso (MXN)'. */
+  localCurrency?: string;
+  /** Feature 6: how the local currency relates to USD. */
+  usdRelationship?: UsdRelationship;
+  /** Feature 6: qualitative FX volatility band vs. USD. Disclosure only — never forecasts rates. */
+  fxVolatilityBand?: FxVolatilityBand;
 }
 
 /**
@@ -189,6 +204,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Hurricane season ending, rain decreasing'] },
       { month: 12, rating: 'go', reasons: ['Dry season begins, comfortable'] },
     ],
+    localCurrency: 'Mexican Peso (MXN)', // lastVerified: 2026-08; source: Banco de México
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'moderate',
   },
   {
     id: 'portugal',
@@ -224,6 +242,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Rain increasing, cooler'] },
       { month: 12, rating: 'shoulder', reasons: ['Wet Atlantic winter'] },
     ],
+    localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'low',
   },
   {
     id: 'costa-rica',
@@ -258,6 +279,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Rains decreasing'] },
       { month: 12, rating: 'go', reasons: ['Dry season returns'] },
     ],
+    localCurrency: 'Costa Rican Colón (CRC)', // lastVerified: 2026-08; source: Banco Central de Costa Rica
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'moderate',
   },
   {
     id: 'panama',
@@ -292,6 +316,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Rains tapering off'] },
       { month: 12, rating: 'go', reasons: ['Dry season returns'] },
     ],
+    localCurrency: 'US Dollar (USD)', // lastVerified: 2026-08; source: Panama uses USD as legal tender alongside the Balboa
+    usdRelationship: 'usd',
+    fxVolatilityBand: 'none',
   },
   {
     id: 'spain',
@@ -327,6 +354,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Cooling, more rain'] },
       { month: 12, rating: 'shoulder', reasons: ['Mild winter'] },
     ],
+    localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'low',
   },
   // ── New in Module 6 ────────────────────────────────────────────────────
   {
@@ -363,6 +393,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Rain increasing'] },
       { month: 12, rating: 'shoulder', reasons: ['Mild, wetter winter'] },
     ],
+    localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'low',
   },
   {
     id: 'colombia',
@@ -397,6 +430,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Rain continuing'] },
       { month: 12, rating: 'go', reasons: ['Drier, pleasant, holiday season'] },
     ],
+    localCurrency: 'Colombian Peso (COP)', // lastVerified: 2026-08; source: Banco de la República (Colombia central bank)
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'high',
   },
   {
     id: 'france',
@@ -432,6 +468,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Cooling, more rain, Mistral winds'] },
       { month: 12, rating: 'shoulder', reasons: ['Mild but cooler winter'] },
     ],
+    localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'low',
   },
   {
     id: 'malaysia',
@@ -466,6 +505,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'shoulder', reasons: ['Northeast monsoon rains beginning'] },
       { month: 12, rating: 'shoulder', reasons: ['Northeast monsoon rains'] },
     ],
+    localCurrency: 'Malaysian Ringgit (MYR)', // lastVerified: 2026-08; source: Bank Negara Malaysia
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'moderate',
   },
   {
     id: 'thailand',
@@ -500,6 +542,9 @@ export const LOCATIONS: readonly LocationData[] = [
       { month: 11, rating: 'go', reasons: ['Cool season begins, clear air'] },
       { month: 12, rating: 'go', reasons: ['Cool, dry, clear air — ideal'] },
     ],
+    localCurrency: 'Thai Baht (THB)', // lastVerified: 2026-08; source: Bank of Thailand
+    usdRelationship: 'floating',
+    fxVolatilityBand: 'moderate',
   },
 ];
 

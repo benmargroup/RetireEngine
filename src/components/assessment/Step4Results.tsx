@@ -7,6 +7,7 @@ import { useAssessmentStore } from '@/store/assessmentStore';
 import { formatCurrency } from '@/lib/scoring-engine';
 import TrustBox from '@/components/ui/TrustBox';
 import SeasonHeatmap from '@/components/ui/SeasonHeatmap';
+import CurrencyNote from '@/components/ui/CurrencyNote';
 import type { CountryScore } from '@/types/assessment';
 
 const VISA_SOURCES = [
@@ -129,6 +130,7 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
             visaSavingsAlt={country.visaSavingsAlt}
           />
           <AccessLevelBadge accessLevel={country.accessLevel} />
+          <CurrencyNote localCurrency={country.localCurrency} usdRelationship={country.usdRelationship} />
           <span className={`text-base font-medium ${budgetCover === 'surplus' ? 'text-emerald-700' : 'text-amber-700'}`}>
             {budgetCover === 'surplus'
               ? `+${formatCurrency(country.surplus)}/mo surplus`

@@ -1,5 +1,5 @@
 export type { ClaimingAge } from '@/lib/ss-engine';
-import type { MonthRating } from '@/lib/ss-engine';
+import type { MonthRating, UsdRelationship, FxVolatilityBand } from '@/lib/ss-engine';
 export type { Sex, SmokingStatus, HealthStatus } from '@/lib/actuarial-engine';
 
 export type ClimatePreference = 'mediterranean' | 'tropical' | 'four_seasons' | 'mild' | '';
@@ -108,4 +108,10 @@ export interface CountryScore {
   accessLevel: AccessLevel;
   /** Feature 5: 12-month climate/hazard rating grid. Undefined if location has no data yet. */
   monthlyRatings?: MonthRating[];
+  /** Feature 6: local currency display name, e.g. 'Mexican Peso (MXN)'. */
+  localCurrency?: string;
+  /** Feature 6: how the local currency relates to USD. */
+  usdRelationship?: UsdRelationship;
+  /** Feature 6: qualitative FX volatility band vs. USD. Disclosure only. */
+  fxVolatilityBand?: FxVolatilityBand;
 }
