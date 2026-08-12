@@ -324,6 +324,10 @@ export function calculateScores(
       // 3. Hard visa-solvency modifier — SKIPPED entirely for passport-based residents
       const visaIncomeMin = location.visaIncomeMinMonthly ?? 0;
       const visaSavingsAlt = location.visaSavingsAlt ?? null;
+      // No visa path exists at all for anyone (undefined, not a $0 threshold) —
+      // e.g. Vietnam, Sri Lanka, and India for non-OCI holders. Must not be
+      // silently treated as "income >= $0 always qualifies" via the ?? 0 fallback above.
+      const hasNoVisaPath = location.visaIncomeMinMonthly === undefined && location.visaSavingsAlt === undefined;
       let qualificationStatus: QualificationStatus;
       let savingsRouteRequired = false;
       let visaDeficit = false;
@@ -331,6 +335,10 @@ export function calculateScores(
       if (hasAbode) {
         qualificationStatus = 'income'; // treated as fully qualified — no visa needed at all
         score += 20; // access bonus, larger than the standard +10 income-route bonus
+      } else if (hasNoVisaPath) {
+        qualificationStatus = 'deficit';
+        visaDeficit = true;
+        score -= 25;
       } else if (totalMonthlyIncome >= visaIncomeMin) {
         qualificationStatus = 'income';
         score += 10;

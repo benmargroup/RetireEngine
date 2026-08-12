@@ -21,6 +21,17 @@
  *   - Added localCurrency, usdRelationship, fxVolatilityBand to all 10 expat
  *     LocationData entries. Disclosure-only — never forecasts exchange rates.
  *
+ * FEATURE 3/4 COUNTRY EXPANSION (2026-08):
+ *   - Added India (Goa), Vietnam (Da Nang), Sri Lanka (Colombo) to LOCATIONS.
+ *     Data sourced/approved via Sabu — see per-field lastVerified comments.
+ *   - Added TouristEntryRules type + touristEntry field (Feature 4 Orbit data).
+ *   - Added orbitOnly flag: true = no residency visa path exists for anyone
+ *     (Vietnam, Sri Lanka); false = a passport-based path may still exist
+ *     even without a standard visa (India, via OCI right of abode).
+ *   - NOTE: these 3 countries are NOT yet added to COUNTRY_PROFILES in
+ *     scoring-engine.ts, so they do not appear in today's Anchor-mode
+ *     rankings. They activate once Feature 4 (Orbit) is built.
+ *
  * Pure, deterministic TypeScript. Given an FRA benefit, a personalized
  * median lifespan (from actuarial-engine), and a target location, it returns
  * benefit scenarios for ages 62 / 65 / 67 / 70, plus the 62-vs-70 break-even
@@ -74,6 +85,22 @@ export type UsdRelationship = 'usd' | 'pegged' | 'floating';
 /** Feature 6: qualitative FX volatility band for the local currency vs. USD. */
 export type FxVolatilityBand = 'none' | 'low' | 'moderate' | 'high';
 
+/** Feature 4: tourist entry rules for US citizens, used by the future Orbit
+ *  Strategy Engine. Applies to orbitOnly destinations and any location a
+ *  user might visit on a tourist basis between anchor stays. */
+export interface TouristEntryRules {
+  /** True if a US passport holder can enter visa-free or via electronic/on-arrival authorization. */
+  visaFreeOrETA: boolean;
+  /** Days allowed on the initial stamp/ETA before any in-country extension. */
+  initialStayDays: number;
+  /** Hard maximum days per visit after any allowed extension. */
+  extendableToDays: number;
+  /** Approximate per-entry fee for ETA/e-Visa, USD. 0 if free. */
+  entryFeeUSD: number;
+  /** One-sentence entry-rule summary for display in Orbit itinerary cards. */
+  note: string;
+}
+
 /** A domestic state or expat destination the user can target. */
 export interface LocationData {
   /** Stable slug id, e.g. 'mexico', 'texas'. */
@@ -90,7 +117,8 @@ export interface LocationData {
   taxNote: string;
   /** Expat only: name of the relevant residency visa. */
   visaName?: string;
-  /** Expat only: minimum MONTHLY income to qualify via the income route, USD. */
+  /** Expat only: minimum MONTHLY income to qualify via the income route, USD.
+   *  Undefined = no such visa exists at all (not the same as a $0 threshold). */
   visaIncomeMinMonthly?: number;
   /** Expat only: savings-route alternative (lump sum), USD. Undefined = no savings route. */
   visaSavingsAlt?: number;
@@ -120,12 +148,20 @@ export interface LocationData {
   /** Feature 5: 12-month climate/hazard rating grid. Undefined for US states
    *  (seasonality is a lesser concern domestically; scope limited to expat locations). */
   monthlyRatings?: MonthRating[];
-  /** Feature 6: local currency ISO-ish display name, e.g. 'Mexican Peso (MXN)'. */
+  /** Feature 6: local currency display name, e.g. 'Mexican Peso (MXN)'. */
   localCurrency?: string;
   /** Feature 6: how the local currency relates to USD. */
   usdRelationship?: UsdRelationship;
   /** Feature 6: qualitative FX volatility band vs. USD. Disclosure only — never forecasts rates. */
   fxVolatilityBand?: FxVolatilityBand;
+  /** Feature 4: tourist entry/extension rules for US citizens. Populated for
+   *  orbitOnly destinations and any location relevant to Orbit itineraries. */
+  touristEntry?: TouristEntryRules;
+  /** Feature 4: true if NO residency visa path exists for anyone (Vietnam,
+   *  Sri Lanka). False (or undefined) even if the standard visa route is
+   *  absent, as long as a passport-based path exists for some users (e.g.
+   *  India — no visa for most, but OCI holders have real right of abode). */
+  orbitOnly?: boolean;
 }
 
 /**
@@ -545,6 +581,141 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Thai Baht (THB)', // lastVerified: 2026-08; source: Bank of Thailand
     usdRelationship: 'floating',
     fxVolatilityBand: 'moderate',
+  },
+  // ── Feature 3/4 country expansion (2026-08) ─────────────────────────────
+  {
+    id: 'india',
+    label: 'India (Goa)',
+    kind: 'expat',
+    currency: 'USD',
+    monthlyComfortableCost: 1200,
+    taxPosture: 'worldwide-income-tax',
+    taxNote: 'OCI holders who stay < 182 days/yr in India are typically non-resident and not taxed on foreign income. Standard residents taxed on worldwide income. India–US DTAA applies. Requires licensed advisor to model correctly.',
+    visaName: 'OCI Card / Long-Stay e-Visa',
+    visaIncomeMinMonthly: undefined, // no standard retirement visa exists for non-OCI holders — see orbitOnly note below
+    visaSavingsAlt: undefined,
+    healthcareNote: 'Medicare not valid abroad. Private hospitals in Goa (Manipal, Apollo South Goa). Specialist care in Mumbai or Pune is ~1-hr flight and world-class.',
+    monthlyBudgetCoupleLow: 2000,
+    monthlyBudgetCoupleHigh: 3200, // lastVerified: 2026-08; source: Numbeo Goa, OCI retiree community reports
+    airQualityPM25: 19,                 // lastVerified: 2026-08; source: IQAir Goa / Panaji 2024 annual avg; monsoon clears air Jun–Sep
+    hospitalClassAWithin30min: true,  // Manipal Hospital Goa, Apollo Spectra Goa (Panaji/Margao area)
+    internetMbps: 50,                // Jio Fiber / BSNL expanding; typical 30–80 Mbps in Goa urban areas
+    airportWithin1hr: true,          // Mopa International (Goa) and Dabolim Airport
+    taxFriendlyToPension: false,     // complex: OCI non-residents typically exempt, but requires professional advice
+    passportGroupsWithAbode: ['oci'], // OCI card holders have right of abode; no retirement visa for all others
+    orbitOnly: false, // OCI holders have a genuine residency path — not orbit-only for them
+    monthlyRatings: [ // lastVerified: 2026-08; source: IMD Goa, Goa Tourism seasonal data
+      { month: 1, rating: 'go', reasons: ['Dry season peak', 'Clear skies 80–85°F, perfect'] },
+      { month: 2, rating: 'go', reasons: ['Dry season', 'Warm & clear 82–87°F'] },
+      { month: 3, rating: 'shoulder', reasons: ['Heat building 85–90°F', 'Still manageable'] },
+      { month: 4, rating: 'avoid', reasons: ['Extreme heat & humidity 90–95°F', 'Uncomfortable'] },
+      { month: 5, rating: 'avoid', reasons: ['Pre-monsoon extreme heat', 'Many businesses closing'] },
+      { month: 6, rating: 'avoid', reasons: ['Monsoon arrives', 'Very heavy rain, closures'] },
+      { month: 7, rating: 'avoid', reasons: ['Peak monsoon', 'Flooding risk, tourism closed'] },
+      { month: 8, rating: 'avoid', reasons: ['Heavy monsoon continues', 'Limited activities'] },
+      { month: 9, rating: 'shoulder', reasons: ['Monsoon tapering', 'Still some rain, lush landscape'] },
+      { month: 10, rating: 'shoulder', reasons: ['Post-monsoon', 'Green & scenic 85°F, some rain'] },
+      { month: 11, rating: 'go', reasons: ['Dry season returns', 'Ideal 82–85°F'] },
+      { month: 12, rating: 'go', reasons: ['Peak season', 'Christmas/NYE 78–82°F, perfect'] },
+    ],
+    localCurrency: 'Indian Rupee (INR)', // lastVerified: 2026-08; source: xe.com 5-yr history, Reserve Bank of India
+    usdRelationship: 'floating', // INR floats with RBI intervention; 2020-2024 range ~73–84 INR/USD
+    fxVolatilityBand: 'moderate', // steady ~3–5%/yr depreciation trend; relatively predictable but cumulative
+    touristEntry: { // lastVerified: 2026-08; source: FRRO India, indianvisaonline.gov.in
+      visaFreeOrETA: false,
+      initialStayDays: 30,
+      extendableToDays: 90,
+      entryFeeUSD: 25,
+      note: 'e-Tourist Visa: 30-day double-entry (~$25); 5-yr/10-yr multiple-entry tourist visa allows up to 180 days per stay. OCI holders: unlimited stay, no fee.',
+    },
+  },
+  {
+    id: 'vietnam',
+    label: 'Vietnam (Da Nang)',
+    kind: 'expat',
+    currency: 'USD',
+    monthlyComfortableCost: 1200,
+    taxPosture: 'territorial',
+    taxNote: 'Territorial-like for tourist stays: foreign-sourced income not taxed in Vietnam for non-residents. US citizens still owe IRS on worldwide income regardless.',
+    visaIncomeMinMonthly: undefined, // no residency visa path exists for anyone — orbit-only
+    visaSavingsAlt: undefined,
+    healthcareNote: 'Medicare not valid. Vinmec International Hospital Da Nang (JCI-accredited). International health cover essential.',
+    monthlyBudgetCoupleLow: 1800,
+    monthlyBudgetCoupleHigh: 2800, // lastVerified: 2026-08; source: Numbeo Da Nang, expat community reports
+    airQualityPM25: 24,                // lastVerified: 2026-08; source: IQAir Da Nang 2024 annual avg
+    hospitalClassAWithin30min: true,   // Vinmec Da Nang
+    internetMbps: 80,                  // FPT Fiber, Viettel; typical 50–100 Mbps in Da Nang urban areas
+    airportWithin1hr: true,            // Da Nang International Airport (DAD)
+    taxFriendlyToPension: true,
+    orbitOnly: true, // no residency visa path exists for anyone — tourist entry only
+    monthlyRatings: [ // lastVerified: 2026-08; source: Vietnam National Administration of Tourism, weather.com.vn
+      { month: 1, rating: 'go', reasons: ['Dry & sunny', 'Cool 68–77°F, ideal'] },
+      { month: 2, rating: 'go', reasons: ['Best month', 'Dry, clear, 70–80°F'] },
+      { month: 3, rating: 'go', reasons: ['Warm & dry', 'Beach season 75–84°F'] },
+      { month: 4, rating: 'go', reasons: ['Hot & sunny', 'Great beach weather 80–88°F'] },
+      { month: 5, rating: 'go', reasons: ['Start of summer', 'Hot 84–91°F, low rain'] },
+      { month: 6, rating: 'shoulder', reasons: ['Hot & humid', 'Occasional rain 88–93°F'] },
+      { month: 7, rating: 'avoid', reasons: ['Typhoon season begins', 'Heavy rain, storm risk'] },
+      { month: 8, rating: 'avoid', reasons: ['Peak typhoon risk', 'Flooding, closures possible'] },
+      { month: 9, rating: 'avoid', reasons: ['Typhoon season continues', 'Wet & stormy'] },
+      { month: 10, rating: 'shoulder', reasons: ['Typhoon risk tapering', 'Rainy but calming'] },
+      { month: 11, rating: 'go', reasons: ['Cooler & drier', 'Good weather returning 72–80°F'] },
+      { month: 12, rating: 'go', reasons: ['Dry season starts', 'Clear, mild 65–75°F'] },
+    ],
+    localCurrency: 'Vietnamese Dong (VND)', // lastVerified: 2026-08; source: xe.com 5-yr history, State Bank of Vietnam
+    usdRelationship: 'floating', // VND is tightly managed by SBV; 2020-2024 range ~23,000–25,500 VND/USD
+    fxVolatilityBand: 'low', // SBV maintains tight band; USD widely accepted in Da Nang tourist economy
+    touristEntry: { // lastVerified: 2026-08; source: evisa.xuatnhapcanh.gov.vn
+      visaFreeOrETA: false,
+      initialStayDays: 90,
+      extendableToDays: 90,
+      entryFeeUSD: 25,
+      note: '90-day e-Visa for US citizens; multiple-entry; must exit and re-apply from outside Vietnam to renew.',
+    },
+  },
+  {
+    id: 'sri-lanka',
+    label: 'Sri Lanka (Colombo)',
+    kind: 'expat',
+    currency: 'USD',
+    monthlyComfortableCost: 1000,
+    taxPosture: 'territorial',
+    taxNote: 'Foreign-sourced income not taxed for non-residents. US citizens still owe IRS on worldwide income regardless of time abroad.',
+    visaIncomeMinMonthly: undefined, // no residency visa path exists for anyone — orbit-only
+    visaSavingsAlt: undefined,
+    healthcareNote: 'Medicare not valid. Lanka Hospitals, Nawaloka, and Asiri group hospitals in Colombo offer near-Western quality. International cover essential.',
+    monthlyBudgetCoupleLow: 1400,
+    monthlyBudgetCoupleHigh: 2200, // lastVerified: 2026-08; source: Numbeo Colombo, expat forums
+    airQualityPM25: 14,                // lastVerified: 2026-08; source: IQAir Colombo 2024 annual avg
+    hospitalClassAWithin30min: true,   // Lanka Hospitals, Nawaloka in Colombo
+    internetMbps: 40,                  // Dialog, SLT fiber; typical 20–60 Mbps in Colombo
+    airportWithin1hr: true,            // Bandaranaike International Airport (CMB), ~30 min from Colombo
+    taxFriendlyToPension: true,
+    orbitOnly: true, // no residency visa path exists for anyone — tourist entry only
+    monthlyRatings: [ // lastVerified: 2026-08; source: Sri Lanka Meteorology Dept, seasonal travel guides
+      { month: 1, rating: 'go', reasons: ['NE monsoon end', 'Dry & warm 79–88°F, excellent'] },
+      { month: 2, rating: 'go', reasons: ['Best weather', 'Clear skies, low humidity'] },
+      { month: 3, rating: 'go', reasons: ['Warm & sunny', 'Inter-monsoon 82–90°F'] },
+      { month: 4, rating: 'shoulder', reasons: ['Inter-monsoon showers', 'Hot & humid, periodic rain'] },
+      { month: 5, rating: 'avoid', reasons: ['SW monsoon arrives', 'Heavy rain in west & south'] },
+      { month: 6, rating: 'avoid', reasons: ['SW monsoon peak', 'Flooding risk in Colombo'] },
+      { month: 7, rating: 'avoid', reasons: ['Heavy rain continues', 'Colombo west coast affected'] },
+      { month: 8, rating: 'avoid', reasons: ['SW monsoon continues', 'Overcast, frequent downpours'] },
+      { month: 9, rating: 'shoulder', reasons: ['Monsoon tapering', 'Still some rain, cheaper rates'] },
+      { month: 10, rating: 'shoulder', reasons: ['Inter-monsoon', 'Variable weather, occasional storms'] },
+      { month: 11, rating: 'shoulder', reasons: ['NE monsoon starts', 'East coast now wet, west drying'] },
+      { month: 12, rating: 'go', reasons: ['West coast clears', 'Dry & pleasant 78–85°F'] },
+    ],
+    localCurrency: 'Sri Lankan Rupee (LKR)', // lastVerified: 2026-08; source: xe.com 5-yr history, Central Bank of Sri Lanka
+    usdRelationship: 'floating', // LKR floats; 2022 currency crisis — LKR lost ~45% vs USD; 2024: ~300 LKR/USD
+    fxVolatilityBand: 'high', // post-crisis managed float; ongoing IMF program reduces but does not eliminate risk
+    touristEntry: { // lastVerified: 2026-08; source: eta.gov.lk
+      visaFreeOrETA: false,
+      initialStayDays: 30,
+      extendableToDays: 270,
+      entryFeeUSD: 40,
+      note: 'ETA required ($40): 30 days initial; extendable in-country up to 270 days total (via Department of Immigration, Colombo).',
+    },
   },
 ];
 
