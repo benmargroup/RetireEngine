@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useState, Suspense } from 'react';
 import { CheckCircle, Mail, Download } from 'lucide-react';
@@ -35,7 +35,7 @@ function ReportContent() {
 
       <div>
         <h1 className="mb-2 font-serif text-2xl font-bold text-navy">Your Report is On Its Way!</h1>
-        <p className="text-sm text-slate-600">
+        <p className="text-base text-slate-600">
           Your personalized retirement abroad blueprint ({tierParam === 'premium' ? 'Premium' : 'Standard'}) has been
           generated and sent to <strong>{emailParam}</strong>.
         </p>
@@ -44,19 +44,19 @@ function ReportContent() {
       <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
         <div className="flex items-center justify-center gap-2 text-emerald-800">
           <Mail size={18} />
-          <span className="text-sm font-semibold">Check your inbox — delivery takes under 2 minutes</span>
+          <span className="text-base font-semibold">Check your inbox — delivery takes under 2 minutes</span>
         </div>
-        <p className="mt-1 text-xs text-emerald-700">Check spam if you don&apos;t see it. Subject: &ldquo;Your RetireEngine Retirement Blueprint&rdquo;</p>
+        <p className="mt-1 text-base text-emerald-700">Check spam if you don&apos;t see it. Subject: &ldquo;Your RetireEngine Retirement Blueprint&rdquo;</p>
       </div>
 
       {topCountry && (
         <div className="rounded-xl border border-gold/30 bg-cream p-4 text-left">
-          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-sage">Your Top Match</p>
+          <p className="mb-1 text-base font-bold uppercase tracking-wide text-sage">Your Top Match</p>
           <div className="flex items-center gap-3">
             <span className="text-3xl">{topCountry.flag}</span>
             <div>
               <p className="font-serif text-lg font-bold text-navy">{topCountry.name}</p>
-              <p className="text-sm text-slate-600">Score: {topCountry.score}/100 · {topCountry.visaName}</p>
+              <p className="text-base text-slate-600">Score: {topCountry.score}/100 · {topCountry.visaName}</p>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ function ReportContent() {
       {downloadUrl && (
         <a
           href={downloadUrl}
-          className="inline-flex items-center gap-2 rounded-xl bg-navy px-6 py-3 text-sm font-bold text-white hover:bg-navy-light"
+          className="inline-flex items-center gap-2 rounded-xl bg-navy px-6 py-3 text-base font-bold text-white hover:bg-navy-light"
         >
           <Download size={16} />
           Download PDF Directly
@@ -79,7 +79,7 @@ function ReportContent() {
     reset();
     router.push('/assessment');
   }}
-  className="text-sm text-slate-500 underline hover:text-navy"
+  className="text-base text-slate-500 underline hover:text-navy"
 >
   Start a new assessment
 </button>
@@ -97,7 +97,7 @@ export default function ReportPage() {
             RetireEngine
           </a>
         </div>
-        <Suspense fallback={<div className="text-center text-sm text-slate-500">Loading your report status…</div>}>
+        <Suspense fallback={<div className="text-center text-base text-slate-500">Loading your report status…</div>}>
           <ReportContent />
         </Suspense>
       </div>

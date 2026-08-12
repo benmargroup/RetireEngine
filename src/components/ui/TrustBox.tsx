@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 /**
  * TrustBox.tsx
@@ -84,18 +84,18 @@ export default function TrustBox(props: TrustBoxProps) {
       className="rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm sm:p-6"
     >
       {/* 1. Dated verification badge */}
-      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800">
+      <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-base font-semibold text-emerald-800">
         <ShieldCheck size={14} aria-hidden="true" />
         Data Verified for {rulesYear} Rules
       </div>
 
-      <h2 id="trustbox-heading" className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h2 id="trustbox-heading" className="mb-3 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         <BookMarked size={16} className="text-teal-700" aria-hidden="true" />
         Sources &amp; citations
       </h2>
 
       {/* 2. Institutional citations list */}
-      <ul className="mb-5 space-y-2 text-sm text-slate-700">
+      <ul className="mb-5 space-y-2 text-base text-slate-700">
         {sources.map((source) => (
           <li key={source.url} className="flex flex-col gap-0.5 border-b border-slate-200 pb-2 last:border-0 last:pb-0 sm:flex-row sm:items-baseline sm:justify-between">
             <a
@@ -106,7 +106,7 @@ export default function TrustBox(props: TrustBoxProps) {
             >
               {source.title}
             </a>
-            <span className="shrink-0 text-xs text-slate-500">Verified {source.dateVerified}</span>
+            <span className="shrink-0 text-base text-slate-500">Verified {source.dateVerified}</span>
           </li>
         ))}
       </ul>
@@ -114,7 +114,7 @@ export default function TrustBox(props: TrustBoxProps) {
       {/* 3. Cite this tool / page box */}
       <div className="mb-5 rounded-xl border border-slate-200 bg-white p-4">
         <div className="mb-2 flex items-center justify-between gap-2">
-          <span className="text-sm font-semibold text-slate-800">Cite this tool / page</span>
+          <span className="text-base font-semibold text-slate-800">Cite this tool / page</span>
           <div className="flex gap-1 rounded-lg bg-slate-100 p-0.5" role="radiogroup" aria-label="Citation format">
             <button
               type="button"
@@ -122,7 +122,7 @@ export default function TrustBox(props: TrustBoxProps) {
               aria-checked={format === 'plain'}
               onClick={() => setFormat('plain')}
               className={[
-                'rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                'rounded-md px-2.5 py-1 text-base font-medium transition-colors',
                 format === 'plain' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700',
               ].join(' ')}
             >
@@ -134,7 +134,7 @@ export default function TrustBox(props: TrustBoxProps) {
               aria-checked={format === 'bibtex'}
               onClick={() => setFormat('bibtex')}
               className={[
-                'rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                'rounded-md px-2.5 py-1 text-base font-medium transition-colors',
                 format === 'bibtex' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700',
               ].join(' ')}
             >
@@ -142,14 +142,14 @@ export default function TrustBox(props: TrustBoxProps) {
             </button>
           </div>
         </div>
-        <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-slate-900 p-3 text-xs leading-relaxed text-slate-100">
+        <pre className="overflow-x-auto whitespace-pre-wrap break-words rounded-lg bg-slate-900 p-3 text-base leading-relaxed text-slate-100">
           {snippet}
         </pre>
         <button
           type="button"
           onClick={handleCopy}
           className={[
-            'mt-3 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors',
+            'mt-3 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-base font-semibold transition-colors',
             'focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-1',
             copied ? 'bg-emerald-100 text-emerald-800' : 'bg-teal-700 text-white hover:bg-teal-800',
           ].join(' ')}
@@ -160,7 +160,7 @@ export default function TrustBox(props: TrustBoxProps) {
       </div>
 
       {/* 4. Educational disclaimer */}
-      <p className="flex items-start gap-2 text-xs leading-relaxed text-slate-500">
+      <p className="flex items-start gap-2 text-base leading-relaxed text-slate-500">
         <Info size={14} className="mt-0.5 shrink-0 text-slate-400" aria-hidden="true" />
         Educational planning tool only; not financial, tax, or legal advice.
       </p>

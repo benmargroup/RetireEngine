@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 /**
  * SeasonHeatmap.tsx
@@ -47,7 +47,7 @@ export default function SeasonHeatmap({ monthlyRatings }: SeasonHeatmapProps) {
               onMouseLeave={() => setActiveMonth(null)}
               onClick={() => setActiveMonth(activeMonth === m.month ? null : m.month)}
               aria-label={`${MONTH_LABELS[m.month - 1]}: ${style.label}`}
-              className={`flex flex-col items-center rounded-md py-2 text-[10px] font-semibold transition ${style.bg} ${style.text}`}
+              className={`flex flex-col items-center rounded-md py-2 text-base font-semibold transition ${style.bg} ${style.text}`}
             >
               {MONTH_LABELS[m.month - 1]}
             </button>
@@ -56,7 +56,7 @@ export default function SeasonHeatmap({ monthlyRatings }: SeasonHeatmapProps) {
       </div>
 
       {active && (
-        <div className="mt-2 rounded-lg border border-sage-light/40 bg-white px-3 py-2 text-xs text-charcoal">
+        <div className="mt-2 rounded-lg border border-sage-light/40 bg-white px-3 py-2 text-base text-charcoal">
           <span className="font-semibold text-navy">{MONTH_LABELS[active.month - 1]}</span>
           {' — '}
           {active.reasons.join('; ')}

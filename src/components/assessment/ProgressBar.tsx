@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 const STEPS = [
   { n: 1, label: 'Financial Picture' },
@@ -33,7 +33,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
                   />
                 )}
                 <div
-                  className={`relative z-10 mx-auto flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors ${
+                  className={`relative z-10 mx-auto flex h-8 w-8 items-center justify-center rounded-full text-base font-bold transition-colors ${
                     done
                       ? 'bg-gold text-white'
                       : active
@@ -46,7 +46,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
                 </div>
               </div>
               <span
-                className={`hidden text-center text-xs font-medium sm:block ${
+                className={`hidden text-center text-base font-medium sm:block ${
                   active ? 'text-navy' : done ? 'text-gold-dark' : 'text-slate-400'
                 }`}
               >
@@ -57,7 +57,7 @@ export default function ProgressBar({ currentStep }: ProgressBarProps) {
         })}
       </ol>
       {/* Mobile: current step label */}
-      <p className="mt-2 text-center text-sm font-semibold text-navy sm:hidden">
+      <p className="mt-2 text-center text-base font-semibold text-navy sm:hidden">
         Step {currentStep} of {STEPS.length}: {STEPS[currentStep - 1]?.label}
       </p>
     </nav>

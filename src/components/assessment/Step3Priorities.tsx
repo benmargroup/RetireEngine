@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import { useSliderTickPositions } from '@/lib/useSliderTickPositions';
 import { ChevronDown, ChevronUp, AlertTriangle } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
 import { calculateScores } from '@/lib/scoring-engine';
@@ -41,27 +42,33 @@ function PrioritySlider({
   value: number;
   onChange: (v: number) => void;
 }) {
+  const { inputRef, values, positions } = useSliderTickPositions(1, 5);
   return (
     <div className="group">
       <div className="mb-1 flex items-center justify-between">
-        <span className="text-sm font-semibold text-navy">{label}</span>
-        <span className="text-xs font-medium text-gold">{PRIORITY_LABELS[value - 1]}</span>
+        <span className="text-base font-semibold text-navy">{label}</span>
+        <span className="text-base font-medium text-gold">{PRIORITY_LABELS[value - 1]}</span>
       </div>
-      <p className="mb-2 text-xs text-slate-500">{description}</p>
+      <p className="mb-2 text-base text-slate-500">{description}</p>
       <div className="flex items-center gap-3">
         <input
+          ref={inputRef}
           type="range"
           min={1}
           max={5}
           step={1}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="h-2 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-gold"
+          className="h-3 flex-1 cursor-pointer appearance-none rounded-full bg-slate-200 accent-gold [&::-webkit-slider-thumb]:h-7 [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:shadow-md [&::-moz-range-thumb]:h-7 [&::-moz-range-thumb]:w-7 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-gold [&::-moz-range-thumb]:shadow-md"
         />
-        <span className="w-5 text-center text-sm font-bold text-navy">{value}</span>
+        <span className="w-5 text-center text-base font-bold text-navy">{value}</span>
       </div>
-      <div className="mt-0.5 flex justify-between text-[10px] text-slate-400">
-        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+      <div className="relative mt-0.5 h-5 text-base text-slate-400">
+        {values.map((v, i) => (
+          <span key={v} className="absolute -translate-x-1/2" style={{ left: `${positions[i]}px` }}>
+            {v}
+          </span>
+        ))}
       </div>
     </div>
   );
@@ -90,15 +97,15 @@ function NonNegotiablesBlock({
     <div className="space-y-4">
       {/* Cost ceiling */}
       <div>
-        <label className="mb-1 block text-sm font-semibold text-navy">
+        <label className="mb-1 block text-base font-semibold text-navy">
           Monthly budget ceiling (optional)
         </label>
-        <p className="mb-2 text-xs text-slate-500">
+        <p className="mb-2 text-base text-slate-500">
           Any country whose comfortable couple budget exceeds this amount will fail the filter.
           Leave at 0 to skip.
         </p>
         <div className="flex items-center rounded-lg border border-slate-300 bg-white focus-within:border-gold focus-within:ring-1 focus-within:ring-gold">
-          <span className="px-3 text-sm text-slate-500">$</span>
+          <span className="px-3 text-base text-slate-500">$</span>
           <input
             type="number"
             min={0}
@@ -106,9 +113,9 @@ function NonNegotiablesBlock({
             value={nn.costCeiling ?? 0}
             onChange={(e) => onChange({ ...nn, costCeiling: Number(e.target.value) || undefined })}
             placeholder="0"
-            className="w-full rounded-r-lg bg-transparent py-2.5 pr-3 text-sm text-navy outline-none placeholder:text-slate-300"
+            className="w-full rounded-r-lg bg-transparent py-2.5 pr-3 text-base text-navy outline-none placeholder:text-slate-300"
           />
-          <span className="px-3 text-xs text-slate-400">/mo</span>
+          <span className="px-3 text-base text-slate-400">/mo</span>
         </div>
       </div>
 
@@ -125,12 +132,12 @@ function NonNegotiablesBlock({
                 active ? 'border-red-400 bg-red-50' : 'border-slate-200 bg-white hover:border-slate-300'
               }`}
             >
-              <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 text-[10px] font-bold ${
+              <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 text-base font-bold ${
                 active ? 'border-red-500 bg-red-500 text-white' : 'border-slate-300 text-transparent'
               }`}>✕</span>
               <span>
-                <span className={`block text-sm font-semibold ${active ? 'text-red-800' : 'text-navy'}`}>{label}</span>
-                <span className="block text-xs text-slate-500">{detail}</span>
+                <span className={`block text-base font-semibold ${active ? 'text-red-800' : 'text-navy'}`}>{label}</span>
+                <span className="block text-base text-slate-500">{detail}</span>
               </span>
             </button>
           );
@@ -177,7 +184,7 @@ export default function Step3Priorities() {
     <div className="space-y-8">
       <div>
         <h2 className="mb-1 font-serif text-2xl font-bold text-navy">Your Priorities</h2>
-        <p className="text-sm text-slate-600">
+        <p className="text-base text-slate-600">
           Rate each factor by importance. These weights drive your personalized country rankings —
           be honest about what actually matters to you.
         </p>
@@ -198,7 +205,7 @@ export default function Step3Priorities() {
 
       {/* Climate preference */}
       <div className="rounded-xl border border-slate-200 bg-white p-5">
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-navy">
+        <h3 className="mb-3 text-base font-bold uppercase tracking-wide text-navy">
           Preferred Climate
         </h3>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -207,7 +214,7 @@ export default function Step3Priorities() {
               key={opt.value}
               type="button"
               onClick={() => update('climatePreference', opt.value)}
-              className={`flex items-center gap-3 rounded-lg border-2 px-4 py-3 text-left text-sm transition-all ${
+              className={`flex items-center gap-3 rounded-lg border-2 px-4 py-3 text-left text-base transition-all ${
                 priorities.climatePreference === opt.value
                   ? 'border-gold bg-navy text-white'
                   : 'border-slate-200 bg-white text-navy hover:border-gold/50'
@@ -230,10 +237,10 @@ export default function Step3Priorities() {
             className="mt-0.5 h-5 w-5 cursor-pointer accent-gold"
           />
           <div>
-            <span className="block text-sm font-semibold text-navy">
+            <span className="block text-base font-semibold text-navy">
               I have an ongoing health condition requiring regular specialist care
             </span>
-            <span className="block text-xs text-slate-500">
+            <span className="block text-base text-slate-500">
               This doubles the weight of healthcare quality in your score — countries with
               world-class specialist access will rank significantly higher.
             </span>
@@ -244,10 +251,10 @@ export default function Step3Priorities() {
       <div className="flex gap-3 rounded-xl border border-amber-300 bg-amber-50 p-5">
         <AlertTriangle size={20} className="mt-0.5 shrink-0 text-amber-700" />
         <div>
-          <p className="text-sm font-semibold text-amber-900">
+          <p className="text-base font-semibold text-amber-900">
             Medicare coverage stops at the U.S. border
           </p>
-          <p className="mt-1 text-xs text-amber-800">
+          <p className="mt-1 text-base text-amber-800">
             Retiring or spending extended time abroad requires private international
             health coverage until you return to U.S. soil — Medicare Parts A &amp; B do
             not provide coverage outside the United States.
@@ -263,8 +270,8 @@ export default function Step3Priorities() {
           className="flex w-full items-center justify-between px-5 py-4"
         >
           <div className="text-left">
-            <span className="block text-sm font-bold text-navy">My Non-Negotiables</span>
-            <span className="block text-xs text-slate-500">
+            <span className="block text-base font-bold text-navy">My Non-Negotiables</span>
+            <span className="block text-base text-slate-500">
               {activeFilterCount === 0
                 ? 'Hard deal-breakers — countries that fail any active filter cannot rank in the top 3'
                 : `${activeFilterCount} active filter${activeFilterCount > 1 ? 's' : ''} — failing countries will be pushed below the top 3`}
@@ -272,7 +279,7 @@ export default function Step3Priorities() {
           </div>
           <div className="flex items-center gap-2">
             {activeFilterCount > 0 && (
-              <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-red-700">
+              <span className="rounded-full bg-red-100 px-2 py-0.5 text-base font-bold text-red-700">
                 {activeFilterCount} active
               </span>
             )}
@@ -294,7 +301,7 @@ export default function Step3Priorities() {
         <button
           type="button"
           onClick={() => setStep(2)}
-          className="rounded-xl border-2 border-slate-200 px-6 py-3.5 text-sm font-semibold text-navy hover:border-navy"
+          className="rounded-xl border-2 border-slate-200 px-6 py-3.5 text-base font-semibold text-navy hover:border-navy"
         >
           ← Back
         </button>

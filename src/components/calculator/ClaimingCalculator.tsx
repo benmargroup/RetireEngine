@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 /**
  * ClaimingCalculator.tsx
@@ -141,7 +141,7 @@ function Card(props: {
 }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-4 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         <span className="text-teal-700">{props.icon}</span>
         {props.title}
       </h3>
@@ -154,11 +154,11 @@ function Card(props: {
 function Field(props: { label: string; htmlFor: string; children: React.ReactNode; hint?: string }) {
   return (
     <div className="mb-4 last:mb-0">
-      <label htmlFor={props.htmlFor} className="mb-1.5 block text-sm font-medium text-slate-700">
+      <label htmlFor={props.htmlFor} className="mb-1.5 block text-base font-medium text-slate-700">
         {props.label}
       </label>
       {props.children}
-      {props.hint ? <p className="mt-1 text-xs text-slate-500">{props.hint}</p> : null}
+      {props.hint ? <p className="mt-1 text-base text-slate-500">{props.hint}</p> : null}
     </div>
   );
 }
@@ -173,7 +173,7 @@ function SegmentedGroup<T extends string>(props: {
 }) {
   return (
     <fieldset className="mb-4 last:mb-0">
-      <legend className="mb-1.5 text-sm font-medium text-slate-700">{props.legend}</legend>
+      <legend className="mb-1.5 text-base font-medium text-slate-700">{props.legend}</legend>
       <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={props.legend}>
         {props.options.map((opt) => {
           const selected = opt.value === props.value;
@@ -185,7 +185,7 @@ function SegmentedGroup<T extends string>(props: {
               aria-checked={selected}
               onClick={() => props.onChange(opt.value)}
               className={[
-                'rounded-lg border px-3 py-2 text-sm font-medium transition-colors',
+                'rounded-lg border px-3 py-2 text-base font-medium transition-colors',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-1',
                 selected
                   ? 'border-teal-700 bg-teal-700 text-white'
@@ -202,7 +202,7 @@ function SegmentedGroup<T extends string>(props: {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 ' +
+  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 ' +
   'focus:border-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600';
 
 /* ------------------------------------------------------------------ */
@@ -286,7 +286,7 @@ export default function ClaimingCalculator(props: ClaimingCalculatorProps) {
         <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
           Your Social Security claiming &amp; location plan
         </h2>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-base text-slate-600">
           See your true lifetime benefit across ages 62, 65, 67, and 70 — adjusted for your
           longevity and where you plan to live.
         </p>
@@ -413,7 +413,7 @@ export default function ClaimingCalculator(props: ClaimingCalculatorProps) {
               </optgroup>
             </select>
           </Field>
-          <dl className="mt-2 space-y-2 text-sm">
+          <dl className="mt-2 space-y-2 text-base">
             <div className="flex justify-between">
               <dt className="text-slate-500">Comfortable cost</dt>
               <dd className="font-medium text-slate-800">
@@ -461,7 +461,7 @@ export default function ClaimingCalculator(props: ClaimingCalculatorProps) {
           />
 
           {/* Disclaimer */}
-          <p className="rounded-lg bg-slate-50 p-4 text-xs leading-relaxed text-slate-500">
+          <p className="rounded-lg bg-slate-50 p-4 text-base leading-relaxed text-slate-500">
             These figures are educational planning estimates based on 2026 SSA rules and simplified
             assumptions (nominal dollars, no COLA or discounting; longevity from an approximated
             period life table). They are not financial, tax, or legal advice. Confirm your numbers
@@ -469,7 +469,7 @@ export default function ClaimingCalculator(props: ClaimingCalculatorProps) {
           </p>
         </div>
       ) : (
-        <p className="mt-8 rounded-lg bg-amber-50 p-4 text-sm text-amber-800">
+        <p className="mt-8 rounded-lg bg-amber-50 p-4 text-base text-amber-800">
           Enter your monthly benefit at full retirement age to see your plan.
         </p>
       )}
@@ -485,7 +485,7 @@ function LongevitySummary({ longevity }: { longevity: LongevityOutput }) {
   const sign = longevity.adjustmentFactor >= 0 ? '+' : '';
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-3 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         <Heart size={16} className="text-teal-700" /> Your longevity estimate
       </h3>
       <div className="grid grid-cols-3 gap-4">
@@ -493,7 +493,7 @@ function LongevitySummary({ longevity }: { longevity: LongevityOutput }) {
         <Stat label="Median age" value={`${longevity.medianAge}`} emphasis />
         <Stat label="25% chance to reach" value={`${longevity.p25Age}`} muted />
       </div>
-      <p className="mt-3 text-xs text-slate-500">
+      <p className="mt-3 text-base text-slate-500">
         Health, smoking, and family history adjust your baseline by{' '}
         <span className="font-medium text-slate-700">
           {sign}
@@ -517,7 +517,7 @@ function Stat({ label, value, emphasis, muted }: { label: string; value: string;
       >
         {value}
       </div>
-      <div className="mt-1 text-xs text-slate-500">{label}</div>
+      <div className="mt-1 text-base text-slate-500">{label}</div>
     </div>
   );
 }
@@ -526,7 +526,7 @@ function BenefitsComparison({ results }: { results: SSEngineResults }) {
   const maxLifetime = Math.max(...results.scenarios.map((s) => s.lifetimeTotal), 1);
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-4 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         <TrendingUp size={16} className="text-teal-700" /> Lifetime benefits by claiming age
       </h3>
 
@@ -537,7 +537,7 @@ function BenefitsComparison({ results }: { results: SSEngineResults }) {
           const isRec = s.claimingAge === results.recommendedClaimingAge;
           return (
             <div key={s.claimingAge}>
-              <div className="mb-1 flex items-baseline justify-between text-sm">
+              <div className="mb-1 flex items-baseline justify-between text-base">
                 <span className={isRec ? 'font-semibold text-teal-700' : 'text-slate-700'}>
                   Age {s.claimingAge}
                   {isRec ? ' · recommended' : ''}
@@ -559,9 +559,9 @@ function BenefitsComparison({ results }: { results: SSEngineResults }) {
 
       {/* Comparison matrix */}
       <div className="mt-5 overflow-x-auto">
-        <table className="w-full text-left text-sm">
+        <table className="w-full text-left text-base">
           <thead>
-            <tr className="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
+            <tr className="border-b border-slate-200 text-base uppercase tracking-wide text-slate-500">
               <th className="py-2 pr-3 font-medium">Age</th>
               <th className="py-2 pr-3 font-medium">Monthly</th>
               <th className="py-2 pr-3 font-medium">Annual</th>
@@ -592,7 +592,7 @@ function BenefitsComparison({ results }: { results: SSEngineResults }) {
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-slate-500">
+      <p className="mt-2 text-base text-slate-500">
         Coverage = annual benefit ÷ local comfortable cost. Portfolio gap = extra savings needed to
         close any shortfall (4% rule).
       </p>
@@ -605,13 +605,13 @@ function DecisionSummary({ results, locationLabel }: { results: SSEngineResults;
   const covers = rec.coverageRatio >= 1;
   return (
     <section className="rounded-2xl border-2 border-teal-600 bg-teal-50 p-5 shadow-sm">
-      <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-teal-800">
+      <h3 className="mb-2 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-teal-800">
         <ShieldCheck size={16} /> Recommended strategy
       </h3>
       <p className="text-lg font-semibold text-slate-900">
         Claim at {rec.claimingAge} and live in {locationLabel}.
       </p>
-      <ul className="mt-3 space-y-1.5 text-sm text-slate-700">
+      <ul className="mt-3 space-y-1.5 text-base text-slate-700">
         <li>
           Monthly check: <span className="font-medium">{usd0.format(rec.monthlyBenefit)}</span>
         </li>
@@ -630,7 +630,7 @@ function DecisionSummary({ results, locationLabel }: { results: SSEngineResults;
           <span className="font-medium">age ~{Math.round(results.breakEvenAge62vs70)}</span>.
         </li>
       </ul>
-      <p className="mt-3 text-xs text-teal-800/80">
+      <p className="mt-3 text-base text-teal-800/80">
         This maximizes expected lifetime Social Security dollars at your median age. It does not weigh
         market risk, legacy goals, or spousal benefits — a fiduciary can factor those in.
       </p>
@@ -658,7 +658,7 @@ function VisaCheck({
         meets ? 'border-emerald-200 bg-emerald-50' : 'border-amber-300 bg-amber-50',
       ].join(' ')}
     >
-      <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-2 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         {meets ? (
           <Check size={16} className="text-emerald-700" />
         ) : (
@@ -667,12 +667,12 @@ function VisaCheck({
         Visa qualification check — {location.visaName}
       </h3>
       {meets ? (
-        <p className="text-sm text-slate-700">
+        <p className="text-base text-slate-700">
           Your {usd0.format(rec.monthlyBenefit)}/mo check meets {location.label}&apos;s income route
           (min {usd0.format(min)}/mo). You qualify on income alone.
         </p>
       ) : (
-        <p className="text-sm text-slate-700">
+        <p className="text-base text-slate-700">
           Your {usd0.format(rec.monthlyBenefit)}/mo check is <strong>below</strong> {location.label}
           &apos;s income route (min {usd0.format(min)}/mo).{' '}
           {location.visaSavingsAlt
@@ -698,10 +698,10 @@ function TaxHealthWarnings({
 }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-3 flex items-center gap-2 text-base font-semibold uppercase tracking-wide text-slate-700">
         <Info size={16} className="text-teal-700" /> Tax &amp; healthcare notes
       </h3>
-      <ul className="space-y-2 text-sm text-slate-700">
+      <ul className="space-y-2 text-base text-slate-700">
         <li className="flex gap-2">
           <span className="mt-0.5 text-slate-400">•</span>
           <span>
@@ -760,18 +760,18 @@ function SegmentedCTA(props: {
 }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-700">
+      <h3 className="mb-4 text-base font-semibold uppercase tracking-wide text-slate-700">
         Take the next step
       </h3>
 
       {/* Primary: email capture (everyone) */}
       {props.emailSent ? (
-        <div className="flex items-center gap-2 rounded-lg bg-emerald-50 p-4 text-sm text-emerald-800">
+        <div className="flex items-center gap-2 rounded-lg bg-emerald-50 p-4 text-base text-emerald-800">
           <Check size={18} /> Your 1-page summary is on its way to your inbox.
         </div>
       ) : (
         <form onSubmit={props.onSubmit} className="rounded-xl bg-slate-50 p-4">
-          <label htmlFor="lead-email" className="mb-1.5 flex items-center gap-2 text-sm font-medium text-slate-800">
+          <label htmlFor="lead-email" className="mb-1.5 flex items-center gap-2 text-base font-medium text-slate-800">
             <Mail size={16} className="text-teal-700" /> Email me my free 1-page summary plan
           </label>
           <div className="flex flex-col gap-2 sm:flex-row">
@@ -788,7 +788,7 @@ function SegmentedCTA(props: {
               type="submit"
               disabled={!props.consent || props.email.trim() === ''}
               className={[
-                'rounded-lg px-4 py-2 text-sm font-semibold text-white transition-colors',
+                'rounded-lg px-4 py-2 text-base font-semibold text-white transition-colors',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-1',
                 !props.consent || props.email.trim() === ''
                   ? 'cursor-not-allowed bg-slate-300'
@@ -798,7 +798,7 @@ function SegmentedCTA(props: {
               Send my plan
             </button>
           </div>
-          <label className="mt-3 flex items-start gap-2 text-xs text-slate-600">
+          <label className="mt-3 flex items-start gap-2 text-base text-slate-600">
             <input
               type="checkbox"
               checked={props.consent}
@@ -823,10 +823,10 @@ function SegmentedCTA(props: {
           >
             <Briefcase size={20} className="shrink-0 text-teal-700" />
             <span>
-              <span className="block text-sm font-semibold text-slate-900">
+              <span className="block text-base font-semibold text-slate-900">
                 Talk to a fee-only fiduciary
               </span>
-              <span className="block text-xs text-slate-500">
+              <span className="block text-base text-slate-500">
                 A drawdown + claiming plan for your assets.
               </span>
             </span>
@@ -841,10 +841,10 @@ function SegmentedCTA(props: {
           >
             <FileText size={20} className="shrink-0 text-teal-700" />
             <span>
-              <span className="block text-sm font-semibold text-slate-900">
+              <span className="block text-base font-semibold text-slate-900">
                 Consult an expat tax CPA
               </span>
-              <span className="block text-xs text-slate-500">
+              <span className="block text-base text-slate-500">
                 Cross-border tax and residency, done right.
               </span>
             </span>

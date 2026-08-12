@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 
 const GATES = [
   {
@@ -35,7 +35,7 @@ export default function HomePage() {
         <h1 className="font-serif text-4xl font-bold text-navy sm:text-5xl">
           RetireEngine
         </h1>
-        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.15em] text-charcoal">
+        <p className="mt-2 text-base font-semibold uppercase tracking-[0.15em] text-charcoal">
           Retirement Decision Engine
         </p>
 

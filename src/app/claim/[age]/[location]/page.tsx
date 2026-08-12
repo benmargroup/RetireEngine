@@ -1,4 +1,4 @@
-/**
+﻿/**
  * /claim-social-security-at-[age]-in-[location]
  * -------------------------------------------------------------------------
  * Cluster 3 — fuses a Social Security claiming age (62/65/67/70) with a
@@ -200,7 +200,7 @@ export default function ClaimAtAgeInLocationPage({ params }: { params: RoutePara
 
       {/* Hero */}
       <header className="mb-10 max-w-3xl">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-teal-700">
+        <p className="mb-2 text-base font-semibold uppercase tracking-wide text-teal-700">
           {location.kind === 'us-state' ? 'Domestic relocation' : 'Retiring abroad'} · {RULES_YEAR} rules
         </p>
         <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
@@ -226,8 +226,8 @@ export default function ClaimAtAgeInLocationPage({ params }: { params: RoutePara
           <h3 className="mb-2 text-base font-semibold text-slate-800">
             Break-even &amp; portfolio preservation
           </h3>
-          <p className="text-sm leading-relaxed text-slate-700">{scenario.narrative}</p>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+          <p className="text-base leading-relaxed text-slate-700">{scenario.narrative}</p>
+          <ul className="mt-3 space-y-2 text-base text-slate-700">
             {scenario.tradeoffs.slice(0, 2).map((t) => (
               <li key={t} className="flex gap-2">
                 <span className="mt-0.5 text-teal-600">•</span>
@@ -241,9 +241,9 @@ export default function ClaimAtAgeInLocationPage({ params }: { params: RoutePara
           <h3 className="mb-2 text-base font-semibold text-slate-800">
             {isExpat ? `Local visa & tax realities in ${location.label}` : `Tax realities in ${location.label}`}
           </h3>
-          <p className="text-sm leading-relaxed text-slate-700">{scenario.taxNote}</p>
+          <p className="text-base leading-relaxed text-slate-700">{scenario.taxNote}</p>
           {isExpat ? (
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+            <ul className="mt-3 space-y-2 text-base text-slate-700">
               {scenario.tradeoffs
                 .filter((t) => t.toLowerCase().includes('visa'))
                 .map((t) => (
@@ -258,7 +258,7 @@ export default function ClaimAtAgeInLocationPage({ params }: { params: RoutePara
 
         <article>
           <h3 className="mb-2 text-base font-semibold text-slate-800">Healthcare &amp; Medicare strategy</h3>
-          <p className="text-sm leading-relaxed text-slate-700">{scenario.medicareNote}</p>
+          <p className="text-base leading-relaxed text-slate-700">{scenario.medicareNote}</p>
         </article>
       </section>
 

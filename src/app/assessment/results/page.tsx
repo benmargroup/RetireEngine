@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -28,7 +28,7 @@ export default function ResultsPage() {
           <button
             type="button"
             onClick={() => { setStep(3); router.push('/assessment'); }}
-            className="text-xs text-slate-500 underline hover:text-navy"
+            className="text-base text-slate-500 underline hover:text-navy"
           >
             ← Revise priorities
           </button>

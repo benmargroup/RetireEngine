@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 
 export const metadata = { title: 'Privacy Policy — RetireEngine' };
 
@@ -11,9 +11,9 @@ export default function PrivacyPage() {
         </Link>
 
         <h1 className="mb-2 font-serif text-3xl font-bold text-navy">Privacy Policy</h1>
-        <p className="mb-8 text-sm text-slate-500">Effective: January 2026</p>
+        <p className="mb-8 text-base text-slate-500">Effective: January 2026</p>
 
-        <div className="space-y-8 text-sm leading-relaxed text-slate-700">
+        <div className="space-y-8 text-base leading-relaxed text-slate-700">
           <section>
             <h2 className="mb-3 text-base font-bold text-navy">What we collect</h2>
             <p>
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
           </section>
         </div>
 
-        <div className="mt-12 border-t border-slate-200 pt-6 text-xs text-slate-400">
+        <div className="mt-12 border-t border-slate-200 pt-6 text-base text-slate-400">
           <Link href="/" className="hover:text-navy">← Back to RetireEngine</Link>
           {' · '}
           <Link href="/disclosure" className="hover:text-navy">Affiliate Disclosure</Link>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { estimateLongevity, MIN_AGE, MAX_AGE, type Sex, type SmokingStatus, type HealthStatus } from '@/lib/actuarial-engine';
@@ -37,14 +37,14 @@ function RadioGroup<T extends string>({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-semibold text-navy">{label}</p>
+      <p className="mb-2 text-base font-semibold text-navy">{label}</p>
       <div className="flex flex-wrap gap-2">
         {options.map((opt) => (
           <button
             key={opt.value}
             type="button"
             onClick={() => onChange(opt.value)}
-            className={`rounded-lg border-2 px-4 py-2 text-sm transition-all ${
+            className={`rounded-lg border-2 px-4 py-2 text-base transition-all ${
               value === opt.value
                 ? 'border-gold bg-navy text-white'
                 : 'border-slate-200 bg-white text-navy hover:border-gold/50'
@@ -52,7 +52,7 @@ function RadioGroup<T extends string>({
           >
             <span className="font-semibold">{opt.label}</span>
             {opt.description && (
-              <span className={`ml-1.5 text-xs ${value === opt.value ? 'text-gold/80' : 'text-slate-400'}`}>
+              <span className={`ml-1.5 text-base ${value === opt.value ? 'text-gold/80' : 'text-slate-400'}`}>
                 {opt.description}
               </span>
             )}
@@ -121,7 +121,7 @@ export default function Step2Longevity() {
     <div className="space-y-8">
       <div>
         <h2 className="mb-1 font-serif text-2xl font-bold text-navy">Your Longevity Profile</h2>
-        <p className="text-sm text-slate-600">
+        <p className="text-base text-slate-600">
           The actuarial model uses SSA 2023 life tables with health and family-history adjustments
           to estimate your personalized planning horizon.
         </p>
@@ -131,7 +131,7 @@ export default function Step2Longevity() {
       <div className="space-y-5 rounded-xl border border-slate-200 bg-white p-5">
         {/* Age */}
         <div>
-          <label className="mb-1 block text-sm font-semibold text-navy">
+          <label className="mb-1 block text-base font-semibold text-navy">
             Your current age: <span className="text-gold">{age}</span>
           </label>
           <input
@@ -142,7 +142,7 @@ export default function Step2Longevity() {
             onChange={(e) => setAge(Number(e.target.value))}
             className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-gold"
           />
-          <div className="mt-1 flex justify-between text-xs text-slate-400">
+          <div className="mt-1 flex justify-between text-base text-slate-400">
             <span>50</span><span>65</span><span>80</span>
           </div>
         </div>
@@ -154,7 +154,7 @@ export default function Step2Longevity() {
         {/* Parental ages */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-sm font-semibold text-navy">
+            <label className="mb-1 block text-base font-semibold text-navy">
               Mother&apos;s age at death (or current age if living)
             </label>
             <input
@@ -164,11 +164,11 @@ export default function Step2Longevity() {
               value={motherAge}
               onChange={(e) => setMotherAge(e.target.value)}
               placeholder="Optional"
-              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-gold focus:ring-1 focus:ring-gold"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-semibold text-navy">
+            <label className="mb-1 block text-base font-semibold text-navy">
               Father&apos;s age at death (or current age if living)
             </label>
             <input
@@ -178,7 +178,7 @@ export default function Step2Longevity() {
               value={fatherAge}
               onChange={(e) => setFatherAge(e.target.value)}
               placeholder="Optional"
-              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-gold focus:ring-1 focus:ring-gold"
             />
           </div>
         </div>
@@ -186,12 +186,12 @@ export default function Step2Longevity() {
 
       {/* Vitality Window — V3 tone: positive, empowering, no urgency/scarcity */}
       <div className="rounded-xl border border-gold/30 bg-cream p-5">
-        <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-navy">
+        <h3 className="mb-1 text-base font-bold uppercase tracking-wide text-navy">
           Your Vitality Window
         </h3>
 
         {/* Verbatim V3 framing */}
-        <p className="mb-4 text-sm leading-relaxed text-slate-700">
+        <p className="mb-4 text-base leading-relaxed text-slate-700">
           There&apos;s a window where health, energy, money, and freedom line up at the same time —
           for most people, roughly ages 58 to 68. It&apos;s the easiest, highest-reward moment to
           make an international move, and you&apos;re right in it. Later moves work too; this one is
@@ -202,17 +202,17 @@ export default function Step2Longevity() {
         <div className="mb-5 grid grid-cols-3 gap-3 text-center">
           <div className="rounded-lg bg-white p-3 shadow-sm">
             <p className="text-2xl font-bold text-emerald-600">{vitalityWindowYears}</p>
-            <p className="text-xs font-medium text-slate-600">
+            <p className="text-base font-medium text-slate-600">
               Peak active years<br />(ages {age}–{vitalityWindowEnd})
             </p>
           </div>
           <div className="rounded-lg bg-navy p-3 shadow-sm">
             <p className="text-2xl font-bold text-gold">{planningHorizonYears}</p>
-            <p className="text-xs font-medium text-cream/80">Total planning<br />horizon (years)</p>
+            <p className="text-base font-medium text-cream/80">Total planning<br />horizon (years)</p>
           </div>
           <div className="rounded-lg bg-white p-3 shadow-sm">
             <p className="text-2xl font-bold text-slate-700">{estimate.medianAge}</p>
-            <p className="text-xs font-medium text-slate-600">Median life<br />expectancy (age)</p>
+            <p className="text-base font-medium text-slate-600">Median life<br />expectancy (age)</p>
           </div>
         </div>
 
@@ -238,14 +238,14 @@ export default function Step2Longevity() {
           ].map(({ a, label, color }) => (
             <div key={a} className="absolute top-0 -translate-x-1/2" style={{ left: `${pct(a)}%` }}>
               <div className={`mx-auto h-8 w-1 rounded-full ${color}`} />
-              <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-slate-600">
+              <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap text-base font-semibold text-slate-600">
                 {label}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3 text-xs">
+        <div className="mt-8 flex flex-wrap gap-3 text-base">
           <span className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" /> Vitality window (ages {age}–{vitalityWindowEnd})
           </span>
@@ -257,7 +257,7 @@ export default function Step2Longevity() {
           </span>
         </div>
 
-        <p className="mt-3 text-xs italic text-slate-500">
+        <p className="mt-3 text-base italic text-slate-500">
           Based on SSA 2023 period life tables. Educational estimate only — not medical advice.
         </p>
       </div>
@@ -266,7 +266,7 @@ export default function Step2Longevity() {
         <button
           type="button"
           onClick={() => setStep(1)}
-          className="rounded-xl border-2 border-slate-200 px-6 py-3.5 text-sm font-semibold text-navy hover:border-navy"
+          className="rounded-xl border-2 border-slate-200 px-6 py-3.5 text-base font-semibold text-navy hover:border-navy"
         >
           ← Back
         </button>

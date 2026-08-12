@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -112,7 +112,7 @@ function CheckoutForm() {
   return (
     <div className="space-y-6">
       {/* Persistent disclaimer */}
-      <div className="flex gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600">
+      <div className="flex gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base text-slate-600">
         <Info size={14} className="mt-0.5 shrink-0 text-slate-400" />
         {PERSISTENT_DISCLAIMER}
       </div>
@@ -128,13 +128,13 @@ function CheckoutForm() {
               tier === t ? 'border-gold bg-navy text-white' : 'border-slate-200 bg-white hover:border-gold/50'
             }`}
           >
-            <p className={`text-xs font-semibold uppercase tracking-wide ${tier === t ? 'text-gold/70' : 'text-slate-500'}`}>
+            <p className={`text-base font-semibold uppercase tracking-wide ${tier === t ? 'text-gold/70' : 'text-slate-500'}`}>
               {TIER_DETAILS[t].label}
             </p>
             <p className={`my-0.5 font-serif text-2xl font-bold ${tier === t ? 'text-gold' : 'text-navy'}`}>
               {TIER_DETAILS[t].price}
             </p>
-            <p className={`text-xs ${tier === t ? 'text-cream/70' : 'text-slate-400'}`}>
+            <p className={`text-base ${tier === t ? 'text-cream/70' : 'text-slate-400'}`}>
               {TIER_DETAILS[t].pages}-page personalized PDF
             </p>
           </button>
@@ -143,10 +143,10 @@ function CheckoutForm() {
 
       {/* Features */}
       <div className="rounded-xl border border-slate-200 bg-white p-4">
-        <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">What&apos;s included</p>
+        <p className="mb-2 text-base font-bold uppercase tracking-wide text-slate-500">What&apos;s included</p>
         <ul className="space-y-1.5">
           {details.features.map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
+            <li key={f} className="flex items-start gap-2 text-base text-slate-700">
               <span className="mt-0.5 text-emerald-500">✓</span>
               {f}
             </li>
@@ -157,27 +157,27 @@ function CheckoutForm() {
       {/* Form */}
       <form onSubmit={handleCheckout} className="space-y-5">
         <div>
-          <label className="mb-1 block text-sm font-semibold text-navy">Full name</label>
+          <label className="mb-1 block text-base font-semibold text-navy">Full name</label>
           <input
             type="text"
             required
             value={localName}
             onChange={(e) => setLocalName(e.target.value)}
             placeholder="Jane Smith"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-gold focus:ring-1 focus:ring-gold"
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-semibold text-navy">Email</label>
+          <label className="mb-1 block text-base font-semibold text-navy">Email</label>
           <input
             type="email"
             required
             value={localEmail}
             onChange={(e) => setLocalEmail(e.target.value)}
             placeholder="jane@example.com"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-gold focus:ring-1 focus:ring-gold"
           />
-          <p className="mt-1 text-xs text-slate-500">Your report will be emailed here within 2 minutes.</p>
+          <p className="mt-1 text-base text-slate-500">Your report will be emailed here within 2 minutes.</p>
         </div>
 
         {/* notAdviceAck — gates the pay button; required */}
@@ -188,7 +188,7 @@ function CheckoutForm() {
             onChange={(e) => setNotAdviceAck(e.target.checked)}
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-gold"
           />
-          <span className="text-xs leading-relaxed text-slate-700">
+          <span className="text-base leading-relaxed text-slate-700">
             I understand this report is an educational planning tool — not financial, tax, immigration, or legal advice — and I should verify all figures with a licensed professional before acting.
           </span>
         </label>
@@ -201,7 +201,7 @@ function CheckoutForm() {
             onChange={(e) => setReferralConsent(e.target.checked)}
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-gold"
           />
-          <span className="text-xs leading-relaxed text-slate-600">
+          <span className="text-base leading-relaxed text-slate-600">
             Match me with a vetted independent professional and share the details I entered for that purpose. I understand these may be affiliate/referral partners and I&apos;m under no obligation.
           </span>
         </label>
@@ -213,7 +213,7 @@ function CheckoutForm() {
         </p>
 
         {error && (
-          <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+          <p className="rounded-lg bg-red-50 px-3 py-2 text-base text-red-700">{error}</p>
         )}
 
         <button
@@ -223,7 +223,7 @@ function CheckoutForm() {
         >
           {loading ? 'Redirecting to payment…' : `Pay ${details.price} — Get My Report`}
         </button>
-        <p className="text-center text-xs text-slate-400">
+        <p className="text-center text-base text-slate-400">
           Secure checkout via Stripe · PDF delivered to email · One-time payment, no subscription
         </p>
       </form>
@@ -244,7 +244,7 @@ export default function CheckoutPage() {
           <button
             type="button"
             onClick={() => router.push('/assessment/results')}
-            className="text-xs text-slate-500 underline hover:text-navy"
+            className="text-base text-slate-500 underline hover:text-navy"
           >
             ← Back to results
           </button>
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
 
         <h1 className="mb-6 font-serif text-2xl font-bold text-navy">Get Your Blueprint</h1>
 
-        <Suspense fallback={<div className="text-sm text-slate-500">Loading…</div>}>
+        <Suspense fallback={<div className="text-base text-slate-500">Loading…</div>}>
           <CheckoutForm />
         </Suspense>
       </div>

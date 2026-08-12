@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,7 +31,7 @@ export default function AssessmentPage() {
           <a href="/" className="font-serif text-xl font-bold text-navy">
   RetireEngine
 </a>
-          <p className="text-xs text-slate-500">Free Assessment · Takes ~4 minutes</p>
+          <p className="text-base text-slate-500">Free Assessment · Takes ~4 minutes</p>
         </div>
 
         <ProgressBar currentStep={step} />
