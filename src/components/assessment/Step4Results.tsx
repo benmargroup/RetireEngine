@@ -368,31 +368,38 @@ export default function Step4Results() {
             step-by-step action plan — customized to your score and top matches.
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Link
-              href="/assessment/checkout?tier=standard"
-              className="block rounded-xl border-2 border-navy bg-white p-4 text-center transition-transform hover:-translate-y-0.5"
-            >
-              <p className="text-base font-semibold uppercase tracking-wide text-slate-500">Standard Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-navy">$9</p>
-              <p className="text-base text-slate-500">8 pages · Top 3 deep dives · Action checklist</p>
-              <span className="mt-3 inline-block rounded-lg bg-navy px-4 py-2 text-base font-bold text-white">
-                Get Standard →
-              </span>
-            </Link>
-            <Link
-              href="/assessment/checkout?tier=premium"
-              className="relative block rounded-xl border-2 border-gold bg-navy p-4 text-center transition-transform hover:-translate-y-0.5"
-            >
-              <p className="absolute right-3 top-3 rounded-full bg-gold px-2 py-0.5 text-base font-bold text-navy">
-                MOST POPULAR
-              </p>
-              <p className="text-base font-semibold uppercase tracking-wide text-gold/70">Premium Report</p>
-              <p className="my-1 font-serif text-3xl font-bold text-gold">$19</p>
-              <p className="text-base text-cream/70">11 pages · Tax framework · Medicare roadmap · 90-day plan</p>
-              <span className="mt-3 inline-block rounded-lg bg-gold px-4 py-2 text-base font-bold text-navy">
-                Get Premium →
-              </span>
-            </Link>
+            <div className="flex flex-col">
+              <div className="mb-2 flex h-8 items-center justify-center" />
+              <Link
+                href="/assessment/checkout?tier=standard"
+                className="flex flex-1 flex-col rounded-xl border-2 border-navy bg-white p-4 text-center transition-transform hover:-translate-y-0.5"
+              >
+                <p className="text-base font-semibold uppercase tracking-wide text-slate-500">Standard Report</p>
+                <p className="my-1 font-serif text-3xl font-bold text-navy">$9</p>
+                <p className="text-base text-slate-500">8 pages · Top 3 deep dives · Action checklist</p>
+                <span className="mt-3 inline-block rounded-lg bg-navy px-4 py-2 text-base font-bold text-white">
+                  Get Standard →
+                </span>
+              </Link>
+            </div>
+            <div className="flex flex-col">
+              <div className="mb-2 flex h-8 items-center justify-center">
+                <span className="rounded-full bg-gold px-3 py-1 text-base font-bold text-navy">
+                  MOST POPULAR
+                </span>
+              </div>
+              <Link
+                href="/assessment/checkout?tier=premium"
+                className="flex flex-1 flex-col rounded-xl border-2 border-gold bg-navy p-4 text-center transition-transform hover:-translate-y-0.5"
+              >
+                <p className="text-base font-semibold uppercase tracking-wide text-gold/70">Premium Report</p>
+                <p className="my-1 font-serif text-3xl font-bold text-gold">$19</p>
+                <p className="text-base text-cream/70">11 pages · Tax framework · Medicare roadmap · 90-day plan</p>
+                <span className="mt-3 inline-block rounded-lg bg-gold px-4 py-2 text-base font-bold text-navy">
+                  Get Premium →
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       )}
