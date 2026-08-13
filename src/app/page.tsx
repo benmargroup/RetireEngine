@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+﻿
 
 const GATES = [
   {
@@ -55,7 +55,7 @@ export default function HomePage() {
         {/* The 3 Gates */}
         <div className="mt-8 grid gap-5 text-left sm:mt-10 md:grid-cols-3">
           {GATES.map((gate) => (
-            <Link
+            <a
               key={gate.number}
               href={gate.href}
               className={`group flex h-full flex-col rounded-xl border-2 p-6 transition hover:shadow-lg ${
@@ -78,7 +78,7 @@ export default function HomePage() {
               <span className="flex items-center gap-1 text-base font-semibold text-forest">
                 {gate.cta} →
               </span>
-            </Link>
+            </a>
           ))}
         </div>
 
