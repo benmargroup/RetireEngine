@@ -153,13 +153,17 @@ export default function Step1Financial() {
   const intent = searchParams.get('intent');
 
   const INTENT_HEADERS: Record<string, { title: string; subtitle: string }> = {
+    location_fit: {
+      title: 'Find Your Best Global Destination Match',
+      subtitle: 'To match you with destinations that fit your lifestyle and official visa income thresholds, summarize your monthly income streams below.',
+    },
     ss_timing: {
-      title: "Let's Calculate Your Optimal Claiming Age",
-      subtitle: "Start with your income streams — we'll use this to model your Social Security break-even age across claiming ages 62, 65, 67, and 70.",
+      title: 'Model Your Social Security Claiming Strategy',
+      subtitle: 'To calculate your optimal claiming age and break-even timeline, enter your estimated FRA benefit and income streams below.',
     },
     nest_egg: {
-      title: 'How Much Do You Need to Retire?',
-      subtitle: "Start with your income streams — we'll calculate your total monthly retirement income and safe withdrawal rate.",
+      title: 'Calculate Your Safe Retirement Spending Power',
+      subtitle: 'To measure your monthly retirement baseline and portfolio solvency, summarize your income and liquid assets below.',
     },
   };
   const headerContent = intent ? INTENT_HEADERS[intent] : undefined;
