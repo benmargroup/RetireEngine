@@ -235,6 +235,7 @@ function TopCountryPage({
   liquidAssets,
   pageNum,
   total,
+  tier,
 }: {
   country: {
     name: string; flag: string; score: number; visaName: string; visaRequirementsNote: string;
@@ -243,7 +244,10 @@ function TopCountryPage({
     accessLevel: string;
     localCurrency?: string;
     usdRelationship?: string;
+    forcedHeirship?: boolean;
+    inheritanceNote?: string;
   };
+  tier: string;
   rank: number;
   totalMonthlyIncome: number;
   liquidAssets: number;
@@ -344,6 +348,13 @@ function TopCountryPage({
         <Text style={[styles.label, { marginBottom: 4 }]}>Honest Reality Check</Text>
         <Text style={styles.body}>{country.honestReality}</Text>
       </View>
+
+      {tier === 'premium' && country.forcedHeirship && country.inheritanceNote && (
+        <View style={[styles.highlight, { borderLeftWidth: 3, borderLeftColor: '#7C3AED', paddingLeft: 10 }]}>
+          <Text style={[styles.label, { marginBottom: 4, color: '#5B21B6' }]}>Property &amp; Inheritance</Text>
+          <Text style={styles.body}>{country.inheritanceNote}</Text>
+        </View>
+      )}
 
       <PageFooter page={pageNum} total={total} />
     </Page>
@@ -748,6 +759,7 @@ export async function generateReportBuffer({ tier, email, assessmentData }: Repo
           liquidAssets={assets}
           pageNum={3 + i}
           total={totalPages}
+          tier={tier}
         />
       ))}
 

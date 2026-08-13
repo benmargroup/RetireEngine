@@ -207,6 +207,17 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
                 <p className="text-base leading-relaxed text-amber-900">{country.honestReality}</p>
               </div>
             </div>
+
+            {/* Property & Inheritance — Feature 7, disclosure only, never affects score */}
+            {country.forcedHeirship && country.inheritanceNote && (
+              <div className="flex gap-2 rounded-lg bg-purple-50 p-3">
+                <Info size={16} className="mt-0.5 shrink-0 text-purple-600" />
+                <div>
+                  <p className="mb-0.5 text-base font-bold text-purple-800">Property &amp; Inheritance</p>
+                  <p className="text-base leading-relaxed text-purple-900">{country.inheritanceNote}</p>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

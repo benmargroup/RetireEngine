@@ -407,6 +407,8 @@ export function calculateScores(
         localCurrency: location.localCurrency,
         usdRelationship: location.usdRelationship,
         fxVolatilityBand: location.fxVolatilityBand,
+        forcedHeirship: location.forcedHeirship,
+        inheritanceNote: location.inheritanceNote,
       } satisfies CountryScore;
     })
     // Failures always sort after passes; within each group, sort by score desc.

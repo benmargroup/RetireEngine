@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ss-engine.ts
  * -------------------------------------------------------------------------
  * RetireEngine — Social Security claiming + geo-arbitrage math.
@@ -162,6 +162,12 @@ export interface LocationData {
    *  absent, as long as a passport-based path exists for some users (e.g.
    *  India — no visa for most, but OCI holders have real right of abode). */
   orbitOnly?: boolean;
+  /** Feature 7: true if the jurisdiction has forced heirship rules that can
+   *  override a US will for locally-purchased property. Pure disclosure —
+   *  NEVER affects match scores. */
+  forcedHeirship?: boolean;
+  /** Feature 7: one-sentence explanation shown as a callout when forcedHeirship is true. */
+  inheritanceNote?: string;
 }
 
 /**
@@ -243,6 +249,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Mexican Peso (MXN)', // lastVerified: 2026-08; source: Banco de México
     usdRelationship: 'floating',
     fxVolatilityBand: 'moderate',
+    forcedHeirship: true, inheritanceNote: 'Mexico applies forced heirship rules (legitima) protecting close relatives; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'portugal',
@@ -281,6 +288,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
     usdRelationship: 'floating',
     fxVolatilityBand: 'low',
+    forcedHeirship: true, inheritanceNote: 'Portugal applies forced heirship (legitima) protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'costa-rica',
@@ -318,6 +326,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Costa Rican Colón (CRC)', // lastVerified: 2026-08; source: Banco Central de Costa Rica
     usdRelationship: 'floating',
     fxVolatilityBand: 'moderate',
+    forcedHeirship: true, inheritanceNote: 'Costa Rica applies forced heirship rules protecting close relatives; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'panama',
@@ -355,6 +364,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'US Dollar (USD)', // lastVerified: 2026-08; source: Panama uses USD as legal tender alongside the Balboa
     usdRelationship: 'usd',
     fxVolatilityBand: 'none',
+    forcedHeirship: true, inheritanceNote: 'Panama applies forced heirship (legitima) protecting close relatives; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'spain',
@@ -393,6 +403,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
     usdRelationship: 'floating',
     fxVolatilityBand: 'low',
+    forcedHeirship: true, inheritanceNote: 'Spain applies forced heirship (legitima) protecting children and spouses; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   // ── New in Module 6 ────────────────────────────────────────────────────
   {
@@ -432,6 +443,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
     usdRelationship: 'floating',
     fxVolatilityBand: 'low',
+    forcedHeirship: true, inheritanceNote: 'Italy applies strict forced heirship (legittima) protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'colombia',
@@ -469,6 +481,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Colombian Peso (COP)', // lastVerified: 2026-08; source: Banco de la República (Colombia central bank)
     usdRelationship: 'floating',
     fxVolatilityBand: 'high',
+    forcedHeirship: true, inheritanceNote: 'Colombia applies forced heirship (legitima) protecting close relatives; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'france',
@@ -507,6 +520,7 @@ export const LOCATIONS: readonly LocationData[] = [
     localCurrency: 'Euro (EUR)', // lastVerified: 2026-08; source: European Central Bank
     usdRelationship: 'floating',
     fxVolatilityBand: 'low',
+    forcedHeirship: true, inheritanceNote: 'France applies forced heirship; property you buy there may not pass under your US will. Consult a cross-border estate attorney before buying.',
   },
   {
     id: 'malaysia',

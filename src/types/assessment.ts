@@ -114,4 +114,8 @@ export interface CountryScore {
   usdRelationship?: UsdRelationship;
   /** Feature 6: qualitative FX volatility band vs. USD. Disclosure only. */
   fxVolatilityBand?: FxVolatilityBand;
+  /** Feature 7: true if forced heirship rules apply. Never affects scores. */
+  forcedHeirship?: boolean;
+  /** Feature 7: explanation shown as a callout when forcedHeirship is true. */
+  inheritanceNote?: string;
 }
