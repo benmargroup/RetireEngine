@@ -1,7 +1,6 @@
 ﻿'use client';
 
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState } from 'react'
 import { useSliderTickPositions } from '@/lib/useSliderTickPositions';
 import { SSA_BENEFIT_FACTOR, CLAIMING_AGES, type ClaimingAge } from '@/lib/ss-engine';
 import { useAssessmentStore } from '@/store/assessmentStore';
@@ -146,11 +145,9 @@ function PassportBlock({
   );
 }
 
-export default function Step1Financial() {
+export default function Step1Financial({ intent }: { intent?: string }) {
   const { step1, setStep1, setStep, passportProfile, setPassportProfile } = useAssessmentStore();
   const { inputRef: withdrawalSliderRef, values: withdrawalTickValues, positions: withdrawalTickPositions } = useSliderTickPositions(3, 5);
-  const searchParams = useSearchParams();
-  const intent = searchParams.get('intent');
 
   const INTENT_HEADERS: Record<string, { title: string; subtitle: string }> = {
     location_fit: {
