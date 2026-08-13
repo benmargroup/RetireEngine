@@ -4,6 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronUp, CheckCircle, AlertTriangle, XCircle, Info, ShieldX, Globe } from 'lucide-react';
 import { useAssessmentStore } from '@/store/assessmentStore';
+import { computeOrbitPlan } from '@/lib/orbit-engine';
+import OrbitItineraryView from '@/components/ui/OrbitItineraryView';
 import { formatCurrency } from '@/lib/scoring-engine';
 import TrustBox from '@/components/ui/TrustBox';
 import SeasonHeatmap from '@/components/ui/SeasonHeatmap';
@@ -313,9 +315,10 @@ function EmailCaptureForm() {
 }
 
 export default function Step4Results() {
-  const { results, step1, step2 } = useAssessmentStore();
+  const { results, step1, step2, strategyMode, setStrategyMode } = useAssessmentStore();
 
   const topMatch = results[0];
+  const orbitPlan = computeOrbitPlan(['india', 'vietnam', 'sri-lanka']);
 
   return (
     <div className="space-y-8">
@@ -340,26 +343,54 @@ export default function Step4Results() {
         {PERSISTENT_DISCLAIMER}
       </div>
 
-      {/* Visa income context note */}
-      {results.some((r) => r.qualificationStatus === 'deficit') && (
-        <div className="flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
-          <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-600" />
-          <div className="text-base">
-            <p className="font-semibold text-amber-900">Some countries require higher income to qualify via the standard income route.</p>
-            <p className="mt-0.5 text-amber-800">
-              Countries marked in red applied a -25 point visa penalty. Consider the savings-route
-              alternative or countries with lower thresholds. The full report includes a visa strategy for each.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Country cards */}
-      <div className="space-y-4">
-        {results.map((country, i) => (
-          <CountryCard key={country.countryKey} country={country} rank={i + 1} />
-        ))}
+      {/* Strategy toggle */}
+      <div className="flex gap-2 rounded-xl border border-slate-200 bg-white p-1.5">
+        <button
+          type="button"
+          onClick={() => setStrategyMode('anchor')}
+          className={`flex-1 rounded-lg px-4 py-2.5 text-base font-semibold transition ${
+            strategyMode === 'anchor' ? 'bg-navy text-white' : 'text-slate-500 hover:bg-slate-50'
+          }`}
+        >
+          Settle in One Place (Anchor)
+        </button>
+        <button
+          type="button"
+          onClick={() => setStrategyMode('orbit')}
+          className={`flex-1 rounded-lg px-4 py-2.5 text-base font-semibold transition ${
+            strategyMode === 'orbit' ? 'bg-navy text-white' : 'text-slate-500 hover:bg-slate-50'
+          }`}
+        >
+          Keep Moving (Orbit)
+        </button>
       </div>
+
+      {strategyMode === 'orbit' ? (
+        <OrbitItineraryView plan={orbitPlan} />
+      ) : (
+        <>
+          {/* Visa income context note */}
+          {results.some((r) => r.qualificationStatus === 'deficit') && (
+            <div className="flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-600" />
+              <div className="text-base">
+                <p className="font-semibold text-amber-900">Some countries require higher income to qualify via the standard income route.</p>
+                <p className="mt-0.5 text-amber-800">
+                  Countries marked in red applied a -25 point visa penalty. Consider the savings-route
+                  alternative or countries with lower thresholds. The full report includes a visa strategy for each.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Country cards */}
+          <div className="space-y-4">
+            {results.map((country, i) => (
+              <CountryCard key={country.countryKey} country={country} rank={i + 1} />
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Free email capture */}
       <div className="rounded-2xl border border-slate-200 bg-white p-6">

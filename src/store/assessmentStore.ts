@@ -63,6 +63,7 @@ interface AssessmentState {
   step2: Step2Data;
   step3: Step3Data;
   passportProfile: PassportProfile;
+  strategyMode: 'anchor' | 'orbit';
   results: CountryScore[];
   email: string;
   name: string;
@@ -81,6 +82,7 @@ interface AssessmentActions {
   setStep2: (data: Step2Data) => void;
   setStep3: (data: Step3Data) => void;
   setPassportProfile: (profile: PassportProfile) => void;
+  setStrategyMode: (mode: 'anchor' | 'orbit') => void;
   setResults: (results: CountryScore[]) => void;
   setEmail: (email: string) => void;
   setName: (name: string) => void;
@@ -104,6 +106,7 @@ const INITIAL_STATE: AssessmentState = {
   step2: DEFAULT_STEP2,
   step3: DEFAULT_STEP3,
   passportProfile: DEFAULT_PASSPORT_PROFILE,
+  strategyMode: 'anchor',
   results: [],
   email: '',
   name: '',
@@ -124,6 +127,7 @@ export const useAssessmentStore = create<AssessmentState & AssessmentActions>()(
       setStep2: (step2) => set({ step2 }),
       setStep3: (step3) => set({ step3 }),
       setPassportProfile: (passportProfile) => set({ passportProfile }),
+      setStrategyMode: (strategyMode) => set({ strategyMode }),
       setResults: (results) => set({ results }),
       setEmail: (email) => set({ email }),
       setName: (name) => set({ name }),
