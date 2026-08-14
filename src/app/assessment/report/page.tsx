@@ -28,6 +28,8 @@ function AccountCreationPrompt({ email, sessionId }: { email: string; sessionId:
       const data = await res.json();
       if (res.ok) {
         setCreated(true);
+      } else if (res.status === 409) {
+        setError('You already have an account with this email — sign in to access your reports.');
       } else {
         setError(data.error ?? 'Could not create account. Please try again.');
       }
