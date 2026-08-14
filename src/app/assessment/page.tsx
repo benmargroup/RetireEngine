@@ -5,7 +5,7 @@ import AssessmentPageClient from './AssessmentPageClient';
 export default function AssessmentPage({
   searchParams,
 }: {
-  searchParams: { intent?: string };
+  searchParams: { intent?: string; session?: string };
 }) {
-  return <AssessmentPageClient intent={searchParams.intent} />;
+  return <AssessmentPageClient intent={searchParams.intent} session={searchParams.session} />;
 }

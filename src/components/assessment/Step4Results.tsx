@@ -228,7 +228,7 @@ function CountryCard({ country, rank }: { country: CountryScore; rank: number })
 }
 
 function EmailCaptureForm() {
-  const { email, setEmail, emailConsent, setEmailConsent, results, step1 } = useAssessmentStore();
+  const { email, setEmail, emailConsent, setEmailConsent, results, step1, step2, step3, passportProfile } = useAssessmentStore();
   const [localEmail, setLocalEmail] = useState(email);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -255,6 +255,7 @@ function EmailCaptureForm() {
           emailConsent,
           topMatches,
           totalMonthlyIncome: step1.totalMonthlyIncome,
+          assessmentData: { step1, step2, step3, passportProfile },
         }),
       });
       if (res.ok) {
@@ -273,7 +274,7 @@ function EmailCaptureForm() {
   if (submitted) {
     return (
       <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-base text-emerald-800">
-        <CheckCircle size={16} /> Summary sent \u2014 check your inbox shortly.
+        <CheckCircle size={16} /> Summary sent — check your inbox shortly.
       </div>
     );
   }

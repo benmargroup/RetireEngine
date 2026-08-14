@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { formatCurrency } from '@/lib/scoring-engine';
+import { randomUUID } from 'crypto';
 
 const IS_PLACEHOLDER = (key: string | undefined) =>
   !key || key.startsWith('your_') || key.startsWith('https://your') || key.startsWith('re_placeholder');
@@ -14,11 +15,12 @@ interface TopMatch {
 
 export async function POST(req: Request) {
   try {
-    const { email, emailConsent, topMatches, totalMonthlyIncome } = await req.json() as {
+    const { email, emailConsent, topMatches, totalMonthlyIncome, assessmentData } = await req.json() as {
       email: string;
       emailConsent: boolean;
       topMatches?: TopMatch[];
       totalMonthlyIncome?: number;
+      assessmentData?: Record<string, unknown>;
     };
 
     if (!email || !emailConsent) {
@@ -33,10 +35,13 @@ export async function POST(req: Request) {
 
     const { createServiceClient } = await import('@/lib/supabase');
     const supabase = createServiceClient();
+    const sessionToken = randomUUID();
     const { error } = await supabase.from('email_captures').insert({
       email,
       email_consent: emailConsent,
       captured_at: new Date().toISOString(),
+      session_token: sessionToken,
+      assessment_data: assessmentData ?? null,
     });
 
     if (error) {
@@ -53,7 +58,7 @@ export async function POST(req: Request) {
           from: process.env.FROM_EMAIL ?? 'reports@retireengine.com',
           to: email,
           subject: 'Your RetireEngine Summary — Top Matches Inside',
-          html: buildSummaryEmailHtml(topMatches, totalMonthlyIncome ?? 0),
+          html: buildSummaryEmailHtml(topMatches, totalMonthlyIncome ?? 0, sessionToken),
         });
       } catch (err) {
         console.error('[email-capture] Resend send failed (non-fatal):', err);
@@ -67,7 +72,7 @@ export async function POST(req: Request) {
   }
 }
 
-function buildSummaryEmailHtml(topMatches: TopMatch[], totalMonthlyIncome: number): string {
+function buildSummaryEmailHtml(topMatches: TopMatch[], totalMonthlyIncome: number, sessionToken: string): string {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://retireengine.com';
 
   const matchesHtml = topMatches
@@ -108,6 +113,10 @@ function buildSummaryEmailHtml(topMatches: TopMatch[], totalMonthlyIncome: numbe
         Unlock Your Full Report →
       </a>
     </div>
+
+    <p style="margin-top: 24px; text-align: center; font-size: 13px; color: #7A8C7E;">
+      On a different device? <a href="${siteUrl}/assessment?session=${sessionToken}" style="color: #0A1628; text-decoration: underline;">Continue where you left off</a> — no password needed.
+    </p>
 
     <p style="color: #7A8C7E; font-size: 12px; margin-top: 32px;">
       © 2026 RetireEngine · retireengine.com
