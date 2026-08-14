@@ -9,19 +9,8 @@ import Step2Longevity from '@/components/assessment/Step2Longevity';
 import Step3Priorities from '@/components/assessment/Step3Priorities';
 
 export default function AssessmentPageClient({ intent }: { intent?: string }) {
-  const { step, reset } = useAssessmentStore();
+  const { step } = useAssessmentStore();
   const router = useRouter();
-
-  // Arriving via a homepage Gate (intent param present) always starts a fully
-  // independent, clean session — no leftover step, no leftover form data from
-  // a previous gate or a previous visit. Each of the 3 gates must work
-  // completely independently of the others.
-  useEffect(() => {
-    if (intent) {
-      reset();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [intent]);
 
   useEffect(() => {
     if (step === 4) {

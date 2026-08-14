@@ -146,7 +146,7 @@ function PassportBlock({
 }
 
 export default function Step1Financial({ intent }: { intent?: string }) {
-  const { step1, setStep1, setStep, passportProfile, setPassportProfile } = useAssessmentStore();
+  const { step1, setStep1, setStep, passportProfile, setPassportProfile, reset } = useAssessmentStore();
   const { inputRef: withdrawalSliderRef, values: withdrawalTickValues, positions: withdrawalTickPositions } = useSliderTickPositions(3, 5);
 
   const INTENT_HEADERS: Record<string, { title: string; subtitle: string }> = {
@@ -174,6 +174,32 @@ export default function Step1Financial({ intent }: { intent?: string }) {
   const [liquidAssets, setLiquidAssets] = useState(step1.liquidAssets);
   // Withdrawal rate: slider stored as integer percentage (3–5); default 4
   const [withdrawalRatePct, setWithdrawalRatePct] = useState(Math.round((step1.withdrawalRate || 0.04) * 100));
+
+  // Captured once at mount — reflects whether real prior data existed when the
+  // page loaded, independent of edits made during this session.
+  const [hadSavedData] = useState(
+    () =>
+      step1.fraBenefit > 0 ||
+      step1.pension > 0 ||
+      step1.dividendIncome > 0 ||
+      step1.rentalIncome > 0 ||
+      step1.otherIncome > 0 ||
+      step1.liquidAssets > 0
+  );
+  const [showWelcomeBack, setShowWelcomeBack] = useState(hadSavedData);
+
+  function handleStartFresh() {
+    setFraBenefit(0);
+    setSelectedAge(67);
+    setPension(0);
+    setDividendIncome(0);
+    setRentalIncome(0);
+    setOtherIncome(0);
+    setLiquidAssets(0);
+    setWithdrawalRatePct(4);
+    reset();
+    setShowWelcomeBack(false);
+  }
 
   const withdrawalRate = withdrawalRatePct / 100;
   const portfolioMonthlyIncome = Math.floor((liquidAssets * withdrawalRate) / 12);
@@ -221,6 +247,26 @@ export default function Step1Financial({ intent }: { intent?: string }) {
           </div>
         </div>
       </div>
+
+      {showWelcomeBack && (
+        <div className="flex flex-col items-start justify-between gap-3 rounded-xl border border-gold/40 bg-gold/10 p-4 sm:flex-row sm:items-center">
+          <div>
+            <p className="text-base font-semibold text-navy">Welcome back!</p>
+            <p className="text-base text-slate-600">
+              We restored your saved financial profile
+              {fraBenefit > 0 && ` — $${fraBenefit.toLocaleString()} FRA benefit`}
+              {liquidAssets > 0 && `, $${liquidAssets.toLocaleString()} in assets`}.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleStartFresh}
+            className="shrink-0 rounded-lg border-2 border-navy px-4 py-2 text-base font-semibold text-navy transition hover:bg-navy hover:text-white"
+          >
+            Start Fresh
+          </button>
+        </div>
+      )}
 
       <div>
         <h2 className="mb-1 font-serif text-2xl font-bold text-navy">
