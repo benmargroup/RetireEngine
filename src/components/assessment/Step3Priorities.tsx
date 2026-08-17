@@ -148,6 +148,7 @@ function NonNegotiablesBlock({
 }
 export default function Step3Priorities() {
   const { step3, step1, setStep3, setResults, setStep, passportProfile } = useAssessmentStore();
+  const [isCalculating, setIsCalculating] = useState(false);
 
   const [priorities, setPriorities] = useState<Step3Data>({
     ...step3,
@@ -168,6 +169,8 @@ export default function Step3Priorities() {
   }
 
   function handleNext() {
+  setIsCalculating(true);
+  setTimeout(() => {
     const scores = calculateScores(
       priorities,
       step1.totalMonthlyIncome,
@@ -178,7 +181,8 @@ export default function Step3Priorities() {
     setStep3(priorities);
     setResults(scores);
     setStep(4);
-  }
+  }, 50);
+}
 
   return (
     <div className="space-y-8">
@@ -308,10 +312,11 @@ export default function Step3Priorities() {
         <button
           type="button"
           onClick={handleNext}
-          className="flex-1 rounded-xl bg-gold py-3.5 text-base font-bold text-navy hover:bg-gold-dark"
-        >
-          Calculate My Matches →
-        </button>
+disabled={isCalculating}
+className="flex-1 rounded-xl bg-gold py-3.5 text-base font-bold text-navy hover:bg-gold-dark disabled:opacity-70"
+>
+{isCalculating ? 'Calculating your matches...' : 'Calculate My Matches →'}
+</button>
       </div>
     </div>
   );
