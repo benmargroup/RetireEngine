@@ -32,7 +32,7 @@ export default function CurrencyNote({ localCurrency, usdRelationship }: Currenc
   }
 
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-1 text-base font-semibold text-amber-800">
+    <span className="inline-flex items-start gap-1 rounded-2xl bg-amber-100 px-3.5 py-2.5 text-base font-semibold text-amber-800">
       Spends in {localCurrency} · your USD income carries moderate exchange-rate risk — budget a 10–15% cushion
     </span>
   );
