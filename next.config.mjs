@@ -29,6 +29,28 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/assessment',
+        has: [{ type: 'query', key: 'intent', value: 'ss_timing' }],
+        destination: '/assessment/when-to-claim-social-security',
+        permanent: true,
+      },
+      {
+        source: '/assessment',
+        has: [{ type: 'query', key: 'intent', value: 'nest_egg' }],
+        destination: '/assessment/how-much-to-retire',
+        permanent: true,
+      },
+      {
+        source: '/assessment',
+        has: [{ type: 'query', key: 'intent', value: 'location_fit' }],
+        destination: '/assessment/best-place-to-live',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
