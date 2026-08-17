@@ -3,7 +3,7 @@
 const GATES = [
   {
     number: 1,
-    href: '/assessment?intent=ss_timing',
+    href: '/assessment/when-to-claim-social-security',
     title: 'When should I take Social Security?',
     description: 'Calculate your break-even age (62 vs. 67 vs. 70) adjusted for your personal longevity.',
     cta: 'Start Claiming Model',
@@ -11,7 +11,7 @@ const GATES = [
   },
   {
     number: 2,
-    href: '/assessment?intent=nest_egg',
+    href: '/assessment/how-much-to-retire',
     title: 'How much do I need to retire?',
     description: 'Model your portfolio withdrawal rate, passive income, and safe monthly budget.',
     cta: 'Run Retirement Solvency',
@@ -19,7 +19,7 @@ const GATES = [
   },
   {
     number: 3,
-    href: '/assessment?intent=location_fit',
+    href: '/assessment/best-place-to-live',
     title: 'Where can I get the best life?',
     description: 'Match your income to 10 global destinations with visa income rules and air quality data.',
     cta: 'Match Global Destinations',

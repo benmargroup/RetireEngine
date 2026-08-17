@@ -15,6 +15,18 @@ const nextConfig = {
         source: '/claim-social-security-at-:age(\\d+)-in-:location([a-z0-9-]+)',
         destination: '/claim/:age/:location',
       },
+      {
+        source: '/assessment/when-to-claim-social-security',
+        destination: '/assessment?intent=ss_timing',
+      },
+      {
+        source: '/assessment/how-much-to-retire',
+        destination: '/assessment?intent=nest_egg',
+      },
+      {
+        source: '/assessment/best-place-to-live',
+        destination: '/assessment?intent=location_fit',
+      },
     ];
   },
 };
