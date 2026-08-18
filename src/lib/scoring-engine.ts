@@ -149,6 +149,17 @@ export const COUNTRY_PROFILES: Record<string, CountryProfile> = {
       honestReality: 'Malta offers a rare combination for a US retiree: EU membership, English as an official language, world-class healthcare, and no inheritance tax — all on a small, densely populated island with genuine year-round sunshine. EU/EEA passport holders need no visa at all. Non-EU retirees use the Malta Retirement Programme, a 15% flat tax on remitted pension income with a real minimum tax floor (~€7,500/yr) — this isn\'t a budget destination for a modest pension, but the tax efficiency and healthcare quality are hard to match elsewhere in the Mediterranean.',
       strengths: ['English is an Official Language', 'World-Class Healthcare (WHO Top-5)', 'No Inheritance, Estate, or Wealth Tax'],
     },
+        'mexico-chapala': {
+      id: 'mexico-chapala',
+      flag: '🇲🇽',
+      criteria: {
+        healthcare: 5, climate: 9, language: 5, proximity: 10, safety: 6,
+        cost: 9, expatCommunity: 10, infrastructure: 6, culture: 7, banking: 6,
+      },
+      climateType: 'mild',
+      honestReality: 'Lake Chapala hosts the largest American retiree community in the world — 20,000+ expats around Ajijic, with a 5,000ft elevation that keeps temperatures near-perfect (65-80°F) year-round and no hurricane risk, unlike Mérida. The trade-off: real hospitals are 45 minutes away in Guadalajara, not in-town. Same US–Mexico tax treaty and visa thresholds as Mérida, but a genuinely different climate and community experience.',
+      strengths: ['World\'s Largest American Retiree Community', 'Near-Perfect Year-Round Climate', 'No Hurricane Risk'],
+    },
     france: {
     id: 'france',
     flag: '🇫🇷',

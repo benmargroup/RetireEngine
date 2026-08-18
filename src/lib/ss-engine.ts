@@ -637,6 +637,45 @@ export const LOCATIONS: readonly LocationData[] = [
       passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
       forcedHeirship: true, inheritanceNote: 'Malta applies forced heirship (legittima) protecting spouses and children under its Civil Code; property you buy there may not pass entirely under your US will. Note: Malta does not levy inheritance, estate, or wealth tax on transfers to close relatives. Consult a cross-border estate attorney before buying.',
     },
+        {
+      id: 'mexico-chapala',
+      label: 'Mexico (Lake Chapala)',
+      kind: 'expat',
+      currency: 'USD',
+      monthlyComfortableCost: 1400,
+      taxPosture: 'treaty-us-taxes-ss', // same national treaty as Mérida entry
+      taxNote: 'US–Mexico treaty: Social Security is taxed by the US, not Mexico. Territorial for most other foreign income.',
+      visaName: 'Temporary Resident Visa',
+      visaIncomeMinMonthly: 4300, // same national visa threshold as Mérida entry
+      visaSavingsAlt: 73000,
+      healthcareNote: 'Medicare is not valid in Mexico. Local clinics in Ajijic (Hospital Ajijic, Ribera Medical Center) handle day-to-day care; major private hospitals (Hospital San Javier, Puerta de Hierro) are in Guadalajara, ~45 min away. Use private cover (~$1,500-3,000/yr) or IMSS.',
+      monthlyBudgetCoupleLow: 2000,
+      monthlyBudgetCoupleHigh: 3000, // lastVerified: 2026-08; source: Bullseye Retirement, Live and Invest Overseas, TheLatinvestor Lake Chapala guides
+      airQualityPM25: 12,                 // lastVerified: 2026-08; source: IQAir Chapala/Ajijic
+      hospitalClassAWithin30min: false, // nearest tertiary-care hospitals are in Guadalajara, ~45 min away — not within 30 min
+      internetMbps: 50,               // Telmex fiber available in Ajijic/Chapala area; similar to Mérida
+      airportWithin1hr: true,         // Guadalajara Intl (GDL) ~45 min drive
+      taxFriendlyToPension: true,     // same US–Mexico treaty; SS taxed only by the US
+      monthlyRatings: [ // lastVerified: 2026-08; source: general Lake Chapala/Ajijic climate normals — 5,000ft elevation gives near-flat year-round temps, no hurricane exposure
+        { month: 1, rating: 'go', reasons: ['Cool, dry, comfortable'] },
+        { month: 2, rating: 'go', reasons: ['Dry, mild'] },
+        { month: 3, rating: 'go', reasons: ['Warming, still dry'] },
+        { month: 4, rating: 'go', reasons: ['Warm, dry — pleasant'] },
+        { month: 5, rating: 'shoulder', reasons: ['Hottest month, just before rains'] },
+        { month: 6, rating: 'shoulder', reasons: ['Rainy season begins, evenings/nights mostly'] },
+        { month: 7, rating: 'go', reasons: ['Rain mostly overnight, days pleasant'] },
+        { month: 8, rating: 'go', reasons: ['Green, lush, comfortable'] },
+        { month: 9, rating: 'shoulder', reasons: ['Rainy season continues'] },
+        { month: 10, rating: 'go', reasons: ['Rains tapering, comfortable'] },
+        { month: 11, rating: 'go', reasons: ['Dry season returns'] },
+        { month: 12, rating: 'go', reasons: ['Cool, dry, comfortable'] },
+      ],
+      localCurrency: 'Mexican Peso (MXN)', // lastVerified: 2026-08; source: Banco de México
+      usdRelationship: 'floating',
+      fxVolatilityBand: 'moderate',
+      forcedHeirship: true, inheritanceNote: 'Mexico applies forced heirship rules (legitima) protecting close relatives; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
+    },
+    
       {
     id: 'malaysia',
     label: 'Malaysia (Kuala Lumpur)',
