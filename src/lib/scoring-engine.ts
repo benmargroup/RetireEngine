@@ -125,9 +125,20 @@ export const COUNTRY_PROFILES: Record<string, CountryProfile> = {
       },
       climateType: 'mediterranean',
       honestReality: 'Antalya delivers genuine Mediterranean living at a fraction of Spain or Italy\'s cost, with 300+ days of sunshine and one of Europe\'s largest expat retiree communities. But there\'s no dedicated retirement visa — the practical path is either a $200-250K property purchase or documenting ~$1,050/month income, with rejection rates rising in some provinces. The lira has lost roughly 70% of its value against the dollar over five years; budget a real cushion. The new 20-year tax exemption on foreign pension income (Law 7582, June 2026) is a genuine win for new residents.',
-      strengths: ['300+ Days of Sunshine', '20-Year Foreign Pension Tax Exemption', 'Lowest-Cost Mediterranean Living'],
+              strengths: ['300+ Days of Sunshine', '20-Year Foreign Pension Tax Exemption', 'Lowest-Cost Mediterranean Living'],
+      },
+    montenegro: {
+      id: 'montenegro',
+      flag: '🇲🇪',
+      criteria: {
+        healthcare: 6, climate: 7, language: 4, proximity: 5, safety: 8,
+        cost: 8, expatCommunity: 5, infrastructure: 6, culture: 7, banking: 4,
+      },
+      climateType: 'mediterranean',
+      honestReality: 'Kotor offers genuine Adriatic beauty — a UNESCO-listed old town on a fjord-like bay — at prices well below Croatia or Italy, with real safety and a growing but still modest expat community. There\'s no dedicated retirement visa; the practical path is proving ~$700/month income or buying property at €150,000+ (a new 2026 requirement). Some marketing claims zero tax on foreign pensions, but Montenegro has no US tax treaty, so the standard 9-15% flat tax applies. Summers bring sharp price spikes and crowds; shoulder-season visits reveal the real appeal.',
+      strengths: ['Stunning UNESCO Bay of Kotor', 'Low Flat Tax Rate (9-15%)', 'No Inheritance Tax on Direct Heirs'],
     },
-  france: {
+    france: {
     id: 'france',
     flag: '🇫🇷',
     criteria: {

@@ -560,6 +560,44 @@ export const LOCATIONS: readonly LocationData[] = [
       fxVolatilityBand: 'high', // TRY depreciated ~70% vs USD over the past 5 years amid high inflation
       forcedHeirship: true, inheritanceNote: 'Turkey applies forced heirship (saklı pay) under the Turkish Civil Code protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
     },
+        {
+      id: 'montenegro',
+      label: 'Montenegro (Kotor)',
+      kind: 'expat',
+      currency: 'USD',
+      monthlyComfortableCost: 1500,
+      taxPosture: 'worldwide-income-tax',
+      taxNote: 'Tax resident on worldwide income once resident 183+ days/year, at a flat 9% rate (15% above roughly €8,400/yr). Montenegro has no independent double-tax treaty with the US (only treaty as an independent state is with Malta) — some marketing claims "zero tax on foreign pensions" but this is not accurate for US retirees without treaty relief. Private health insurance strongly recommended.',
+      visaName: 'Temporary Residence Permit (Income or Property Route)',
+      visaIncomeMinMonthly: 700, // approximate — sources range $500-1,000/mo; no single official threshold found. lastVerified: 2026-08
+      visaSavingsAlt: undefined, // no formal savings route — alternative is €150,000 property purchase (new since Jan 2026), not a savings buffer; not modeled here
+      healthcareNote: 'Medicare is not valid abroad. Private insurance strongly recommended for faster access and English-speaking care. Opšta Bolnica Kotor (General Hospital) is in-town; Milmedika private clinic in nearby Tivat (opened 2024) serves the expat community.',
+      monthlyBudgetCoupleLow: 1900,
+      monthlyBudgetCoupleHigh: 2600, // lastVerified: 2026-08; source: Live and Invest Overseas, Second Summer Abroad, Bullseye Retirement Kotor/Budva guides
+      airQualityPM25: 15,                 // lastVerified: 2026-08; source: IQAir 2025 Montenegro national annual estimate — no clean Kotor-specific figure available; treat as approximate
+      hospitalClassAWithin30min: true,  // Opšta Bolnica Kotor (in-town), Milmedika Porto Montenegro clinic in Tivat (~15 min)
+      internetMbps: 50,               // lastVerified: 2026-08; moderate confidence — coastal Montenegro fiber/cable, no single authoritative figure found
+      airportWithin1hr: true,         // Tivat Airport ~15 min from Kotor
+      taxFriendlyToPension: false,    // no special pension exemption; standard 9-15% flat tax applies, no US treaty relief
+      monthlyRatings: [ // lastVerified: 2026-08; source: general Adriatic coastal climate normals (Kotor/Bay of Kotor)
+        { month: 1, rating: 'shoulder', reasons: ['Mild but rainy — wettest season'] },
+        { month: 2, rating: 'shoulder', reasons: ['Rainy, mild'] },
+        { month: 3, rating: 'go', reasons: ['Spring arriving, less rain'] },
+        { month: 4, rating: 'go', reasons: ['Pleasant, blooming'] },
+        { month: 5, rating: 'go', reasons: ['Ideal — warm, dry, pre-season'] },
+        { month: 6, rating: 'shoulder', reasons: ['Heat and tourist season building'] },
+        { month: 7, rating: 'avoid', reasons: ['Peak heat and peak tourist crowds/prices'] },
+        { month: 8, rating: 'avoid', reasons: ['Peak heat and prices continue'] },
+        { month: 9, rating: 'go', reasons: ['Warm, crowds thinning'] },
+        { month: 10, rating: 'go', reasons: ['Ideal autumn weather'] },
+        { month: 11, rating: 'shoulder', reasons: ['Rain increasing'] },
+        { month: 12, rating: 'shoulder', reasons: ['Mild but wet'] },
+      ],
+      localCurrency: 'Euro (€)', // unilaterally adopted — Montenegro is not an EU member
+      usdRelationship: 'floating',
+      fxVolatilityBand: 'low', // Euro-denominated, same low-volatility profile as Eurozone entries
+      forcedHeirship: true, inheritanceNote: 'Montenegro applies forced heirship under its Civil Code protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Note: Montenegro does not levy inheritance tax on transfers to direct heirs. Consult a cross-border estate attorney before buying.',
+    },
   {
     id: 'malaysia',
     label: 'Malaysia (Kuala Lumpur)',
