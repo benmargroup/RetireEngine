@@ -116,6 +116,17 @@ export const COUNTRY_PROFILES: Record<string, CountryProfile> = {
     honestReality: 'Medellín\'s 72°F year-round climate is real and remarkable. El Poblado and Laureles are genuinely safe with thriving expat communities. Private hospitals are excellent and affordable ($30–80 specialist visits). Safety concerns exist in other parts of the city and country. The 2024 Colombian tax reform largely protects foreign pension income from local tax.',
     strengths: ['Eternal Spring Climate (72°F Year-Round)', 'Exceptional Healthcare Value', 'Low Visa Income Threshold'],
   },
+      turkey: {
+      id: 'turkey',
+      flag: '🇹🇷',
+      criteria: {
+        healthcare: 7, climate: 8, language: 4, proximity: 4, safety: 6,
+        cost: 8, expatCommunity: 7, infrastructure: 7, culture: 8, banking: 5,
+      },
+      climateType: 'mediterranean',
+      honestReality: 'Antalya delivers genuine Mediterranean living at a fraction of Spain or Italy\'s cost, with 300+ days of sunshine and one of Europe\'s largest expat retiree communities. But there\'s no dedicated retirement visa — the practical path is either a $200-250K property purchase or documenting ~$1,050/month income, with rejection rates rising in some provinces. The lira has lost roughly 70% of its value against the dollar over five years; budget a real cushion. The new 20-year tax exemption on foreign pension income (Law 7582, June 2026) is a genuine win for new residents.',
+      strengths: ['300+ Days of Sunshine', '20-Year Foreign Pension Tax Exemption', 'Lowest-Cost Mediterranean Living'],
+    },
   france: {
     id: 'france',
     flag: '🇫🇷',

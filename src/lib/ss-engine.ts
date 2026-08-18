@@ -522,6 +522,44 @@ export const LOCATIONS: readonly LocationData[] = [
     fxVolatilityBand: 'low',
     forcedHeirship: true, inheritanceNote: 'France applies forced heirship; property you buy there may not pass under your US will. Consult a cross-border estate attorney before buying.',
   },
+      {
+      id: 'turkey',
+      label: 'Turkey (Antalya)',
+      kind: 'expat',
+      currency: 'USD',
+      monthlyComfortableCost: 1400,
+      taxPosture: 'worldwide-income-tax', // 20-year exemption for new residents under Law 7582 — see taxNote
+      taxNote: 'Tax resident on worldwide income by default. New residents (not Turkish tax-resident in the prior 3 years) qualify for a 20-year exemption on foreign-source income, including pensions, under Law No. 7582 (in force since June 2026). Private health insurance mandatory for residence permit.',
+      visaName: 'Short-Term Residence Permit (Income Route)',
+      visaIncomeMinMonthly: 1050, // ~1.5× 2026 Turkish minimum wage; lastVerified: 2026-08; source: turkiyerelocation.com
+      visaSavingsAlt: undefined, // no formal savings route — alternative is $200-250K property purchase, not a savings buffer; not modeled here
+      healthcareNote: 'Medicare is not valid abroad. Private health insurance mandatory for residence permit. JCI-accredited private hospitals widely available in Antalya at a fraction of US/EU private care costs.',
+      monthlyBudgetCoupleLow: 2000,
+      monthlyBudgetCoupleHigh: 2800, // lastVerified: 2026-08; source: tekce.com, virtoproperty.com Antalya cost guides
+      airQualityPM25: 14,                 // lastVerified: 2026-08; source: IQAir Antalya
+      hospitalClassAWithin30min: true,  // Memorial Antalya Hospital, Medicalpark Antalya, Antalya Training and Research Hospital
+      internetMbps: 100,              // Türk Telekom / Turkcell Superonline fiber widely available in Antalya city center
+      airportWithin1hr: true,         // Antalya Airport (AYT) ~15-30 min from most expat districts
+      taxFriendlyToPension: true,     // 20-year exemption on foreign pension income for new residents under Law 7582 (June 2026)
+      monthlyRatings: [ // lastVerified: 2026-08; source: Turkish State Meteorological Service climate normals, Antalya
+        { month: 1, rating: 'go', reasons: ['Mild, dry — pleasant Mediterranean winter'] },
+        { month: 2, rating: 'go', reasons: ['Mild, dry'] },
+        { month: 3, rating: 'go', reasons: ['Warming, comfortable'] },
+        { month: 4, rating: 'go', reasons: ['Ideal spring weather'] },
+        { month: 5, rating: 'shoulder', reasons: ['Warming toward summer heat'] },
+        { month: 6, rating: 'shoulder', reasons: ['Heat building'] },
+        { month: 7, rating: 'avoid', reasons: ['Peak heat, often 35°C+'] },
+        { month: 8, rating: 'avoid', reasons: ['Peak heat continues'] },
+        { month: 9, rating: 'shoulder', reasons: ['Still hot, gradually cooling'] },
+        { month: 10, rating: 'go', reasons: ['Cooling, pleasant'] },
+        { month: 11, rating: 'go', reasons: ['Mild autumn'] },
+        { month: 12, rating: 'go', reasons: ['Mild winter begins'] },
+      ],
+      localCurrency: 'Turkish Lira (TRY)', // lastVerified: 2026-08; source: Numbeo, TCMB (Turkish central bank)
+      usdRelationship: 'floating',
+      fxVolatilityBand: 'high', // TRY depreciated ~70% vs USD over the past 5 years amid high inflation
+      forcedHeirship: true, inheritanceNote: 'Turkey applies forced heirship (saklı pay) under the Turkish Civil Code protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Consult a cross-border estate attorney before buying.',
+    },
   {
     id: 'malaysia',
     label: 'Malaysia (Kuala Lumpur)',
