@@ -138,6 +138,17 @@ export const COUNTRY_PROFILES: Record<string, CountryProfile> = {
       honestReality: 'Kotor offers genuine Adriatic beauty — a UNESCO-listed old town on a fjord-like bay — at prices well below Croatia or Italy, with real safety and a growing but still modest expat community. There\'s no dedicated retirement visa; the practical path is proving ~$700/month income or buying property at €150,000+ (a new 2026 requirement). Some marketing claims zero tax on foreign pensions, but Montenegro has no US tax treaty, so the standard 9-15% flat tax applies. Summers bring sharp price spikes and crowds; shoulder-season visits reveal the real appeal.',
       strengths: ['Stunning UNESCO Bay of Kotor', 'Low Flat Tax Rate (9-15%)', 'No Inheritance Tax on Direct Heirs'],
     },
+        malta: {
+      id: 'malta',
+      flag: '🇲🇹',
+      criteria: {
+        healthcare: 9, climate: 8, language: 8, proximity: 5, safety: 8,
+        cost: 6, expatCommunity: 8, infrastructure: 8, culture: 7, banking: 6,
+      },
+      climateType: 'mediterranean',
+      honestReality: 'Malta offers a rare combination for a US retiree: EU membership, English as an official language, world-class healthcare, and no inheritance tax — all on a small, densely populated island with genuine year-round sunshine. EU/EEA passport holders need no visa at all. Non-EU retirees use the Malta Retirement Programme, a 15% flat tax on remitted pension income with a real minimum tax floor (~€7,500/yr) — this isn\'t a budget destination for a modest pension, but the tax efficiency and healthcare quality are hard to match elsewhere in the Mediterranean.',
+      strengths: ['English is an Official Language', 'World-Class Healthcare (WHO Top-5)', 'No Inheritance, Estate, or Wealth Tax'],
+    },
     france: {
     id: 'france',
     flag: '🇫🇷',

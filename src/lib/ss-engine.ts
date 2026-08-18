@@ -598,7 +598,46 @@ export const LOCATIONS: readonly LocationData[] = [
       fxVolatilityBand: 'low', // Euro-denominated, same low-volatility profile as Eurozone entries
       forcedHeirship: true, inheritanceNote: 'Montenegro applies forced heirship under its Civil Code protecting spouses, children, and parents; property you buy there may not pass entirely under your US will. Note: Montenegro does not levy inheritance tax on transfers to direct heirs. Consult a cross-border estate attorney before buying.',
     },
-  {
+        {
+      id: 'malta',
+      label: 'Malta',
+      kind: 'expat',
+      currency: 'USD',
+      monthlyComfortableCost: 1800,
+      taxPosture: 'territorial', // closest — remittance-based: only foreign income actually remitted to Malta is taxed
+      taxNote: 'EU/EEA/Swiss passport holders need no visa at all (see Right of Abode below). For others, the Malta Retirement Programme (MRP) taxes remitted foreign pension income at a flat 15%, with a minimum annual tax of €7,500 (implying ~€50,000/yr remitted income in practice). Malta has a US double-tax treaty. No wealth, estate, or inheritance tax on transfers to close relatives.',
+      visaName: 'Malta Retirement Programme (MRP)',
+      visaIncomeMinMonthly: 4200, // derived from €7,500/yr minimum tax at 15% flat rate (~€50,000/yr remitted); lastVerified: 2026-08; source: Identity Malta / mtca.gov.mt official MRP guidelines
+      visaSavingsAlt: undefined, // MRP requires qualifying property (buy €220-275K or rent €9,600+/yr) rather than a savings buffer; not modeled here
+      healthcareNote: 'Medicare is not valid abroad. Malta\'s healthcare system consistently ranks among the world\'s best (WHO top-5 historically). Public system free for residents; private supplement widely used and affordable (~$80-250/mo).',
+      monthlyBudgetCoupleLow: 2400,
+      monthlyBudgetCoupleHigh: 3000, // lastVerified: 2026-08; source: maltaexpat.com, savoryandpartners.com Malta cost guides
+      airQualityPM25: 9,                  // lastVerified: 2026-08; source: IQAir 2025 Malta national annual average
+      hospitalClassAWithin30min: true,  // Mater Dei Hospital (Malta's main public hospital); island's small size keeps everything within reach
+      internetMbps: 150,               // Malta has strong fiber penetration; moderate confidence, no single authoritative figure found
+      airportWithin1hr: true,         // Malta International Airport — whole island reachable within the hour
+      taxFriendlyToPension: true,     // MRP's flat 15% rate plus no inheritance/estate tax is a genuine advantage
+      monthlyRatings: [ // lastVerified: 2026-08; source: general Central Mediterranean climate normals (Malta)
+        { month: 1, rating: 'go', reasons: ['Mild winter, rarely below 12°C'] },
+        { month: 2, rating: 'go', reasons: ['Mild, pleasant'] },
+        { month: 3, rating: 'go', reasons: ['Comfortable spring'] },
+        { month: 4, rating: 'go', reasons: ['Ideal spring weather'] },
+        { month: 5, rating: 'go', reasons: ['Warm, not yet peak heat'] },
+        { month: 6, rating: 'shoulder', reasons: ['Heat and tourist season building'] },
+        { month: 7, rating: 'avoid', reasons: ['Peak heat and humidity, often 30-34°C'] },
+        { month: 8, rating: 'avoid', reasons: ['Peak heat and humidity continue'] },
+        { month: 9, rating: 'shoulder', reasons: ['Still warm, cooling gradually'] },
+        { month: 10, rating: 'go', reasons: ['Pleasant autumn'] },
+        { month: 11, rating: 'go', reasons: ['Mild, comfortable'] },
+        { month: 12, rating: 'go', reasons: ['Mild winter begins'] },
+      ],
+      localCurrency: 'Euro (€)', // lastVerified: 2026-08; Malta is a full EU member and Eurozone country
+      usdRelationship: 'floating',
+      fxVolatilityBand: 'low', // Euro-denominated, same low-volatility profile as other Eurozone entries
+      passportGroupsWithAbode: ['eu-eea'], // EU/EEA passport holders have right of free movement and residence
+      forcedHeirship: true, inheritanceNote: 'Malta applies forced heirship (legittima) protecting spouses and children under its Civil Code; property you buy there may not pass entirely under your US will. Note: Malta does not levy inheritance, estate, or wealth tax on transfers to close relatives. Consult a cross-border estate attorney before buying.',
+    },
+      {
     id: 'malaysia',
     label: 'Malaysia (Kuala Lumpur)',
     kind: 'expat',
